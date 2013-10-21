@@ -168,6 +168,8 @@ _.extend(window.DocumentDao.prototype, {
 				function (tx) {
 					tx.executeSql("SELECT * FROM iDocument WHERE iDocument.numero_document ='"+numero_document+"'", [], function lister_iDocument(tx, results) {
 						var len = results.rows.length;
+						
+						
 						console.log("Table iDocument : " + len + " enregistrements trouvés.");
 						for (var i=0; i<len; i++){
 
@@ -218,7 +220,28 @@ _.extend(window.DocumentDao.prototype, {
 		);
 		return promise; // on retourne la promesse
 	},
-
+	
+	documentsValid : function(){ 
+		var promise = jQuery.Deferred(); // on utilise une promesse
+		this.db.transaction(
+				function (tx) {
+					tx.executeSql("SELECT * FROM iDocument WHERE valide == \"inconnu\" OR valide == \"false\"", [], function countDoc(tx, results) {
+						var len = results.rows.length;				
+						console.log("Table iDocument : " + len + " enregistrements trouvés.");
+						promise.resolve(len);
+					}
+					);
+				},
+				function (tx, error) {
+					alert('Transaction error ' + error);
+				},
+				function (tx) {
+					console.log("succes lecture");
+				}
+		);
+		return promise; // on retourne la promesse
+	},
+	
 	update_document :function(numero_document,valide){ // pour mettre à jour les champs d'un document particulier
 
 		this.db.transaction(
@@ -264,6 +287,8 @@ _.extend(window.DocumentDao.prototype, {
 		); 
 
 	}
+			
+			
 
 
 

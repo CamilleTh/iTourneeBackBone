@@ -29,7 +29,7 @@ var Type_mode_significationModel = Backbone.Model.extend({
 
 		case 'read': // fetch()
 
-			alert("bien entré");
+
 			var _this = this;
 			var promiseOfType_mode_signification = type_mode_significationdao.remplir_liste();
 			promiseOfType_mode_signification.then(function(type_mode){

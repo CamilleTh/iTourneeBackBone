@@ -33,9 +33,8 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 
 	afficher_infos: function(){
 
-	
 		var _this = this;
-
+		
 		this.model.fetch({
 			success: function(){
 				//var d = new DetailDocumentView({ model: _this.model });
@@ -244,6 +243,7 @@ function template(id){
 	return _.template( $('#'+id).html());
 }
 
+
 $( "#flip-1" ).slider({
 	stop: function( event, ui ) {
 
@@ -268,6 +268,24 @@ $( "#flip-1" ).slider({
 
 	}
 });
+
+$("#cloreTournee").click(function(){
+	console.log("test");
+	var promiseValid = documentdao.documentsValid();
+	console.log(promiseValid);
+	
+	promiseValid.then(function(DocumentUnValide){
+		if(DocumentUnValide == 0){
+			start();
+		}
+	})
+});
+
+
+
+
+
+
 
 
 

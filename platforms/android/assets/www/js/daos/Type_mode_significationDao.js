@@ -121,7 +121,6 @@ _.extend(window.Type_mode_significationDao.prototype, {
 							console.log("Enregistrement = " + i + " libelle = " + results.rows.item(i).libelle);
 							liste = liste + " <option value="+results.rows.item(i).libelle+">"+results.rows.item(i).libelle+"</option>"
 						}
-						alert(liste);
 						
 					//	new ImmeubleModel({id_immeuble : results.rows.item(i).id_immeuble, 
 						var new_liste = new Type_mode_significationModel({liste : liste });
