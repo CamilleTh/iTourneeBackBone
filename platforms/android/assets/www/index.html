@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html class="ui-mobile-rendering">
+<head>
+<title> iTourneeBackBone</title>
+<meta name="viewport" content=" width=device-width, initial-scale=1.0" /> 
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+<link rel="stylesheet" href="css/index.css" />
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+<script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script src="js/libs/underscore.js"></script>
+<script src="js/libs/backbone.js"></script>
+
+</head>
+
+
+<body>
+
+<div data-role="page" id="page_principale" data-title="Page Principale">
+
+		<header data-role="header"  id="header" data-tap-toggle="false" data-position="fixed">
+			iTournée
+		</header> <!-- /header android:windowSoftInputMode="adjustPan très important dans le manifest -->
+			
+		<div data-role="content" id="content"  >
+			
+			<div id="barre_laterale">
+ 				<h2>Significations :</h2>
+ 				<ul data-role="listview"  id="liste_significations" data-filter="true" data-autodividers="true" data-inset="true" data-divider-theme="b">
+ 				
+				</ul>
+			
+			</div>
+			
+			<div id="div2">
+ 				<h2>Détail</h2>
+ 				<div id="div3" > </div>
+ 				<div id="div4"> </div>
+ 				<div id="div5">  </div>
+ 				<div id="div6">  </div>
+ 				
+ 				
+			
+			</div>
+			
+			
+
+		</div> <!-- /content --> 
+		
+		<footer data-role="footer" data-position="fixed" class="footer" data-tap-toggle="false"> iTournée
+		<form id="maform" style="display:none">
+    		<label for="flip-1">Valider :</label>
+    		<select name="flip-1" id="flip-1" data-role="slider" >
+        		<option value="off" selected="selected"> O </option>
+        		<option value="on">|</option>
+   			 </select>
+		</form> 
+		
+		</footer> <!-- data-position =fixed pour fixer le footer en bas de la page -->
+		
+</div>
+
+<script id="document_item_Template" type="text/template" >   
+	<strong><%= nom_tiers_a_signifier %></strong> (<%= civilite_tiers_a_signifier %>) <% if (valide == true || valide == 'true') { %> <span class="valide"> VALIDE </span> <% } %>   <br> 
+	<%= numero_tiers_a_signifier %> - <%= numero_document %> 
+
+</script>
+
+
+
+<script id="documentTemplate2" type="text/template"> 
+
+ 
+					<h3> Informations sur le tiers à signifier et sur le document</h3>
+						
+					<form   >
+
+						<div id="div_numero_document" data-role="fieldcontain"> 
+							<label for="numero_document"> Numéro du document :</label>
+							<input name="numero_document" id="numero_document" value="<%= numero_document %>" type="text" readonly="true" >
+						</div>
+
+						<div id="div_nature_signification" data-role="fieldcontain" data-inline="true">
+        					 <label for="nature_signification">Nature signification :</label>
+							<input name="nature_signification" id="nature_signification" value="<%= nature_signification %>" type="text" readonly="true">
+   						 </div>
+   						 
+						<div id="div_nature_parquet" data-role="fieldcontain" data-inline="true">
+							<label for="nature_parquet"> Nature parquet :</label>
+							<input name="nature_parquet" id="nature_parquet" value="<%= nature_parquet %>" type="text" readonly="true">
+						</div>
+						
+						<div id="div_nom_tiers_a_signifier" data-role="fieldcontain">
+							<label for="nom_tiers_a_signifier"> Nom tiers à signifier :</label>
+							<input name="nom_tiers_a_signifier" id="nom_tiers_a_signifier" value="<%= nom_tiers_a_signifier %>" type="text" readonly="true">
+						</div>
+
+						<div id="div_type_tiers_a_signifier" data-role="fieldcontain">
+							<label for="type_tiers_a_signifier"> Type tiers à signifier :</label>
+							<input name="type_tiers_a_signifier" id="type_tiers_a_signifier" value="<%= type_tiers_a_signifier %>" type="text" readonly="true">
+						</div>
+						
+						<div id="div_civilite_tiers_a_signifier" data-role="fieldcontain">
+							<label for="civilite_tiers_a_signifier"> Civilité tiers à signifier :</label>
+							<input name="civilite_tiers_a_signifier" id="civilite_tiers_a_signifier" value="<%= civilite_tiers_a_signifier %>" type="text" readonly="true">
+						</div>
+						
+						<div id="div_nom_debiteur" data-role="fieldcontain">
+							<label for="nom_debiteur"> Nom débiteur :</label>
+							<input name="nom_debiteur" id="nom_debiteur" value="<%= nom_debiteur %>" type="text" readonly="true">
+						</div>
+
+						<div id="div_commentaires_tiers" data-role="fieldcontain">
+							<label for="commentaires_tiers"> Commentaires tiers :</label>
+							<input name="commentaires_tiers" id="commentaires_tiers" value="<%= commentaires_tiers %>" type="text" readonly="true">
+						</div> 
+
+						<div id="div_domicile_elu" data-role="fieldcontain">
+							<label for="domicile_elu"> Domicile élu :</label>
+							<input name="domicile_elu" id="domicile_elu" value="<%= domicile_elu%>" type="text" readonly="true">
+						</div>
+
+						<div id="div_presomption_domiciliation" data-role="fieldcontain">
+							<label for="presomption_domiciliation"> Presomption Domiciliation :</label>
+							<input name="presomption_domiciliation" id="presomption_domiciliation" value="<%= presomption_domiciliation %>" type="text" readonly="true">
+						</div>
+
+						<div id="div_domicilie" data-role="fieldcontain">
+							<label for="domicilie"> Domicilié :</label>
+							<input name="domicilie" id="domicilie" value="<%= domicilie %>" type="text" readonly="true">
+						</div>
+						
+						<div id="div_numero_tiers_a_signifier" data-role="fieldcontain"> 
+							<label for="numero_tiers_a_signifier"> Numéro tiers à signifier :</label>
+							<input name="numero_tiers_a_signifier" id="numero_tiers_a_signifier" value="<%= numero_tiers_a_signifier %>" type="text" readonly="true">
+						</div>
+						
+						<div id="div_libelle_document" data-role="fieldcontain" >
+							<label for="libelle_document"> Libellé du document :</label>
+							<input name="libelle_document" id="libelle_document" value="<%= libelle_document %>" type="text" readonly="true">
+						</div>
+
+						<div id="div_signataire" data-role="fieldcontain" >
+							<label for="signataire"> Signataire :</label>
+							<input name="signataire" id="signataire" value="<%= signataire %>" type="text" readonly="true">
+						</div>
+
+						<div id="div_nombre_feuillets" data-role="fieldcontain" >
+							<label for="nombre_feuillets"> Nombre feuillets :</label>
+							<input name="nombre_feuillets" id="nombre_feuillets" value="<%= nombre_feuillets %>" type="text" readonly="true">
+						</div>
+
+						
+							
+					</form>
+ 
+
+</script>
+
+<script id="adresseTemplate" type="text/template">
+
+ 
+					<h3> Adresse du tiers à signifier</h3>
+									
+					
+					<div id="div_numero" data-role="fieldcontain">
+							<label for="numero"> Numéro :</label>
+							<input name="numero" id="numero" value="<%= numero %>" type="text" readonly="true">
+					</div>
+            		
+            		<div id="div_complement_numero" data-role="fieldcontain">
+							<label for="complement_numero"> Complément numéro :</label>
+							<input name="complement_numero" id="complement_numero" value="<%= complement_numero %>" type="text" readonly="true">
+					</div>
+            		
+            		<div id="div_nature_voie" data-role="fieldcontain">
+							<label for="nature_voie"> Nature voie :</label>
+							<input name="nature_voie" id="nature_voie" value="<%= nature_voie %>" type="text" readonly="true">
+					</div>
+					
+					<div id="div_lien_nature_nom_voie" data-role="fieldcontain">
+							<label for="lien_nature_nom_voie"> Lien nature voie :</label>
+							<input name="lien_nature_nom_voie" id="lien_nature_nom_voie" value="<%= lien_nature_nom_voie %>" type="text" readonly="true">
+					</div>
+					
+					<div id="div_nom_voie" data-role="fieldcontain">
+							<label for="nom_voie"> Nom voie :</label>
+							<input name="nom_voie" id="nom_voie" value="<%= nom_voie %>" type="text" readonly="true">
+					</div>
+					
+					<div id="div_code_postal" data-role="fieldcontain">
+							<label for="code_postal"> Code postal :</label>
+							<input name="code_postal" id="code_postal" value="<%= code_postal %>" type="text" readonly="true">
+					</div>
+						
+					<div id="div_nom_commune" data-role="fieldcontain">
+							<label for="nom_commune"> Nom commune :</label>
+							<input name="nom_commune" id="nom_commune" value="<%= nom_commune %>" type="text" readonly="true">
+					</div>
+						
+					<div id="div_statut" data-role="fieldcontain">
+							<label for="statut"> Statut :</label>
+							<input name="statut" id="statut" value="<%= statut %>" type="text" readonly="true">
+					</div>
+
+					<div id="div_statut" data-role="fieldcontain">
+							<label for="type"> Type :</label>
+							<input name="type" id="type" value="<%= type %>" type="text" readonly="true">
+					</div>
+
+ 
+
+</script>
+
+<script id="immeubleTemplate" type="text/template">
+
+ 
+					<h3> Fiche immeuble</h3>
+					
+					<form>
+
+					<% if (id_immeuble == " ") { %>
+    					Aucun immeuble enregistré dans la base.
+						<fieldset data-role="collapsible" data-theme="d" data-content-theme="d">
+        						<legend>Ajouter un immeuble ?</legend>
+					<% } %>
+
+
+						
+						
+    						
+
+
+        						<div id="div_cle_ptt" data-role="fieldcontain">
+							
+							
+    <fieldset data-role="controlgroup" data-type="horizontal">
+        <legend>Clé PTT :</legend>
+        <input name="radio_cle_ptt" id="radio_cle_ptt_1" value="true"  type="radio" <% if (cle_ptt == true || cle_ptt == "true") { %> checked="checked" <% } %>  >
+        <label for="radio_cle_ptt_1">Oui</label>
+        <input name="radio_cle_ptt" id="radio_cle_ptt_2" value="false" type="radio" <% if (cle_ptt == false || cle_ptt == "false") { %> checked="checked" <% } %> >
+        <label for="radio_cle_ptt_2">Non</label>
+       
+    </fieldset>
+
+					</div>
+					
+					<div id="div_cle_gaz" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+        <legend>Clé Gaz :</legend>
+        <input name="radio_cle_gaz" id="radio_cle_gaz_1" value="true"  type="radio" <% if (cle_gaz == true || cle_gaz == "true") { %> checked="checked" <% } %>>
+        <label for="radio_cle_gaz_1">Oui</label>
+        <input name="radio_cle_gaz" id="radio_cle_gaz_2" value="false" type="radio" <% if (cle_gaz == false || cle_gaz == "false") { %> checked="checked" <% } %> >
+        <label for="radio_cle_gaz_2">Non</label>
+       
+    </fieldset>
+					</div>
+					
+					<div id="div_interphone" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+        <legend>Interphone :</legend>
+        <input name="radio_interphone" id="radio_interphone_1" value="true"  type="radio" <% if (interphone == true || interphone == "true") { %> checked="checked" <% } %>>
+        <label for="radio_interphone_1">Oui</label>
+        <input name="radio_interphone" id="radio_interphone_2" value="false" type="radio" <% if (interphone == false || interphone == "false") { %> checked="checked" <% } %>>
+        <label for="radio_interphone_2">Non</label>
+       
+    </fieldset>
+					</div>
+					
+					<div id="div_code_vigik" data-role="fieldcontain">
+							<label for="code_vigik"> Code vigik :</label>
+							<input name="code_vigik" id="code_vigik" value="<%= code_vigik %>" type="text">
+					</div>
+					
+					<div id="div_digicode" data-role="fieldcontain">
+							<label for="digicode"> Digicode :</label>
+							<input name="digicode" id="digicode" value="<%= digicode %>" type="text">
+					</div>
+					
+					<div id="div_cle_ptt_sas" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+        <legend>Clé PTT SAS :</legend>
+        <input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_1" value="true"  type="radio" <% if (cle_ptt_sas == true || cle_ptt_sas == "true") { %> checked="checked" <% } %>>
+        <label for="radio_cle_ptt_sas_1">Oui</label>
+        <input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_2" value="false" type="radio" <% if (cle_ptt_sas == false || cle_ptt_sas == "false") { %> checked="checked" <% } %>>
+        <label for="radio_cle_ptt_sas_2">Non</label>
+       
+    </fieldset>
+					</div>
+					
+					<div id="div_interphone_sas" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+        <legend>Interphone SAS :</legend>
+        <input name="radio_interphone_sas" id="radio_interphone_sas_1" value="true"  type="radio" <% if (interphone_sas == true || interphone_sas == "true") { %> checked="checked" <% } %>>
+        <label for="radio_interphone_sas_1">Oui</label>
+        <input name="radio_interphone_sas" id="radio_interphone_sas_2" value="false" type="radio" <% if (interphone_sas == false || interphone_sas == "false") { %> checked="checked" <% } %>>
+        <label for="radio_interphone_sas_2">Non</label>
+       
+    </fieldset>
+					</div>
+					
+					<div id="div_acces_gardien_sas" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+        <legend>Accès Gardien SAS :</legend>
+       <input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_1" value="true"  type="radio" <% if (acces_gardien_sas == true || acces_gardien_sas == "true") { %> checked="checked" <% } %>>
+        <label for="radio_acces_gardien_sas_1">Oui</label>
+        <input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_2" value="false" type="radio" <% if (acces_gardien_sas == false || acces_gardien_sas == "false") { %> checked="checked" <% } %>>
+        <label for="radio_acces_gardien_sas_2">Non</label>
+       
+    </fieldset>
+					</div>
+					
+					<div id="div_digicode_sas" data-role="fieldcontain">
+							<label for="digicode_sas">  Digicode Sas :</label>
+							<input name="digicode_sas" id="digicode_sas" value="<%= digicode_sas %>" type="text" >
+					</div>
+					
+					<div id="div_nom_gardien" data-role="fieldcontain">
+							<label for="nom_gardien"> Nom gardien :</label>
+							<input name="nom_gardien" id="nom_gardien" value="<%= nom_gardien %>" type="text">
+					</div>
+					
+					<div id="div_telephone_gardien" data-role="fieldcontain">
+							<label for="telephone_gardien"> Téléphone gardien :</label>
+							<input name="telephone_gardien" id="telephone_gardien" value="<%= telephone_gardien %>" type="text">
+					</div>
+					
+					<div id="div_plage_horaires_gardien" data-role="fieldcontain">
+							<label for="plage_horaires_gardien"> Plage horaires gardien :</label>
+							<input name="plage_horaires_gardien" id="plage_horaires_gardien" value="<%= plage_horaires_gardien %>" type="text">
+					</div>
+					
+					<div id="div_nom_syndic" data-role="fieldcontain">
+							<label for="nom_syndic"> Nom syndic :</label>
+							<input name="nom_syndic" id="nom_syndic" value="<%= nom_syndic %>" type="text">
+					</div>
+					
+					<div id="div_tel_syndic" data-role="fieldcontain">
+							<label for="tel_syndic"> Téléphone syndic :</label>
+							<input name="tel_syndic" id="tel_syndic" value="<%= tel_syndic %>" type="text">
+					</div>
+					
+					<div id="div_commentaire" data-role="fieldcontain">
+							<label for="commentaire"> Commentaire :</label>
+							<input name="commentaire" id="commentaire" value="<%= commentaire %>" type="text">
+					</div>
+					
+					<div id="div_etage" data-role="fieldcontain">
+							<label for="etage"> Etage :</label>
+							<input name="etage" id="etage" value="<%= etage %>" type="text">
+					</div>
+					
+					<div id="div_porte" data-role="fieldcontain">
+							<label for="porte"> Porte :</label>
+							<input name="porte" id="porte" value="<%= porte %>" type="text">
+					</div>
+					
+					<% if (id_immeuble == " ") { %>
+    						<input id="bouton_creer" value="Creer Fiche immeuble" type="button">
+							</fieldset>
+					<% } else { %>
+							<input id="bouton_update" value="Save" type="button">
+					<% }  %>
+					</form>
+					
+					
+ 
+
+</script>
+
+<script id="signification_Template" type="text/template" >
+
+<h3> Signification </h3>  
+
+<form>
+<div data-role="fieldcontain">
+    <label for="select-native-1">Mode signification :</label>
+    <select name="select-native-1" id="select-native-1">
+       
+    </select>
+</div>
+</form>
+
+<form style="display:none">
+<div data-role="fieldcontain">
+    <label for="select-native-2">Remis à :</label>
+    <select name="select-native-2" id="select-native-2">
+        <option value="1">A personne présente à la résidence</option>
+        <option value="2">A personne présente au domicile</option>
+   
+   </select>
+</div>
+</form>
+
+<form style="display:none">
+<div data-role="fieldcontain">
+    <label for="select-native-3">Civilité:</label>
+    <select name="select-native-3" id="select-native-3">
+        <option value="1">Madame</option>
+        <option value="2">Monsieur</option>
+   
+   </select>
+</div>
+</form>
+
+<form style="display:none">
+<div id="div_nom" data-role="fieldcontain">
+<label for="nom"> Nom :</label>
+<input name="nom" id="nom" value="" type="text">
+</div>
+</form>
+
+<form style="display:none">
+<div id="div_prenom" data-role="fieldcontain">
+<label for="prenom"> Prénom :</label>
+<input name="prenom" id="prenom" value="" type="text">
+</div>
+</form>
+
+<form style="display:none">
+<div data-role="fieldcontain">
+    <label for="select-native-4">Qualité:</label>
+    <select name="select-native-4" id="select-native-4">
+        <option value="1">Ami</option>
+        <option value="2">Amie</option>
+		<option value="3">Avocat</option>
+		<option value="4">Avoué</option>
+		<option value="5">Beau-fils</option>
+   
+   </select>
+</div>
+</form>
+
+<form id="form_lieu_remise" style="display:none">
+<div data-role="fieldcontain">
+    <label for="select-native-5">Lieu remise :</label>
+    <select name="select-native-5" id="select-native-5">
+        <option value="1">A sa résidence</option>
+        <option value="2">A son domicile</option>
+		<option value="3">En un autre lieu</option>
+		<option value="4">Rencontrée en l'étude</option>
+		<option value="5">Sur le lieu de travail</option>
+   
+   </select>
+</div>
+</form>
+
+<form>
+<div data-role="fieldcontain">
+    <label for="select-native-6">Motif non remise :</label>
+    <select name="select-native-6" id="select-native-6" multiple="multiple">
+        <option value="1">Absence de domicile</option>
+        <option value="2">Absence de représentant légal</option>
+	
+   
+   </select>
+</div>
+</form>
+
+
+<div id="div_motif_non_remise_autre" data-role="fieldcontain">
+<label for="motif_non_remise_autre"> Motif non remise autre  :</label>
+<input name="motif_non_remise_autre" id="motif_non_remise_autre" value="" type="text">
+</div>
+
+
+<form>
+<div data-role="fieldcontain">
+    <label for="select-native-7">Mode avis passage :</label>
+    <select name="select-native-7" id="select-native-7">
+        <option value="1">Au gardien</option>
+        <option value="2">Dans boite à lettres</option>
+	
+   
+   </select>
+</div>
+</form>
+
+<form>
+<div data-role="fieldcontain">
+    <label for="select-native-8">Type certification domicile :</label>
+    <select name="select-native-8" id="select-native-8" multiple="multiple">
+        <option value="1">Nom sur la boite aux lettres  </option>
+        <option value="2">Nom sur l'interphone  </option>
+		
+	
+   
+   </select>
+</div>
+</form>
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+<script src="js/config.js"></script>
+<script src="js/daos/DocumentDao.js"></script>
+<script src="js/daos/AdresseDao.js"></script>
+<script src="js/daos/ImmeubleDao.js"></script>
+<script src="js/daos/SignificationDao.js"></script>
+<script src="js/daos/Type_mode_significationDao.js"></script>
+<script src="js/models/DocumentModel.js"></script>
+<script src="js/models/ImmeubleModel.js"></script>
+<script src="js/models/AdresseModel.js"></script>
+<script src="js/models/SignificationModel.js"></script>
+<script src="js/models/Type_mode_significationModel.js"></script>
+<script src="js/views/DocumentView.js"></script>
+<script src="js/views/AdresseView.js"></script>
+<script src="js/views/ImmeubleView.js"></script>
+<script src="js/views/DetailDocumentView.js"></script>
+<script src="js/views/SignificationView.js"></script>
+<script src="js/Router.js"></script>
+
+
+</body>
+
+</html>

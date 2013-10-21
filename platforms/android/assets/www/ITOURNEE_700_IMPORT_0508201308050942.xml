@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tournee>
+    <id_systeme_nomade>idSystemNomade</id_systeme_nomade>
+    <numero_echange>numeroEchange</numero_echange>
+    <numero_version_fichier>versionFichier</numero_version_fichier>
+    <numero_tournee>700</numero_tournee>
+    <document>
+        <id_etude>310</id_etude>
+        <numero_document>3400</numero_document>
+        <nature_signification>1</nature_signification>
+        <nature_parquet></nature_parquet>
+        <nom_tiers_a_signifier>JUDITH Fabrice</nom_tiers_a_signifier>
+        <type_tiers_a_signifier>P</type_tiers_a_signifier>
+        <civilite_tiers_a_signifier>1</civilite_tiers_a_signifier>
+        <commentaires_tiers>zezefzfzfzfz</commentaires_tiers>
+        <domicile_elu>false</domicile_elu>
+        <domiciliation>false</domiciliation>
+        <numero_tiers_a_signifier>1722</numero_tiers_a_signifier>
+        <libelle_document>Appréhension (remise spontanée du bien)</libelle_document>
+        <signataire>SAMAIN Francois</signataire>
+        <nombre_feuillets>0</nombre_feuillets>
+        <adresse>
+            <id_adresse>16</id_adresse>
+            <numero>35</numero>
+            <complement_numero></complement_numero>
+            <nature_voie>rue</nature_voie>
+            <lien_nature_nom_voie></lien_nature_nom_voie>
+            <nom_voie>Berthelot</nom_voie>
+            <code_postal>75018</code_postal>
+            <nom_commune>PARIS</nom_commune>
+            <statut>STATUT_PSA</statut>
+        </adresse>
+        <immeuble>
+            <id_immeuble>1-1372755177871234</id_immeuble>
+            <cle_ptt>true</cle_ptt>
+            <cle_gaz>true</cle_gaz>
+            <interphone>true</interphone>
+            <code_vigik>789</code_vigik>
+            <digicode>123</digicode>
+           <cle_ptt_sas>true</cle_ptt_sas>
+            <interphone_sas>true</interphone_sas>
+            <acces_gardien_sas>true</acces_gardien_sas>
+            <digicode_sas>456</digicode_sas>
+            <nom_gardien>gardien</nom_gardien>
+            <telephone_gardien>0675624506</telephone_gardien>
+            <plage_horaires_gardien>matin</plage_horaires_gardien>
+            <nom_syndic>TODO</nom_syndic>
+            <tel_syndic>TDO</tel_syndic>
+            <commentaire>commentzire</commentaire>
+            <modifie>false</modifie>
+            <etage>2</etage>
+            <porte>22</porte>
+            
+        </immeuble>
+    </document>
+    <document>
+        <id_etude>120</id_etude>
+        <numero_document>8610</numero_document>
+        <nature_signification>1</nature_signification>
+        <nature_parquet>nature_parquet</nature_parquet>
+        <nom_tiers_a_signifier>TINA</nom_tiers_a_signifier>
+        <type_tiers_a_signifier>P</type_tiers_a_signifier>
+        <civilite_tiers_a_signifier>1</civilite_tiers_a_signifier>
+        <commentaires_tiers>ggggggggggggklklklklklkllklklkjhjhjh&#xD;jhjhjhjhjh&#xD;jhhjhjh&#xD;</commentaires_tiers>
+        <domicile_elu>false</domicile_elu>
+        <domiciliation>false</domiciliation>
+        <numero_tiers_a_signifier>1845</numero_tiers_a_signifier>
+        <libelle_document>Appréhension (remise spontanée du bien)</libelle_document>
+        <signataire>SAMAIN Francois</signataire>
+        <nombre_feuillets>0</nombre_feuillets>
+        <adresse>
+            <id_adresse>27</id_adresse>
+            <numero>35</numero>
+            <complement_numero></complement_numero>
+            <nature_voie>rue</nature_voie>
+            <lien_nature_nom_voie></lien_nature_nom_voie>
+            <nom_voie>Berthelot</nom_voie>
+            <code_postal>75018</code_postal>
+            <nom_commune>SCHIFFLANGE</nom_commune>
+            <statut>STATUT_PSA</statut>
+        </adresse>
+    </document>
+    <document>
+        <id_etude>108</id_etude>
+        <numero_document>8712</numero_document>
+        <nature_signification>1</nature_signification>
+        <nature_parquet>nature_parquet</nature_parquet>
+        <nom_tiers_a_signifier>TORRON Frederic</nom_tiers_a_signifier>
+        <type_tiers_a_signifier>P</type_tiers_a_signifier>
+        <civilite_tiers_a_signifier>1</civilite_tiers_a_signifier>
+        <commentaires_tiers>ergeeegge;</commentaires_tiers>
+        <domicile_elu>false</domicile_elu>
+        <domiciliation>false</domiciliation>
+        <numero_tiers_a_signifier>1945</numero_tiers_a_signifier>
+        <libelle_document>Appréhension (remise spontanée du bien)</libelle_document>
+        <signataire>SAMAIN Francois</signataire>
+        <nombre_feuillets>0</nombre_feuillets>
+        <adresse>
+            <id_adresse>7</id_adresse>
+            <numero>38</numero>
+            <complement_numero></complement_numero>
+            <nature_voie>rue</nature_voie>
+            <lien_nature_nom_voie></lien_nature_nom_voie>
+            <nom_voie>Berthelot</nom_voie>
+            <code_postal>75018</code_postal>
+            <nom_commune>THIONVILLE</nom_commune>
+            <statut>STATUT_PSA</statut>
+        </adresse>
+    </document>
+    <document>
+        <id_etude>254</id_etude>
+        <numero_document>0007</numero_document>
+        <nature_signification>1</nature_signification>
+        <nature_parquet>nature_parquet</nature_parquet>
+        <nom_tiers_a_signifier>ZERAH Lucien</nom_tiers_a_signifier>
+        <type_tiers_a_signifier>P</type_tiers_a_signifier>
+        <civilite_tiers_a_signifier>1</civilite_tiers_a_signifier>
+        <commentaires_tiers>bla fdiughfhg eiugheirgh ig</commentaires_tiers>
+        <domicile_elu>false</domicile_elu>
+        <domiciliation>false</domiciliation>
+        <numero_tiers_a_signifier>1939</numero_tiers_a_signifier>
+        <libelle_document>Appréhension (remise spontanée du bien)</libelle_document>
+        <signataire>SAMAIN Francois</signataire>
+        <nombre_feuillets>0</nombre_feuillets>
+        <adresse>
+            <id_adresse>2</id_adresse>
+            <numero>39</numero>
+            <complement_numero></complement_numero>
+            <nature_voie>rue</nature_voie>
+            <lien_nature_nom_voie></lien_nature_nom_voie>
+            <nom_voie>Berthelot</nom_voie>
+            <code_postal>75018</code_postal>
+            <nom_commune>LUNEVILLE</nom_commune>
+            <statut>STATUT_PSA</statut>
+        </adresse>
+    </document>
+</tournee>

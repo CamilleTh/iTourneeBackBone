@@ -1,0 +1,50 @@
+@CHARSET "ISO-8859-1";
+
+#content {
+
+width : 100%;
+height: 100%;
+overflow:auto;
+padding:0px;
+}
+
+
+#barre_laterale {
+
+width: 25%;
+height: 100%;
+overflow:auto;
+float:left;
+padding:5px;
+}
+
+#div2 {
+
+height: 100%;
+margin:0px;
+overflow:auto;
+padding:5px;
+}
+
+.valide {
+
+color : green;
+}
+
+
+#content{
+	margin-bottom : 100px;
+}
+
+h2,h3{
+text-align:center;	
+}
+
+
+
+
+
+body{
+margin:0px;
+
+}
