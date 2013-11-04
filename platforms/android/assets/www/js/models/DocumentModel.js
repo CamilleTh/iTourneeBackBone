@@ -35,32 +35,41 @@ var DocumentModel = Backbone.Model.extend({
 
 	sync: function (method, model, options) { // fonction sync spécifique au modèle
 		switch (method) {
+	
 		case 'create': // on rentre dans ce cas quand on fait un save()
 			console.log("entré dans fonction sync du modèle Document");
-			documentdao.enregistrer_document(model.get('numero_document'),
-					model.get('id_etude'),
-					model.get('nature_signification'),
-					model.get('nature_parquet'),
-					model.get('nom_tiers_a_signifier'),
-					model.get('type_tiers_a_signifier'),
-					model.get('civilite_tiers_a_signifier'),
-					model.get('nom_debiteur'),
-					model.get('commentaires_tiers'),
-					model.get('domicile_elu'),
-					model.get('presomption_domiciliation'),
-					model.get('domicilie'),
-					model.get('numero_tiers_a_signifier'),
-					model.get('libelle_document'),
-					model.get('signataire'),
-					model.get('nombre_feuillets'),
-					model.get('adresse'),
-					model.get('immeuble'),
-					model.get('signification'),
-					false);   // lorsqu'on appelle .save(), on execute cette méthode
+			
+			var promise = type_famille_documentdao.getTypeFamilleLibelle(model.get('nature_signification'));
+			promise.then(function(libelle){
+				console.log("1234567");
+				console.log(libelle);
+				console.log("1234567");	
+				
+				documentdao.enregistrer_document(model.get('numero_document'),
+						model.get('id_etude'),
+						libelle,
+						model.get('nature_parquet'),
+						model.get('nom_tiers_a_signifier'),
+						model.get('type_tiers_a_signifier'),
+						model.get('civilite_tiers_a_signifier'),
+						model.get('nom_debiteur'),
+						model.get('commentaires_tiers'),
+						model.get('domicile_elu'),
+						model.get('presomption_domiciliation'),
+						model.get('domicilie'),
+						model.get('numero_tiers_a_signifier'),
+						model.get('libelle_document'),
+						model.get('signataire'),
+						model.get('nombre_feuillets'),
+						model.get('adresse'),
+						model.get('immeuble'),
+						model.get('signification'),
+						false);   // lorsqu'on appelle .save(), on execute cette méthode
 
-
-
-
+			})	
+			
+			
+			
 			break;
 
 		case 'update':
@@ -69,29 +78,19 @@ var DocumentModel = Backbone.Model.extend({
 				if(model.get('valide') == 'true' || model.get('valide') == true){ // pourquoi ce comportement ? à cause de  SQLite ?
 					console.log("entrée dans true modele");
 					model.set('valide',false);
-					documentdao.update_document(model.get('numero_document'),false);
-					
+					documentdao.update_document(model.get('numero_document'),false);	
 				}
 				else{
 					console.log("entrée dans false modele");
 					model.set('valide',true);
-					documentdao.update_document(model.get('numero_document'),true);
-				
+					documentdao.update_document(model.get('numero_document'),true);			
 				}
-
-
 			}
-
 			else{
-
-				console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
 				documentdao.update_document_immeuble(model.get('numero_document'),model.get('immeuble'));
-
 			}	
-
-
+			
 			console.log("sortie update");
-
 			break;
 
 		case 'delete':
@@ -100,6 +99,7 @@ var DocumentModel = Backbone.Model.extend({
 		case 'read':
 
 			var _this = this;
+			
 			var promiseOfDocument = documentdao.find_document_by_id(model.get('numero_document'));
 			promiseOfDocument.then(function(doc){
 				_this.set(doc.attributes); // on remplace les attributs du modèle courant par ceux du document contenu dans la promesse
@@ -108,8 +108,7 @@ var DocumentModel = Backbone.Model.extend({
 				if(options.success)
 					options.success();
 			});
-
-
+			
 			break;
 		}
 	},
@@ -119,8 +118,6 @@ var DocumentModel = Backbone.Model.extend({
 	// Se déclenche à chaque création d'un modèle
 	initialize : function() {
 		console.log("modele document crée");
-
-
 	}
 });
 
@@ -129,15 +126,16 @@ var DocumentCollection = Backbone.Collection.extend({ // les modèles sont regrou
 
 	url: "ITOURNEE_700_IMPORT_0508201308050942.xml", // le fichier XML " A signifier"
 	initialize : function(){
-
 	},
+	
 	parse: function(data) { // comme les données sont en XML il faut redéfinir la fonction parse
+		
 		var parsed=[];
 		$(data).find('document').each(function(){ // on récupère les informations de chaque noeud document
-
+				
 			var id_etude = $(this).find('id_etude').text();
 			var numero_document = $(this).find('numero_document').text();
-			var nature_signification = $(this).find('nature_signification').text();
+			var nature_signification = $(this).find('nature_signification').text() ;//type_famille_documentdao.getTypeFamilleLibelle($(this).find('nature_signification').text());
 			var nature_parquet = $(this).find('nature_parquet').text();
 			var nom_tiers_a_signifier = $(this).find('nom_tiers_a_signifier').text();
 			var type_tiers_a_signifier = $(this).find('type_tiers_a_signifier').text();
@@ -154,8 +152,7 @@ var DocumentCollection = Backbone.Collection.extend({ // les modèles sont regrou
 			var adresse = $(this).find('id_adresse').text();
 			var immeuble = $(this).find('id_immeuble').text();
 			var signification = $(this).find('signification').text();
-
-
+			
 			parsed.push({id_etude : id_etude,
 				numero_document : numero_document,
 				nature_signification : nature_signification,
@@ -175,13 +172,13 @@ var DocumentCollection = Backbone.Collection.extend({ // les modèles sont regrou
 				adresse : adresse,
 				immeuble : immeuble,
 				signification : signification
-
-
 			});  // XML est transformé en JSON
-		});
 
-		return parsed;
+		});
+			
+		return parsed;	
 	},
+	
 	getDataXML: function (options) {  // fonction fetch personnalisée pour lire le fichier xml
 		flag = true;
 

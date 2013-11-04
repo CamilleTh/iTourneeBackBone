@@ -168,7 +168,7 @@ _.extend(window.DocumentDao.prototype, {
 				function (tx) {
 					tx.executeSql("SELECT * FROM iDocument WHERE iDocument.numero_document ='"+numero_document+"'", [], function lister_iDocument(tx, results) {
 						var len = results.rows.length;
-						
+						var libelle = "inconnu";
 						
 						console.log("Table iDocument : " + len + " enregistrements trouvés.");
 						for (var i=0; i<len; i++){

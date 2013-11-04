@@ -8,7 +8,7 @@ _.extend(window.Type_mode_significationDao.prototype, {
 		this.db.transaction(
 				function (tx) {
 					
-					tx.executeSql("DROP TABLE IF EXISTS 'type_famille_document'");
+					tx.executeSql("DROP TABLE IF EXISTS 'type_mode_signification'");
 					var sql = 'CREATE TABLE IF NOT EXISTS "type_mode_signification" ("id_type_mode_signification" int (10),';
 					sql+= '"libelle" varchar (300),';
 					sql +='"type_tiers" char (3),';

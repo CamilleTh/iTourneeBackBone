@@ -1,7 +1,8 @@
 var modele_courant; // utilisation d'une variable globale. mauvaise pratique ?
 var maj = false;
-var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage d'un seul Document
 
+
+var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage d'un seul Document
 
 	tagName: 'li', // infos contenues dans un li
 	template: template('document_item_Template'),
@@ -14,14 +15,11 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 
 		this.$el.html( this.template(this.model.toJSON())); // on insère dans le li les données du modèle en suivant le template
 		//	current_view_detail_document.model.set('valide',this.model.get('valide'));
-
 		return this;
 	},
 
 	events: {
 		'click' : 'afficher_infos' // lors du clic sur un modèle on déclenche la méthode afficher infos
-
-
 	},
 
 	maj_immeuble: function(){
@@ -52,22 +50,13 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 					
 					
 				}
-				else{$("#flip-1").val("off"); // sinon dans la position non validé
-				$("#flip-1").slider("refresh");}
-				
-			
-
-
-
-
-
-
-
-
-
+				else{
+					$("#flip-1").val("off"); // sinon dans la position non validé
+					$("#flip-1").slider("refresh");	
+				}
 			}
-
 		});	
+		
 		var adresse = new AdresseModel({id_adresse : this.model.get('adresse')});
 		adresse.fetch({
 
@@ -233,19 +222,12 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 	}
 });
 
-
-
-
-
-
 function template(id){
 	return _.template( $('#'+id).html());
 }
 
-
 $( "#flip-1" ).slider({
 	stop: function( event, ui ) {
-
 
 		if($("#flip-1").val() == "off"){
 			console.log($("#flip-1").val());
@@ -263,7 +245,6 @@ $( "#flip-1" ).slider({
 		} 
 	}
 });
-
 
 
 $("#cloreTournee").click(function(){

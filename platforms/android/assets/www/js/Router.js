@@ -34,6 +34,7 @@ var Router = Backbone.Router.extend({
 		var significationView = new SignificationView({model : ma_signification});
 		//significationdao.initialize_immeuble(); 
 		
+			
 	}
 });
 
