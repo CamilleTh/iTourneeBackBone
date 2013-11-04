@@ -4,12 +4,11 @@ window.Type_mode_significationDao = function (db) {
 
 _.extend(window.Type_mode_significationDao.prototype, {
 
-	initialize_Type_mode_significationDao:function () { // création de la table iImmeuble
+	initialize_Type_mode_significationDao:function () { // création de la table type_famille_document
 		this.db.transaction(
 				function (tx) {
-					//tx.executeSql("DROP TABLE IF EXISTS 'iImmeuble'");
-
-					tx.executeSql("DROP TABLE IF EXISTS 'type_mode_signification'");
+					
+					tx.executeSql("DROP TABLE IF EXISTS 'type_famille_document'");
 					var sql = 'CREATE TABLE IF NOT EXISTS "type_mode_signification" ("id_type_mode_signification" int (10),';
 					sql+= '"libelle" varchar (300),';
 					sql +='"type_tiers" char (3),';
