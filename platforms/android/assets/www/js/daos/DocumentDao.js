@@ -163,7 +163,7 @@ _.extend(window.DocumentDao.prototype, {
 	},
 
 	find_document_by_id : function(numero_document){ // pour selectionner un document particulier
-		var promise = jQuery.Deferred(); // on utilise une promesse
+		var promise = $.Deferred(); // on utilise une promesse
 		this.db.transaction(
 				function (tx) {
 					tx.executeSql("SELECT * FROM iDocument WHERE iDocument.numero_document ='"+numero_document+"'", [], function lister_iDocument(tx, results) {
@@ -221,8 +221,71 @@ _.extend(window.DocumentDao.prototype, {
 		return promise; // on retourne la promesse
 	},
 	
+	
+	find_documents : function(numero_document){ // pour selectionner un document particulier
+		var promise = $.Deferred(); // on utilise une promesse
+		var array = new  Array();
+		this.db.transaction(
+				function (tx) {
+					tx.executeSql("SELECT * FROM iDocument", [], function lister_iDocument(tx, results) {
+						var len = results.rows.length;
+						
+						
+						console.log("Table iDocument : " + len + " enregistrements trouvés.");
+						for (var i=0; i<len; i++){
+
+							console.log("Enregistrement = " + i + " ID_etude = " + results.rows.item(i).id_etude + " Numéro document =  " + results.rows.item(i).numero_document + " Nature signification =  " + results.rows.item(i).nature_signification + " valide =  " + results.rows.item(i).valide);
+							var new_doc = new DocumentModel({numero_document : results.rows.item(i).numero_document,
+								nature_signification : results.rows.item(i).nature_signification,
+								nature_parquet : results.rows.item(i).nature_parquet,
+								nom_tiers_a_signifier : results.rows.item(i).nom_tiers_a_signifier,
+								type_tiers_a_signifier : results.rows.item(i).type_tiers_a_signifier ,
+								civilite_tiers_a_signifier : results.rows.item(i).civilite_tiers_a_signifier,
+								nom_debiteur : results.rows.item(i).nom_debiteur ,
+								commentaires_tiers : results.rows.item(i).commentaires_tiers ,
+								domicile_elu : results.rows.item(i).domicile_elu,
+								presomption_domiciliation : results.rows.item(i).presomption_domiciliation ,
+								domicilie : results.rows.item(i).domicilie ,
+								numero_tiers_a_signifier : results.rows.item(i).numero_tiers_a_signifier ,
+								libelle_document : results.rows.item(i).libelle_document ,
+								signataire : results.rows.item(i).signataire,
+								nombre_feuillets : results.rows.item(i).nombre_feuillets,
+								adresse : results.rows.item(i).adresse,
+								immeuble :	results.rows.item(i).immeuble,
+								signification :	results.rows.item(i).signification,
+								valide : results.rows.item(i).valide });
+
+							array.push(new_doc);
+
+						}
+
+						promise.resolve(array);
+
+
+					}
+					);
+
+				},
+				function (tx, error) {
+					alert('Transaction error2 ' + error);
+				},
+				function (tx) {
+
+					console.log("succes lecture");
+
+
+
+				}
+		);
+		console.log("PROMISE " + promise);
+		console.log("array "  + array)
+		console.log("PROMISES " + JSON.stringify(promise));
+		console.log("arrayS "  +  JSON.stringify(array))
+		return promise;
+	},
+	
 	documentsValid : function(){ 
-		var promise = jQuery.Deferred(); // on utilise une promesse
+		var promise = $.Deferred(); // on utilise une promesse
 		this.db.transaction(
 				function (tx) {
 					tx.executeSql("SELECT * FROM iDocument WHERE valide == \"inconnu\" OR valide == \"false\"", [], function countDoc(tx, results) {

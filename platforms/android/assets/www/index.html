@@ -6,13 +6,12 @@
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
 <link rel="stylesheet" href="css/index.css" />
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
 <script src="js/libs/underscore.js"></script>
 <script src="js/libs/backbone.js"></script>
 
 </head>
-
 
 <body>
 
@@ -38,9 +37,6 @@
  				<div id="div4"> </div>
  				<div id="div5">  </div>
  				<div id="div6">  </div>
- 				
- 				
-			
 			</div>
 			
 			
@@ -48,29 +44,33 @@
 		</div> <!-- /content --> 
 		
 		<footer data-role="footer" data-position="fixed" class="footer" data-tap-toggle="false"> iTournée
-		<form id="maform" style="display:none">
-    		<label for="flip-1">Valider :</label>
-    		<select name="flip-1" id="flip-1" data-role="slider" >
-        		<option value="off" selected="selected"> O </option>
-        		<option value="on">|</option>
-   			 </select>
-   			 <a href="#" id="cloreTournee" data-role="button" data-inline="true">Cloture</a>
-   			 
-		</form> 
-		
-		</footer> <!-- data-position =fixed pour fixer le footer en bas de la page -->
-		
+		<form id="maform" style="display:block">
+			<table>
+				<tr >
+					<td style="width:10%"><label for="flip-1">Valider :</label></td>
+					<td style="width:90%">
+						<select name="flip-1" id="flip-1" data-role="slider" >
+			        		<option value="off" selected="selected"> O </option>
+			        		<option value="on">|</option>
+			   			</select>
+   			 		</td>
+					
+					<td>	
+   			 			<a href="#" id="cloreTournee" data-role="button" data-inline="true">Cloture</a>
+   			 		</td>
+				</tr>	
+			</table>
 </div>
 
 <script id="document_item_Template" type="text/template" >   
 	<strong><%= nom_tiers_a_signifier %></strong> (<%= civilite_tiers_a_signifier %>) <% if (valide == true || valide == 'true') { %> <span class="valide"> VALIDE </span> <% } %>   <br> 
 	<%= numero_tiers_a_signifier %> - <%= numero_document %> 
-
 </script>
 
 
 
-<script id="documentTemplate2" type="text/template"> 
+<script 
+id="documentTemplate2" type="text/template"> 
 
  
 					<h3> Informations sur le tiers à signifier et sur le document</h3>
@@ -210,8 +210,6 @@
 							<input name="type" id="type" value="<%= type %>" type="text" readonly="true">
 					</div>
 
- 
-
 </script>
 
 <script id="immeubleTemplate" type="text/template">
@@ -227,15 +225,8 @@
         						<legend>Ajouter un immeuble ?</legend>
 					<% } %>
 
-
+    						<div id="div_cle_ptt" data-role="fieldcontain">
 						
-						
-    						
-
-
-        						<div id="div_cle_ptt" data-role="fieldcontain">
-							
-							
     <fieldset data-role="controlgroup" data-type="horizontal">
         <legend>Clé PTT :</legend>
         <input name="radio_cle_ptt" id="radio_cle_ptt_1" value="true"  type="radio" <% if (cle_ptt == true || cle_ptt == "true") { %> checked="checked" <% } %>  >
@@ -364,9 +355,6 @@
 							<input id="bouton_update" value="Save" type="button">
 					<% }  %>
 					</form>
-					
-					
- 
 
 </script>
 
@@ -375,133 +363,158 @@
 <h3> Signification </h3>  
 
 <form>
-<div data-role="fieldcontain">
+<div id="mode_signification" data-role="fieldcontain">
     <label for="select-native-1">Mode signification :</label>
     <select name="select-native-1" id="select-native-1">
-       
+		<option value="0">Choisir un mode de signification</option>
+		<option value="4">A domicile, dépot en étude (Art 656 CPC)</option>
+		<option value="1">A personne (Art 654 CPC)</option>
+		<option value="2">A personne présente (Art 655 CPC)</option>
+		<option value="6">Recherche fructueuse</option>
+		<option value="38">Recherche infructueuse</option>
     </select>
 </div>
-</form>
 
-<form style="display:none">
-<div data-role="fieldcontain">
-    <label for="select-native-2">Remis à :</label>
-    <select name="select-native-2" id="select-native-2">
-        <option value="1">A personne présente à la résidence</option>
-        <option value="2">A personne présente au domicile</option>
-   
+<div id="motif_nom_remise" data-role="fieldcontain" style="display:none">
+    <label for="select-native-6">Motif non remise :</label>
+    <select name="select-native-6" id="select-native-6" multiple="multiple">
+        <option value="134">Absence de domicile</option>
+        <option value="137">Absence de représentant légal</option>
+        <option value="136">Aucun représentant légal</option>
+        <option value="133">La présente personne refuse le pli</option>
+        <option value="135">Lieu de travail inconnu</option>
+
    </select>
 </div>
-</form>
 
-<form style="display:none">
-<div data-role="fieldcontain">
+<div id="div_motif_non_remise_autre" data-role="fieldcontain" style="display:none">
+	<label for="motif_non_remise_autre">Autre :</label>
+	<input name="motif_non_remise_autre" id="motif_non_remise_autre" value="" type="text">
+</div>
+
+<div id="mode_avis_passage" data-role="fieldcontain" style="display:none">
+    <label for="select-native-7">Mode avis passage :</label>
+    <select name="select-native-7" id="select-native-7">
+        <option value="141">Au gardien</option>
+        <option value="139">Dans boite à lettres</option>
+	  	<option value="140">Dans les lieux</option>
+     	<option value="138">Sous la porte</option>
+   </select>
+</div>
+
+<div id="div_domicile_certif" data-role="fieldcontain" style="display:none">
+	  	<label for="select-native-8">Certification :</label>
+    	<select name="select-native-8" id="select-native-8" multiple="multiple">
+       	 	<option>Nom sur la boite aux lettres  </option>
+        	<option>Nom sur l'interphone  </option>
+       		<option>Domicile confirmé par l'annuaire  </option>
+        	<option>Domicile confirmé par la mairie  </option>
+       	 	<option>Domicile confirmé par le bailleur  </option>
+        	<option>Domicile confirmé par le commissariat  </option>
+        	<option>Domicile confirmé par le destinataire au téléphone  </option>
+        	<option>Domicile confirmé par le gardien  </option>
+        	<option>Domicile confirmé par le voisin  </option>
+	        <option>Nom sur l'interphone  </option>
+	        <option>Nom sur la boîte aux lettres   </option>
+	        <option>Nom sur la façade de l'immeuble  </option>
+	        <option>Nom sur la porte  </option>
+	        <option>Nom sur la sonnette  </option>
+	        <option>Nom sur le tableau des occupants  </option>
+   		</select>
+</div>
+
+<div id="lieu_remise" data-role="fieldcontain" style="display:none">
+    <label for="select-native-5">Lieu remise :</label>
+    <select name="select-native-5" id="select-native-5">
+        <option value="305">A sa résidence</option>
+        <option value="304">A son domicile</option>
+		<option value="307">En un autre lieu</option>
+		<option value="308">Rencontrée en l'étude</option>
+		<option value="306">Sur le lieu de travail</option>
+   </select>
+</div>
+
+<div id="div_adresse" data-role="fieldcontain" style="display:none">
+	 <label >Adresse non implémenté</label>
+</div>
+
+<div id="div_information_complementaire" data-role="fieldcontain" style="display:none">
+	<label for="commentaire">Commentaire</label>
+	<input name="commentaire" id="commentaire" value="" type="text">
+</div>
+
+<div id="remis" data-role="fieldcontain" style="display:none">
+    <label for="select-native-2">Remis à :</label>
+    <select name="select-native-2" id="select-native-2">
+        <option value="297">A personne présente à la résidence</option>
+        <option value="298">A personne présente au domicile</option>
+   </select>
+</div>
+
+<div id="qualite" data-role="fieldcontain" style="display:none">
+    <label for="select-native-4">Qualité:</label>
+    <select name="select-native-4" id="select-native-4">
+        <option value="164">Ami</option>
+        <option value="163">Amie</option>
+        <option value="189">Avocat</option>
+        <option value="190">Avoué</option>
+        <option value="220">Beau-fils</option>
+        <option value="224">Beau-frère</option>
+        <option value="222">Beau-père</option>
+        <option value="219">Belle-fille</option>
+        <option value="221">Belle-mère</option>
+        <option value="223">Belle-soeur</option>
+        <option value="159">Chargé de recevoir</option>
+        <option value="158">Chargée de recevoir</option>
+        <option value="193">Clerc</option>
+        <option value="172">Concubin</option>
+        <option value="171">Concubine</option>
+        <option value="184">Contrôleur</option>
+        <option value="174">Employé</option>
+        <option value="218">Employé de maison</option>
+        <option value="173">Employée</option>
+        <option value="217">Employée de maison</option>
+        <option value="175">Employeur</option>
+        <option value="160">Épouse</option>
+        <option value="161">Époux</option>
+        <option value="167">Fille</option>
+        <option value="168">Fils</option>
+        <option value="170">Frère</option>
+        <option value="319">Gardien</option>
+        <option value="225">Grand-Mère</option>
+        <option value="226">Grand-père</option>
+        <option value="187">Huissier</option>
+        <option value="165">Mère</option>
+        <option value="192">Notaire</option>
+        <option value="166">Père</option>
+        <option value="162">Secrétaire</option>
+        <option value="169">Soeur</option>
+   </select>
+</div>
+
+<div id="civilite" data-role="fieldcontain" style="display:none">
     <label for="select-native-3">Civilité:</label>
     <select name="select-native-3" id="select-native-3">
         <option value="1">Madame</option>
         <option value="2">Monsieur</option>
-   
    </select>
 </div>
-</form>
 
-<form style="display:none">
-<div id="div_nom" data-role="fieldcontain">
+<div id="div_nom" data-role="fieldcontain" style="display:none">
 <label for="nom"> Nom :</label>
 <input name="nom" id="nom" value="" type="text">
 </div>
-</form>
 
-<form style="display:none">
-<div id="div_prenom" data-role="fieldcontain">
+<div id="div_prenom" data-role="fieldcontain" style="display:none">
 <label for="prenom"> Prénom :</label>
 <input name="prenom" id="prenom" value="" type="text">
 </div>
+
 </form>
-
-<form style="display:none">
-<div data-role="fieldcontain">
-    <label for="select-native-4">Qualité:</label>
-    <select name="select-native-4" id="select-native-4">
-        <option value="1">Ami</option>
-        <option value="2">Amie</option>
-		<option value="3">Avocat</option>
-		<option value="4">Avoué</option>
-		<option value="5">Beau-fils</option>
-   
-   </select>
-</div>
-</form>
-
-<form id="form_lieu_remise" style="display:none">
-<div data-role="fieldcontain">
-    <label for="select-native-5">Lieu remise :</label>
-    <select name="select-native-5" id="select-native-5">
-        <option value="1">A sa résidence</option>
-        <option value="2">A son domicile</option>
-		<option value="3">En un autre lieu</option>
-		<option value="4">Rencontrée en l'étude</option>
-		<option value="5">Sur le lieu de travail</option>
-   
-   </select>
-</div>
-</form>
-
-<form>
-<div data-role="fieldcontain">
-    <label for="select-native-6">Motif non remise :</label>
-    <select name="select-native-6" id="select-native-6" multiple="multiple">
-        <option value="1">Absence de domicile</option>
-        <option value="2">Absence de représentant légal</option>
-	
-   
-   </select>
-</div>
-</form>
-
-
-<div id="div_motif_non_remise_autre" data-role="fieldcontain">
-<label for="motif_non_remise_autre"> Motif non remise autre  :</label>
-<input name="motif_non_remise_autre" id="motif_non_remise_autre" value="" type="text">
-</div>
-
-
-<form>
-<div data-role="fieldcontain">
-    <label for="select-native-7">Mode avis passage :</label>
-    <select name="select-native-7" id="select-native-7">
-        <option value="1">Au gardien</option>
-        <option value="2">Dans boite à lettres</option>
-	
-   
-   </select>
-</div>
-</form>
-
-<form>
-<div data-role="fieldcontain">
-    <label for="select-native-8">Type certification domicile :</label>
-    <select name="select-native-8" id="select-native-8" multiple="multiple">
-        <option value="1">Nom sur la boite aux lettres  </option>
-        <option value="2">Nom sur l'interphone  </option>
-		
-	
-   
-   </select>
-</div>
-</form>
-
-
-
-
-
-
-
-
 </script>
 
-
-
+</div>
+</form>
 
 <script src="js/config.js"></script>
 <script src="js/io/FileWriter.js"></script>

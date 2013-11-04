@@ -58,30 +58,15 @@ _.extend(window.Type_mode_significationDao.prototype, {
 					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('44','Attestation de recherche infructueuse','P','1')"); 
 					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('45','Attestation de recherche infructueuse','M','1')"); 
 
-
-
-
-
-
 				},
 				function (tx, error) {
-					alert('Transaction error ' + error);
 				},
 				function (tx) {
-
-
-
-					console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>succes type mode signif");
-
-
-
 				}
 		);
 	},
 
-
-
-	contenu_type_mode_signification : function(){ // liste tous les immeubles
+	contenu_type_mode_signification : function(){ 
 		this.db.transaction(
 				function (tx) {
 					tx.executeSql("SELECT * FROM type_mode_signification", [], function lister_type_mode_signification(tx, results) {
@@ -113,13 +98,14 @@ _.extend(window.Type_mode_significationDao.prototype, {
       
 		this.db.transaction(
 				function (tx) {
-					tx.executeSql("SELECT * FROM type_mode_signification where type_tiers = 'P' ", [], function lister_type_mode_signification(tx, results) {
+					tx.executeSql("SELECT * FROM type_mode_signification where type_tiers = 'P' AND id_type_famille_document = '1'", [], function lister_type_mode_signification(tx, results) {
 						var len = results.rows.length;
 						console.log("Table type mode signification : " + len + " enregistrements trouvés.");
 						for (var i=0; i<len; i++){
 
 							console.log("Enregistrement = " + i + " libelle = " + results.rows.item(i).libelle);
-							liste = liste + " <option value="+results.rows.item(i).libelle+">"+results.rows.item(i).libelle+"</option>"
+							
+							liste = liste + " <option value='"+results.rows.item(i).id_type_mode_signification+"'>"+results.rows.item(i).libelle+"</option>"
 						}
 						
 					//	new ImmeubleModel({id_immeuble : results.rows.item(i).id_immeuble, 

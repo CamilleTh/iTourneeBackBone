@@ -25,14 +25,13 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 	},
 
 	maj_immeuble: function(){
-		console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		maj = true;
 		this.model.sync('update',this.model);
 		maj = false;
 	},
 
 	afficher_infos: function(){
-
+		
 		var _this = this;
 		
 		this.model.fetch({
@@ -49,12 +48,12 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 				if(_this.model.get('valide') == "true"){ // si le document est validé, on passe le slider dans la position validé
 
 					$("#flip-1").val("on");
-					$("#flip-1").slider("refresh");
-
+					
+					
+					
 				}
 				else{$("#flip-1").val("off"); // sinon dans la position non validé
 				$("#flip-1").slider("refresh");}
-				
 				
 			
 
@@ -250,37 +249,37 @@ $( "#flip-1" ).slider({
 
 		if($("#flip-1").val() == "off"){
 			console.log($("#flip-1").val());
-			//$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
-
+			$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
 			modele_courant.sync('update',modele_courant); // force à rentrer dans le cas update dans la fonction sync
 			current_view_detail_document.model.set('valide',false);
-
 		} 
 
 		if($("#flip-1").val() == "on"){
 			console.log("dans on");
-			//$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
-			//	current_view_detail_document.model.set('valide',false);  
+			$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
+			current_view_detail_document.model.set('valide',false);  
 			modele_courant.sync('update',modele_courant); // force à rentrer dans le cas update dans la fonction sync
 			current_view_detail_document.model.set('valide',true);
-
 		} 
-
 	}
 });
 
+
+
 $("#cloreTournee").click(function(){
-	console.log("test");
+	
+	alert("Généraration fichier...");
 	var promiseValid = documentdao.documentsValid();
 	console.log(promiseValid);
 	
 	promiseValid.then(function(DocumentUnValide){
-		if(DocumentUnValide == 0){
-			start();
-		}
+		//if(DocumentUnValide == 0){
+		start().then(function(success){
+			alert("Fichier généré!");
+		});
+		//}
 	})
 });
-
 
 
 

@@ -40,7 +40,12 @@ h2,h3{
 text-align:center;	
 }
 
-
+#cloreTournee{
+	background-color: black; 
+	color: white; 
+	border: none;
+	text-shadow: none;
+}
 
 
 

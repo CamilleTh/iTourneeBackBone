@@ -10,7 +10,7 @@ var Type_mode_significationModel = Backbone.Model.extend({
 
 	sync: function (method, model, options) { // fonction sync spécifique au modèle
 		switch (method) {
-		case 'create':
+		case 'create': // save()
 
 
 
@@ -29,8 +29,10 @@ var Type_mode_significationModel = Backbone.Model.extend({
 
 		case 'read': // fetch()
 
-
+		
+			/*
 			var _this = this;
+			
 			var promiseOfType_mode_signification = type_mode_significationdao.remplir_liste();
 			promiseOfType_mode_signification.then(function(type_mode){
 			
@@ -38,7 +40,7 @@ var Type_mode_significationModel = Backbone.Model.extend({
 				
 				if(options.success)
 					options.success();
-			});
+			});*/
 
 			break;
 
@@ -49,7 +51,6 @@ var Type_mode_significationModel = Backbone.Model.extend({
 
 // Se déclenche à chaque création d'un modèle
 initialize : function() {
-	console.log("modele immeuble crée");
 }
 });
 
