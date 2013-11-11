@@ -161,7 +161,6 @@ id="documentTemplate2" type="text/template">
 						</div>
 
 					</form>
- 
 
 </script>
 
@@ -169,7 +168,24 @@ id="documentTemplate2" type="text/template">
 
  
 					<h3> Adresse du tiers à signifier</h3>
-								
+					
+
+					<div id="div_complement" data-role="fieldcontain">
+							<label for="complement"> Complément :</label>
+							<input name="complement" id="complement" value="<%= complement1 %>/<%= complement2 %>" type="text" readonly="true">
+					</div>
+
+					<div id="div_adresse" data-role="fieldcontain">
+							<label for="adresse"> Adresse :</label>
+							<input name="adresse" id="adresse" value="<%= numero %><%= complement_numero %> <%= nature_voie %><% lien_nature_nom_voie %> <%= nom_voie %>" type="text" readonly="true">
+					</div>
+					
+					<div id="div_adresse2" data-role="fieldcontain">
+							<label for="adresse2"> Adresse :</label>
+							<input name="adresse2" id="adresse2" value="<%= code_postal %> <%= nom_commune %>" type="text" readonly="true">
+					</div>
+            			
+            		<!--			
 					<div id="div_numero" data-role="fieldcontain">
 							<label for="numero"> Numéro :</label>
 							<input name="numero" id="numero" value="<%= numero %>" type="text" readonly="true">
@@ -204,13 +220,13 @@ id="documentTemplate2" type="text/template">
 							<label for="nom_commune"> Nom commune :</label>
 							<input name="nom_commune" id="nom_commune" value="<%= nom_commune %>" type="text" readonly="true">
 					</div>
-						
+					-->
 					<div id="div_statut" data-role="fieldcontain">
 							<label for="statut"> Statut :</label>
 							<input name="statut" id="statut" value="<%= statut %>" type="text" readonly="true">
 					</div>
 
-					<div id="div_statut" data-role="fieldcontain">
+					<div id="div_type" data-role="fieldcontain">
 							<label for="type"> Type :</label>
 							<input name="type" id="type" value="<%= type %>" type="text" readonly="true">
 					</div>
@@ -532,6 +548,7 @@ id="documentTemplate2" type="text/template">
 <script src="js/daos/Type_mode_significationDao.js"></script>
 <script src="js/daos/Type_famille_documentDao.js"></script>
 <script src="js/daos/Type_civiliteDao.js"></script>
+<script src="js/daos/Type_adresseDao.js"></script>
 <script src="js/models/DocumentModel.js"></script>
 <script src="js/models/ImmeubleModel.js"></script>
 <script src="js/models/AdresseModel.js"></script>

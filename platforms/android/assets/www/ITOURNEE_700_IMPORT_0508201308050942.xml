@@ -10,10 +10,12 @@
         <nature_signification>1</nature_signification>
         <nature_parquet></nature_parquet>
         <nom_tiers_a_signifier>JUDITH Fabrice</nom_tiers_a_signifier>
+        <nom_debiteur>nom_debiteur !</nom_debiteur>
         <type_tiers_a_signifier>P</type_tiers_a_signifier>
         <civilite_tiers_a_signifier>1</civilite_tiers_a_signifier>
         <commentaires_tiers>zezefzfzfzfz</commentaires_tiers>
         <domicile_elu>false</domicile_elu>
+        <presemption_domiciliation>false</presemption_domiciliation>
         <domiciliation>false</domiciliation>
         <numero_tiers_a_signifier>1722</numero_tiers_a_signifier>
         <libelle_document>Appréhension (remise spontanée du bien)</libelle_document>
@@ -21,14 +23,19 @@
         <nombre_feuillets>0</nombre_feuillets>
         <adresse>
             <id_adresse>16</id_adresse>
+            <texte_libre>textlibre</texte_libre>
+            <complement1>complement1</complement1>
+            <complement2>complement2</complement2>
             <numero>35</numero>
-            <complement_numero></complement_numero>
+            <complement_numero>bis</complement_numero>
             <nature_voie>rue</nature_voie>
-            <lien_nature_nom_voie></lien_nature_nom_voie>
+            <lien_nature_nom_voie>de</lien_nature_nom_voie>
             <nom_voie>Berthelot</nom_voie>
             <code_postal>75018</code_postal>
             <nom_commune>PARIS</nom_commune>
+            <commentaire>commentaire</commentaire>
             <statut>STATUT_PSA</statut>
+            <type>1</type>
         </adresse>
         <immeuble>
             <id_immeuble>1-1372755177871234</id_immeuble>
@@ -50,7 +57,6 @@
             <modifie>false</modifie>
             <etage>2</etage>
             <porte>22</porte>
-            
         </immeuble>
     </document>
     <document>
@@ -58,6 +64,7 @@
         <numero_document>8610</numero_document>
         <nature_signification>1</nature_signification>
         <nature_parquet>nature_parquet</nature_parquet>
+        <nom_debiteur>nom_debiteur !</nom_debiteur>
         <nom_tiers_a_signifier>TINA</nom_tiers_a_signifier>
         <type_tiers_a_signifier>P</type_tiers_a_signifier>
         <civilite_tiers_a_signifier>1</civilite_tiers_a_signifier>
@@ -73,7 +80,7 @@
             <numero>35</numero>
             <complement_numero></complement_numero>
             <nature_voie>rue</nature_voie>
-            <lien_nature_nom_voie></lien_nature_nom_voie>
+            <lien_nature_nom_voie>de</lien_nature_nom_voie>
             <nom_voie>Berthelot</nom_voie>
             <code_postal>75018</code_postal>
             <nom_commune>SCHIFFLANGE</nom_commune>
@@ -85,6 +92,7 @@
         <numero_document>8712</numero_document>
         <nature_signification>1</nature_signification>
         <nature_parquet>nature_parquet</nature_parquet>
+        <nom_debiteur>nom_debiteur !</nom_debiteur>
         <nom_tiers_a_signifier>TORRON Frederic</nom_tiers_a_signifier>
         <type_tiers_a_signifier>P</type_tiers_a_signifier>
         <civilite_tiers_a_signifier>1</civilite_tiers_a_signifier>
@@ -100,7 +108,7 @@
             <numero>38</numero>
             <complement_numero></complement_numero>
             <nature_voie>rue</nature_voie>
-            <lien_nature_nom_voie></lien_nature_nom_voie>
+            <lien_nature_nom_voie>de</lien_nature_nom_voie>
             <nom_voie>Berthelot</nom_voie>
             <code_postal>75018</code_postal>
             <nom_commune>THIONVILLE</nom_commune>
@@ -128,7 +136,7 @@
             <numero>39</numero>
             <complement_numero></complement_numero>
             <nature_voie>rue</nature_voie>
-            <lien_nature_nom_voie></lien_nature_nom_voie>
+            <lien_nature_nom_voie>de</lien_nature_nom_voie>
             <nom_voie>Berthelot</nom_voie>
             <code_postal>75018</code_postal>
             <nom_commune>LUNEVILLE</nom_commune>

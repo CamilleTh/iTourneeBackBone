@@ -5,6 +5,7 @@ var adressedao = new window.AdresseDao(db);
 var immeubledao = new window.ImmeubleDao(db);
 var type_mode_significationdao = new window.Type_mode_significationDao(db);
 var type_civilitedao = new window.Type_civiliteDao(db);
+var type_adressedao = new window.Type_adresseDao(db);
 //var significationdao = new window.SignificationDao(db);
 
 var current_view_detail_document;// ne fonctionne pas pour detail document
@@ -32,9 +33,15 @@ var Router = Backbone.Router.extend({
 		type_mode_significationdao.initialize_Type_mode_significationDao(); 
 		type_famille_documentdao.initialize_Type_famille_documentDao();
 		type_civilitedao.initialize_Type_civiliteDao_documentDao();
+		type_adressedao.initialize_Type_adresseDao();
 		var ma_signification = new SignificationModel();
 		var significationView = new SignificationView({model : ma_signification});
 		
+		/*var promiseTypeAdresse = type_adressedao.getTypeAdresseLibelle(1);
+		
+		promiseTypeAdresse.then(function(libelle){
+			alert(libelle)
+		});	*/	
 	}
 });
 

@@ -34,7 +34,12 @@ var AdresseModel = Backbone.Model.extend({
 		switch (method) { 
 		case 'create': //save()
 			console.log("entré dans fonction sync du modèle Adresse");
-			adressedao.enregistrer_adresse(model.get('id_adresse'),
+			
+			var promiseTypeAdresse = type_adressedao.getTypeAdresseLibelle(model.get('type'))
+			
+			promiseTypeAdresse.then(function(libelleType){
+				alert(libelleType)
+				adressedao.enregistrer_adresse(model.get('id_adresse'),
 					model.get('texte_libre'),
 					model.get('complement1'),
 					model.get('complement2'),
@@ -47,7 +52,11 @@ var AdresseModel = Backbone.Model.extend({
 					model.get('nom_commune'), 
 					model.get('commentaire'), 
 					model.get('statut'),
-					model.get('type')); // lorsqu'on appelle .save(), on execute cette méthode
+					libelleType
+					); // lorsqu'on appelle .save(), on execute cette méthode
+			});
+			
+			
 
 
 			break;
@@ -129,8 +138,10 @@ var AdresseCollection = Backbone.Collection.extend({ // les modèles sont regroup
 
 			});  // XML est transformé en JSON
 		});
+		
 		return parsed;
 	},
+	
 	getDataXML: function (options) {  // fonction fetch personnalisée pour lire le fichier xml
 		flag = true;
 		options = options || {};
