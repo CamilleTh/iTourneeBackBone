@@ -21,6 +21,7 @@ var DocumentModel = Backbone.Model.extend({
 		domicile_elu : "inconnu", 
 		presomption_domiciliation : "inconnu",
 		domicilie : "inconnu",
+		domiciliation : "inconnu",
 		numero_tiers_a_signifier : "inconnu",
 		libelle_document : "inconnu", 
 		signataire : "inconnu", 
@@ -41,9 +42,6 @@ var DocumentModel = Backbone.Model.extend({
 			
 			var promise = type_famille_documentdao.getTypeFamilleLibelle(model.get('nature_signification'));
 			promise.then(function(libelle){
-				console.log("1234567");
-				console.log(libelle);
-				console.log("1234567");	
 				
 				documentdao.enregistrer_document(model.get('numero_document'),
 						model.get('id_etude'),
@@ -57,6 +55,7 @@ var DocumentModel = Backbone.Model.extend({
 						model.get('domicile_elu'),
 						model.get('presomption_domiciliation'),
 						model.get('domicilie'),
+						model.get('domiciliation'),
 						model.get('numero_tiers_a_signifier'),
 						model.get('libelle_document'),
 						model.get('signataire'),
@@ -143,6 +142,7 @@ var DocumentCollection = Backbone.Collection.extend({ // les modèles sont regrou
 			var nom_debiteur = $(this).find('nom_debiteur').text();
 			var commentaires_tiers = $(this).find('commentaires_tiers').text();
 			var domicile_elu = $(this).find('domicile_elu').text();
+			var domiciliation = $(this).find('domiciliation').text();
 			var presomption_domiciliation = $(this).find('presomption_domiciliation').text();
 			var domicilie = $(this).find('domicilie').text();
 			var numero_tiers_a_signifier = $(this).find('numero_tiers_a_signifier').text();
@@ -165,6 +165,7 @@ var DocumentCollection = Backbone.Collection.extend({ // les modèles sont regrou
 				domicile_elu : domicile_elu,
 				presomption_domiciliation : presomption_domiciliation,
 				domicilie : domicilie,
+				domiciliation : domiciliation,
 				numero_tiers_a_signifier : numero_tiers_a_signifier,
 				libelle_document : libelle_document,
 				signataire : signataire,
@@ -172,8 +173,7 @@ var DocumentCollection = Backbone.Collection.extend({ // les modèles sont regrou
 				adresse : adresse,
 				immeuble : immeuble,
 				signification : signification
-			});  // XML est transformé en JSON
-
+			}); // XML est transformé en JSON
 		});
 			
 		return parsed;	

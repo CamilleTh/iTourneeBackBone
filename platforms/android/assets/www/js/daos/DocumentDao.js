@@ -21,6 +21,7 @@ _.extend(window.DocumentDao.prototype, {
 					sql +='"domicile_elu" BOOL NOT NULL,';
 					sql +='"presomption_domiciliation" BOOL NOT NULL,';
 					sql +='"domicilie" BOOL NOT NULL,';
+					sql +='"domiciliation" BOOL NOT NULL,';
 					sql +='"numero_tiers_a_signifier" INTEGER NOT NULL,';
 					sql +='"libelle_document" VARCHAR(200) NOT NULL,';
 					sql +='"signataire" VARCHAR(25) NOT NULL,';
@@ -63,6 +64,7 @@ _.extend(window.DocumentDao.prototype, {
 			domicile_elu,
 			presomption_domiciliation,
 			domicilie,
+			domiciliation,
 			numero_tiers_a_signifier,
 			libelle_document,
 			signataire,
@@ -86,6 +88,7 @@ _.extend(window.DocumentDao.prototype, {
 					sql +=	" domicile_elu,";
 					sql +=	" presomption_domiciliation,";
 					sql +=	" domicilie,";
+					sql +=	" domiciliation,";
 					sql +=	" numero_tiers_a_signifier,";
 					sql +=	" libelle_document,";
 					sql +=	" signataire,";
@@ -108,6 +111,7 @@ _.extend(window.DocumentDao.prototype, {
 					sql +="'"+domicile_elu+"',";
 					sql +="'"+presomption_domiciliation+"',";
 					sql +="'"+domicilie+"',";
+					sql +="'"+domiciliation+"',";
 					sql +="'"+numero_tiers_a_signifier+"',";
 					sql +="'"+libelle_document+"',";
 					sql +="'"+signataire+"',";
@@ -185,6 +189,7 @@ _.extend(window.DocumentDao.prototype, {
 								domicile_elu : results.rows.item(i).domicile_elu,
 								presomption_domiciliation : results.rows.item(i).presomption_domiciliation ,
 								domicilie : results.rows.item(i).domicilie ,
+								domiciliation :  results.rows.item(i).domiciliation ,
 								numero_tiers_a_signifier : results.rows.item(i).numero_tiers_a_signifier ,
 								libelle_document : results.rows.item(i).libelle_document ,
 								signataire : results.rows.item(i).signataire,
@@ -246,6 +251,7 @@ _.extend(window.DocumentDao.prototype, {
 								domicile_elu : results.rows.item(i).domicile_elu,
 								presomption_domiciliation : results.rows.item(i).presomption_domiciliation ,
 								domicilie : results.rows.item(i).domicilie ,
+								domiciliation :  results.rows.item(i).domiciliation ,
 								numero_tiers_a_signifier : results.rows.item(i).numero_tiers_a_signifier ,
 								libelle_document : results.rows.item(i).libelle_document ,
 								signataire : results.rows.item(i).signataire,

@@ -127,6 +127,7 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 			nom_debiteur : "",
 			commentaires_tiers : "",
 			domicile_elu : "",
+			domiciliation : "",
 			presomption_domiciliation : "",
 			domicilie : "",
 			numero_tiers_a_signifier : "",

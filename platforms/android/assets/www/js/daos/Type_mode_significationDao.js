@@ -113,8 +113,6 @@ _.extend(window.Type_mode_significationDao.prototype, {
 					}
 					);
 					
-					
-
 				},
 				function (tx, error) {
 					alert('Transaction error ' + error);

@@ -75,20 +75,15 @@ id="documentTemplate2" type="text/template">
  
 					<h3> Informations sur le tiers à signifier et sur le document</h3>
 						
-					<form   >
-
-						<div id="div_numero_document" data-role="fieldcontain"> 
-							<label for="numero_document"> Numéro du document :</label>
-							<input name="numero_document" id="numero_document" value="<%= numero_document %>" type="text" readonly="true" >
-						</div>
+					<form>
 
 						<div id="div_nature_signification" data-role="fieldcontain" data-inline="true">
-        					 <label for="nature_signification">Nature signification :</label>
+        					 <label for="nature_signification">Nature de signification :</label>
 							<input name="nature_signification" id="nature_signification" value="<%= nature_signification %>" type="text" readonly="true">
-   						 </div>
+   						</div>
    						 
 						<div id="div_nature_parquet" data-role="fieldcontain" data-inline="true">
-							<label for="nature_parquet"> Nature parquet :</label>
+							<label for="nature_parquet"> Nature du parquet :</label>
 							<input name="nature_parquet" id="nature_parquet" value="<%= nature_parquet %>" type="text" readonly="true">
 						</div>
 						
@@ -97,63 +92,55 @@ id="documentTemplate2" type="text/template">
 							<input name="nom_tiers_a_signifier" id="nom_tiers_a_signifier" value="<%= nom_tiers_a_signifier %>" type="text" readonly="true">
 						</div>
 
-						<div id="div_type_tiers_a_signifier" data-role="fieldcontain">
-							<label for="type_tiers_a_signifier"> Type tiers à signifier :</label>
-							<input name="type_tiers_a_signifier" id="type_tiers_a_signifier" value="<%= type_tiers_a_signifier %>" type="text" readonly="true">
-						</div>
-						
 						<div id="div_civilite_tiers_a_signifier" data-role="fieldcontain">
 							<label for="civilite_tiers_a_signifier"> Civilité tiers à signifier :</label>
 							<input name="civilite_tiers_a_signifier" id="civilite_tiers_a_signifier" value="<%= civilite_tiers_a_signifier %>" type="text" readonly="true">
 						</div>
+
 						
+						<% if (nom_debiteur != "") { %>
 						<div id="div_nom_debiteur" data-role="fieldcontain">
-							<label for="nom_debiteur"> Nom débiteur :</label>
+							<label for="nom_debiteur"> Nom du débiteur :</label>
 							<input name="nom_debiteur" id="nom_debiteur" value="<%= nom_debiteur %>" type="text" readonly="true">
 						</div>
+						<% } %>
 
-						<div id="div_commentaires_tiers" data-role="fieldcontain">
-							<label for="commentaires_tiers"> Commentaires tiers :</label>
-							<input name="commentaires_tiers" id="commentaires_tiers" value="<%= commentaires_tiers %>" type="text" readonly="true">
-						</div> 
-
-						<div id="div_domicile_elu" data-role="fieldcontain">
-							<label for="domicile_elu"> Domicile élu :</label>
-							<input name="domicile_elu" id="domicile_elu" value="<%= domicile_elu%>" type="text" readonly="true">
-						</div>
-
-						<div id="div_presomption_domiciliation" data-role="fieldcontain">
-							<label for="presomption_domiciliation"> Presomption Domiciliation :</label>
-							<input name="presomption_domiciliation" id="presomption_domiciliation" value="<%= presomption_domiciliation %>" type="text" readonly="true">
-						</div>
-
-						<div id="div_domicilie" data-role="fieldcontain">
-							<label for="domicilie"> Domicilié :</label>
-							<input name="domicilie" id="domicilie" value="<%= domicilie %>" type="text" readonly="true">
-						</div>
-						
 						<div id="div_numero_tiers_a_signifier" data-role="fieldcontain"> 
-							<label for="numero_tiers_a_signifier"> Numéro tiers à signifier :</label>
+							<label for="numero_tiers_a_signifier"> Numéro du tiers :</label>
 							<input name="numero_tiers_a_signifier" id="numero_tiers_a_signifier" value="<%= numero_tiers_a_signifier %>" type="text" readonly="true">
 						</div>
-						
+
 						<div id="div_libelle_document" data-role="fieldcontain" >
 							<label for="libelle_document"> Libellé du document :</label>
 							<input name="libelle_document" id="libelle_document" value="<%= libelle_document %>" type="text" readonly="true">
 						</div>
 
-						<div id="div_signataire" data-role="fieldcontain" >
-							<label for="signataire"> Signataire :</label>
-							<input name="signataire" id="signataire" value="<%= signataire %>" type="text" readonly="true">
+						<div id="div_numero_document" data-role="fieldcontain"> 
+							<label for="numero_document"> Numéro du document :</label>
+							<input name="numero_document" id="numero_document" value="<%= numero_document %>" type="text" readonly="true" >
 						</div>
 
-						<div id="div_nombre_feuillets" data-role="fieldcontain" >
-							<label for="nombre_feuillets"> Nombre feuillets :</label>
-							<input name="nombre_feuillets" id="nombre_feuillets" value="<%= nombre_feuillets %>" type="text" readonly="true">
+						<div id="div_domiciliation" data-role="fieldcontain">
+							<label for="domiciliation"> Société de domiciliation :</label>
+							<input name="domiciliation" id="domiciliation" value="<%= domiciliation %>" type="text" readonly="true">
 						</div>
 
-						
-							
+						<!--
+						<div id="div_domicile_elu" data-role="fieldcontain" readonly="true">
+							<fieldset data-role="controlgroup" data-type="horizontal" >
+       							<legend>Domicile élu :</legend>
+        						<input name="radio_domicile_elu" id="radio_domicile_elu_1" value="true" readonly="true" type="radio" <% if (domicile_elu == true || domicile_elu == "true") { %> checked="checked" <% } %>>
+        						<label for="radio_domicile_elu_1">Oui</label>
+        						<input name="radio_domicile_elu" id="radio_domicile_elu_2" value="false" readonly="true" type="radio" <% if (domicile_elu == false || domicile_elu == "false") { %> checked="checked" <% } %>>
+        						<label for="radio_domicile_elu_2">Non</label>
+    						</fieldset>
+						</div>
+						-->
+						<div id="div_commentaires_tiers" data-role="fieldcontain">
+							<label for="commentaires_tiers"> Commentaires tiers :</label>
+							<input name="commentaires_tiers" id="commentaires_tiers" value="<%= commentaires_tiers %>" type="text" readonly="true">
+						</div>
+
 					</form>
  
 
@@ -163,8 +150,7 @@ id="documentTemplate2" type="text/template">
 
  
 					<h3> Adresse du tiers à signifier</h3>
-									
-					
+								
 					<div id="div_numero" data-role="fieldcontain">
 							<label for="numero"> Numéro :</label>
 							<input name="numero" id="numero" value="<%= numero %>" type="text" readonly="true">
@@ -215,6 +201,9 @@ id="documentTemplate2" type="text/template">
 <script id="immeubleTemplate" type="text/template">
 
  
+
+          
+            
 					<h3> Fiche immeuble</h3>
 					
 					<form>
@@ -259,6 +248,8 @@ id="documentTemplate2" type="text/template">
        
     </fieldset>
 					</div>
+
+  
 					
 					<div id="div_code_vigik" data-role="fieldcontain">
 							<label for="code_vigik"> Code vigik :</label>
@@ -271,36 +262,33 @@ id="documentTemplate2" type="text/template">
 					</div>
 					
 					<div id="div_cle_ptt_sas" data-role="fieldcontain">
-							<fieldset data-role="controlgroup" data-type="horizontal">
-        <legend>Clé PTT SAS :</legend>
-        <input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_1" value="true"  type="radio" <% if (cle_ptt_sas == true || cle_ptt_sas == "true") { %> checked="checked" <% } %>>
-        <label for="radio_cle_ptt_sas_1">Oui</label>
-        <input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_2" value="false" type="radio" <% if (cle_ptt_sas == false || cle_ptt_sas == "false") { %> checked="checked" <% } %>>
-        <label for="radio_cle_ptt_sas_2">Non</label>
-       
-    </fieldset>
+						<fieldset data-role="controlgroup" data-type="horizontal">
+       					 	<legend>Clé PTT SAS :</legend>
+       	 					<input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_1" value="true"  type="radio" <% if (cle_ptt_sas == true || cle_ptt_sas == "true") { %> checked="checked" <% } %>>
+        					<label for="radio_cle_ptt_sas_1">Oui</label>
+        					<input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_2" value="false" type="radio" <% if (cle_ptt_sas == false || cle_ptt_sas == "false") { %> checked="checked" <% } %>>
+        					<label for="radio_cle_ptt_sas_2">Non</label>
+						</fieldset>
 					</div>
-					
+
 					<div id="div_interphone_sas" data-role="fieldcontain">
-							<fieldset data-role="controlgroup" data-type="horizontal">
-        <legend>Interphone SAS :</legend>
-        <input name="radio_interphone_sas" id="radio_interphone_sas_1" value="true"  type="radio" <% if (interphone_sas == true || interphone_sas == "true") { %> checked="checked" <% } %>>
-        <label for="radio_interphone_sas_1">Oui</label>
-        <input name="radio_interphone_sas" id="radio_interphone_sas_2" value="false" type="radio" <% if (interphone_sas == false || interphone_sas == "false") { %> checked="checked" <% } %>>
-        <label for="radio_interphone_sas_2">Non</label>
-       
-    </fieldset>
+						<fieldset data-role="controlgroup" data-type="horizontal">
+        					<legend>Interphone SAS :</legend>
+        					<input name="radio_interphone_sas" id="radio_interphone_sas_1" value="true"  type="radio" <% if (interphone_sas == true || interphone_sas == "true") { %> checked="checked" <% } %>>
+        					<label for="radio_interphone_sas_1">Oui</label>
+        					<input name="radio_interphone_sas" id="radio_interphone_sas_2" value="false" type="radio" <% if (interphone_sas == false || interphone_sas == "false") { %> checked="checked" <% } %>>
+        					<label for="radio_interphone_sas_2">Non</label>
+   						</fieldset>
 					</div>
 					
 					<div id="div_acces_gardien_sas" data-role="fieldcontain">
-							<fieldset data-role="controlgroup" data-type="horizontal">
-        <legend>Accès Gardien SAS :</legend>
-       <input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_1" value="true"  type="radio" <% if (acces_gardien_sas == true || acces_gardien_sas == "true") { %> checked="checked" <% } %>>
-        <label for="radio_acces_gardien_sas_1">Oui</label>
-        <input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_2" value="false" type="radio" <% if (acces_gardien_sas == false || acces_gardien_sas == "false") { %> checked="checked" <% } %>>
-        <label for="radio_acces_gardien_sas_2">Non</label>
-       
-    </fieldset>
+						<fieldset data-role="controlgroup" data-type="horizontal">
+        					<legend>Accès Gardien SAS :</legend>
+       						<input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_1" value="true"  type="radio" <% if (acces_gardien_sas == true || acces_gardien_sas == "true") { %> checked="checked" <% } %>>
+        					<label for="radio_acces_gardien_sas_1">Oui</label>
+        					<input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_2" value="false" type="radio" <% if (acces_gardien_sas == false || acces_gardien_sas == "false") { %> checked="checked" <% } %>>
+        					<label for="radio_acces_gardien_sas_2">Non</label>
+    					</fieldset>
 					</div>
 					
 					<div id="div_digicode_sas" data-role="fieldcontain">
@@ -322,7 +310,7 @@ id="documentTemplate2" type="text/template">
 							<label for="plage_horaires_gardien"> Plage horaires gardien :</label>
 							<input name="plage_horaires_gardien" id="plage_horaires_gardien" value="<%= plage_horaires_gardien %>" type="text">
 					</div>
-					
+
 					<div id="div_nom_syndic" data-role="fieldcontain">
 							<label for="nom_syndic"> Nom syndic :</label>
 							<input name="nom_syndic" id="nom_syndic" value="<%= nom_syndic %>" type="text">
@@ -524,6 +512,7 @@ id="documentTemplate2" type="text/template">
 <script src="js/daos/SignificationDao.js"></script>
 <script src="js/daos/Type_mode_significationDao.js"></script>
 <script src="js/daos/Type_famille_documentDao.js"></script>
+<script src="js/daos/Type_civiliteDao.js"></script>
 <script src="js/models/DocumentModel.js"></script>
 <script src="js/models/ImmeubleModel.js"></script>
 <script src="js/models/AdresseModel.js"></script>

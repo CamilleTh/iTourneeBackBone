@@ -112,6 +112,7 @@
         <numero_document>0007</numero_document>
         <nature_signification>1</nature_signification>
         <nature_parquet>nature_parquet</nature_parquet>
+        <nom_debiteur>nom_debiteur !</nom_debiteur>
         <nom_tiers_a_signifier>ZERAH Lucien</nom_tiers_a_signifier>
         <type_tiers_a_signifier>P</type_tiers_a_signifier>
         <civilite_tiers_a_signifier>1</civilite_tiers_a_signifier>

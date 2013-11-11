@@ -8,19 +8,7 @@ window.Type_famille_documentDao = function (db) {
 _.extend(window.Type_famille_documentDao.prototype, {
 	
 	getTypeFamilleLibelle : function(idTypeFamille){
-		
-
-		var data =  this.type_famille_document_data();
-
-	/*	console.log("1#"+data);
-		console.log("2#"+JSON.stringify(data));
-		console.log("3#"+data[1]);
-		console.log("4#"+data["1"]);
-		console.log("5#"+idTypeFamille);
-		console.log("6#"+data[idTypeFamille]);
-
-		return data[idTypeFamille];*/
-		
+				
 		var promiseLibelle = jQuery.Deferred(); 
 		this.db.transaction(
 				function (tx) {
@@ -54,8 +42,9 @@ _.extend(window.Type_famille_documentDao.prototype, {
 					var sql = 'CREATE TABLE "type_famille_document" (';
 					sql += '"id_type_famille_document" int(10),';		 
 					sql += '"libelle" varchar(25))'
+						
 					tx.executeSql(sql);
-
+					
 					tx.executeSql("INSERT INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (1,'Actes');");
 					tx.executeSql("INSERT INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (2,'formalités');");
 					tx.executeSql("INSERT INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (3,'courriers');");
