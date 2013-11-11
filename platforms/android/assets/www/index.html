@@ -120,10 +120,29 @@ id="documentTemplate2" type="text/template">
 							<input name="numero_document" id="numero_document" value="<%= numero_document %>" type="text" readonly="true" >
 						</div>
 
+
 						<div id="div_domiciliation" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+       					 		<legend> Société de domiciliation :</legend>
+        						<input name="radio_domiciliation" disabled="disabled" id="radio_domiciliation_1" value="true"  type="radio" <% if (domiciliation == true || domiciliation == "true") { %> checked="checked" <% } %>  >
+        						<label for="radio_domiciliation_1">Oui</label>
+        						<input name="radio_domiciliation" disabled="disabled" id="radio_domiciliation_2" value="false" type="radio" <% if (domiciliation == false || domiciliation == "false") { %> checked="checked" <% } %> >
+        						<label for="radio_domiciliation_2">Non</label>
+    						</fieldset>
+						</div>
+						
+						<!--
+						<div id="div_domiciliation" data-role="fieldcontain">
+							
+								<label for="domiciliation"> Société de domiciliation :</label>
+        						<input id="domiciliation" onclick="this.checked=!this.checked;" type="checkbox" name="domiciliation">
+   						 	
 							<label for="domiciliation"> Société de domiciliation :</label>
+							<input type="checkbox" name="domiciliation" readonly="true">
 							<input name="domiciliation" id="domiciliation" value="<%= domiciliation %>" type="text" readonly="true">
 						</div>
+						-->
+
 
 						<!--
 						<div id="div_domicile_elu" data-role="fieldcontain" readonly="true">
