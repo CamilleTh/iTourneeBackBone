@@ -35,19 +35,6 @@ var Router = Backbone.Router.extend({
 		var ma_signification = new SignificationModel();
 		var significationView = new SignificationView({model : ma_signification});
 		
-		var promise = type_civilitedao.getTypeCiviliteLibelle(6,'P');
-		
-		promise.then(function(libelle){
-			alert(libelle);
-		});
-		
-		var promise = type_civilitedao.getTypeCiviliteLibelle(14,'M');
-		
-		promise.then(function(libelle){
-			alert(libelle);
-		});
-			
-			
 	}
 });
 

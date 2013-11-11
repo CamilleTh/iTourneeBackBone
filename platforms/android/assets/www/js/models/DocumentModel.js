@@ -41,15 +41,19 @@ var DocumentModel = Backbone.Model.extend({
 			console.log("entré dans fonction sync du modèle Document");
 			
 			var promise = type_famille_documentdao.getTypeFamilleLibelle(model.get('nature_signification'));
+		
+			var typetiers = model.get('type_tiers_a_signifier');
+			var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(model.get('civilite_tiers_a_signifier'),typetiers)
+			
 			promise.then(function(libelle){
-				
+				promiseCivilite.then(function(libelleCivilite){
 				documentdao.enregistrer_document(model.get('numero_document'),
 						model.get('id_etude'),
 						libelle,
 						model.get('nature_parquet'),
 						model.get('nom_tiers_a_signifier'),
 						model.get('type_tiers_a_signifier'),
-						model.get('civilite_tiers_a_signifier'),
+						libelleCivilite,
 						model.get('nom_debiteur'),
 						model.get('commentaires_tiers'),
 						model.get('domicile_elu'),
@@ -64,7 +68,7 @@ var DocumentModel = Backbone.Model.extend({
 						model.get('immeuble'),
 						model.get('signification'),
 						false);   // lorsqu'on appelle .save(), on execute cette méthode
-
+				})
 			})	
 			
 			

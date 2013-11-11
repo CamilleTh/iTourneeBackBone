@@ -114,8 +114,8 @@
         <nature_parquet>nature_parquet</nature_parquet>
         <nom_debiteur>nom_debiteur !</nom_debiteur>
         <nom_tiers_a_signifier>ZERAH Lucien</nom_tiers_a_signifier>
-        <type_tiers_a_signifier>P</type_tiers_a_signifier>
-        <civilite_tiers_a_signifier>1</civilite_tiers_a_signifier>
+        <type_tiers_a_signifier>M</type_tiers_a_signifier>
+        <civilite_tiers_a_signifier>2</civilite_tiers_a_signifier>
         <commentaires_tiers>bla fdiughfhg eiugheirgh ig</commentaires_tiers>
         <domicile_elu>false</domicile_elu>
         <domiciliation>false</domiciliation>
