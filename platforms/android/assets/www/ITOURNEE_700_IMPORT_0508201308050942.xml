@@ -24,7 +24,7 @@
             <numero>65</numero>
             <complement_numero></complement_numero>
             <nature_voie>avenue</nature_voie>
-            <lien_nature_nom_voie></lien_nature_nom_voie>
+            <lien_nature_nom_voie>de</lien_nature_nom_voie>
             <nom_voie>Foch</nom_voie>
             <code_postal>75012</code_postal>
             <nom_commune>PARIS</nom_commune>
@@ -72,7 +72,7 @@
             <numero>32</numero>
             <complement_numero></complement_numero>
             <nature_voie>rue</nature_voie>
-            <lien_nature_nom_voie></lien_nature_nom_voie>
+            <lien_nature_nom_voie>de</lien_nature_nom_voie>
             <nom_voie>Brezin</nom_voie>
             <code_postal>75012</code_postal>
             <nom_commune>PARIS</nom_commune>
