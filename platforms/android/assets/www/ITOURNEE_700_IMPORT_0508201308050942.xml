@@ -37,7 +37,7 @@
             <cle_ptt>true</cle_ptt>
             <cle_gaz>false</cle_gaz>
             <interphone>false</interphone>
-            <code_vigik></code_vigik>
+            <code_vigik>code_vigik</code_vigik>
             <digicode>1111</digicode>
             <cle_ptt_sas>false</cle_ptt_sas>
             <interphone_sas>false</interphone_sas>
