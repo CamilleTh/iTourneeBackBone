@@ -105,10 +105,8 @@ var AdresseCollection = Backbone.Collection.extend({ // les modèles sont regroup
 			var complement2 = $(this).find('complement2').text();
 			var numero = $(this).find('numero').text();
 			var complement_numero = $(this).find('complement_numero').text();
-			
 			var nature_voie = $(this).find('nature_voie').text();
 			var lien_nature_nom_voie = $(this).find('lien_nature_nom_voie').text();
-			alert("lien_nature_nom_voie"+lien_nature_nom_voie)
 			var nom_voie = $(this).find('nom_voie').text();
 			var code_postal = $(this).find('code_postal').text();
 			var nom_commune = $(this).find('nom_commune').text();
