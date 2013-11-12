@@ -14,12 +14,10 @@ _.extend(window.Type_adresseDao.prototype, {
 		this.db.transaction(
 				function (tx) {
 					tx.executeSql("SELECT * FROM type_adresse WHERE id_type_adresse = "+idTypeAdresse, [], function geLibelle(tx, results) {
-						alert(results.rows.item(0).libelle)
 						promiseLibelle.resolve(results.rows.item(0).libelle);
 					});
 				},
 				function (tx, error) {
-					alr
 					alert('Transaction error ' + error);
 				},
 				function (tx, results) {
@@ -35,7 +33,6 @@ _.extend(window.Type_adresseDao.prototype, {
 	
 	
 	initialize_Type_adresseDao:function () { // création de la table type_famille_document
-		alert("init");
 		this.db.transaction(
 				function (tx) {	
 						

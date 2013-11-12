@@ -7,7 +7,6 @@ _.extend(window.AdresseDao.prototype, {
 	initialize_adresse:function () { // creation de la table iAdresse
 		this.db.transaction(
 				function (tx) {
-					alert("1")
 					tx.executeSql("DROP TABLE IF EXISTS 'iAdresse'");
 					var sql = 'CREATE TABLE IF NOT EXISTS "iAdresse" ("id_adresse" VARCHAR(25) PRIMARY KEY NOT NULL UNIQUE,';
 					sql += 	'"texte_libre" VARCHAR(50),';
@@ -23,10 +22,8 @@ _.extend(window.AdresseDao.prototype, {
 					sql += 	'"commentaire" TEXT,';
 					sql += 	'"statut" VARCHAR(50) NOT NULL,';	
 					sql += 	'"type" INTEGER NOT NULL)';	
-					alert("2")
 
 					tx.executeSql(sql);
-					alert("3")
 
 					//	tx.executeSql('CREATE TABLE IF NOT EXISTS "iAdresse" ("id_adresse" INTEGER PRIMARY KEY  NOT NULL UNIQUE ,"texte_libre" VARCHAR,"complement1" VARCHAR,"complement2" VARCHAR,"numero" INTEGER DEFAULT (null) ,"complement_numero" VARCHAR,"nature_voie" VARCHAR,"lien_nature_nom_voie" VARCHAR,"nom_voie" VARCHAR,"code_postal" VARCHAR DEFAULT (null) ,"nom_commune" VARCHAR,"commentaire" TEXT DEFAULT (null) ,"statut" VARCHAR)');
 					//	tx.executeSql('CREATE TABLE IF NOT EXISTS "iDomicile" ("id_immeuble" VARCHAR PRIMARY KEY  NOT NULL  UNIQUE ,"cle_ptt" BOOL,"cle_gaz" BOOL,"interphone" BOOL,"code_vigik" VARCHAR,"digicode" VARCHAR,"cle_ptt_sas" BOOL,"interphone_sas" BOOL,"acces_gardien_sas" BOOL,"digicode_sas" VARCHAR,"nom_gardien" VARCHAR,"telephone_gardien" VARCHAR,"plage_horaires_gardien" VARCHAR,"nom_syndic" VARCHAR,"tel_syndic" VARCHAR,"commentaire" VARCHAR,"etage" VARCHAR,"porte" VARCHAR,"modifie" BOOL)');
@@ -99,7 +96,6 @@ _.extend(window.AdresseDao.prototype, {
 
 					tx.executeSql(sql);
 					
-					alert("4")
 
 				},
 				function error(err) {	 // fonction appelée lorsqu'une requête SQL échoue

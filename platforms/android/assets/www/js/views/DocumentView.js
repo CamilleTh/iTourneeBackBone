@@ -8,11 +8,12 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 	template: template('document_item_Template'),
 	initialize: function() {
 
-		this.model.bind('change:valide', this.render, this);  // lorsqu'on change l'attribut valide du modele --> render
+		this.model.bind('change:valide', this.render, this);// lorsqu'on change l'attribut valide du modele --> render
+		this.model.bind('change:civilite_tiers_a_signifier', this.render, this);
 		this.model.bind('change:immeuble', this.maj_immeuble, this);  // lorsqu'on change l'attribut valide du modele --> render
 	},// le template qui sera utilisé
 	render: function(){
-
+        //alert("render");
 		this.$el.html( this.template(this.model.toJSON())); // on insère dans le li les données du modèle en suivant le template
 		//	current_view_detail_document.model.set('valide',this.model.get('valide'));
 		return this;
@@ -29,7 +30,6 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 	},
 
 	afficher_infos: function(){
-		
 		var _this = this;
 		
 		this.model.fetch({
@@ -39,16 +39,13 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 				//current_view_detail_document.render();
 				//s	$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
 
+				$('#div2').css('display','block');
 				$('#maform').css('display','block'); // affichage du slider dans le footer
 				modele_courant = _this.model;
 
 
 				if(_this.model.get('valide') == "true"){ // si le document est validé, on passe le slider dans la position validé
-
 					$("#flip-1").val("on");
-					
-					
-					
 				}
 				else{
 					$("#flip-1").val("off"); // sinon dans la position non validé
@@ -206,8 +203,11 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 				success: function(){
 
 					if( document.get('valide') == 'true' || document.get('valide') == true){ // pareil, pourquoi parfois c'est true et d'autre fois "true" ?
-						document.set('valide',true);
+						document.set('valide',true);	
 					} 
+					//alert("before");
+					document.set('civilite_tiers_a_signifier', 'Monsieur');
+					//alert("after");
 
 				} 
 			});

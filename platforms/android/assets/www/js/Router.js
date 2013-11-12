@@ -20,7 +20,6 @@ var Router = Backbone.Router.extend({
 
 	defaut: function(){
 		console.log("route par defaut chargée");
-		
 		documentdao.initialize_document();
 		var macollection = new DocumentCollection();
 		var documentsView = new DocumentsView({ collection: macollection });
@@ -38,7 +37,7 @@ var Router = Backbone.Router.extend({
 		var significationView = new SignificationView({model : ma_signification});
 		
 		/*var promiseTypeAdresse = type_adressedao.getTypeAdresseLibelle(1);
-		
+
 		promiseTypeAdresse.then(function(libelle){
 			alert(libelle)
 		});	*/	

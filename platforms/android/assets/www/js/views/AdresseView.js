@@ -33,7 +33,6 @@ var AdressesView = Backbone.View.extend({ // la vue correspondant à la liste lat
 			// pour chaque adresse dans la collection, on crée une nouvelle vue
 			//var adresseView = new AdresseView({ model: adresse });
 			adresse.save(); // et on sauvegarde le document --> fonction sync du model
-
 		},this);
 
 		adressedao.contenu_adresse(); // une fois la collection crée , on affiche son contenu   // pas le bon endroit pour mettre cette méthode ?  .fetch() ne redirige pas vers le case read de la méthode sync();

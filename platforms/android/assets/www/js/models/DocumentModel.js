@@ -100,19 +100,21 @@ var DocumentModel = Backbone.Model.extend({
 			break;
 
 		case 'read':
-
 			var _this = this;
 			
 			var promiseOfDocument = documentdao.find_document_by_id(model.get('numero_document'));
+		
 			promiseOfDocument.then(function(doc){
+			
 				_this.set(doc.attributes); // on remplace les attributs du modèle courant par ceux du document contenu dans la promesse
-
-
+			
 				if(options.success)
 					options.success();
+				
 			});
 			
 			break;
+
 		}
 	},
 

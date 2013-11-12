@@ -8,7 +8,7 @@ _.extend(window.DocumentDao.prototype, {
 
 		this.db.transaction(
 				function (tx) {
-				tx.executeSql("DROP TABLE IF EXISTS 'iDocument'");
+				//tx.executeSql("DROP TABLE IF EXISTS 'iDocument'");
 					var sql = 'CREATE TABLE IF NOT EXISTS "iDocument" ("numero_document" VARCHAR PRIMARY KEY NOT NULL UNIQUE,';			
 					sql += '"id_etude" VARCHAR(25) NOT NULL,';
 					sql +='"nature_signification" INTEGER NOT NULL,'; // soit 1,2 ou 6

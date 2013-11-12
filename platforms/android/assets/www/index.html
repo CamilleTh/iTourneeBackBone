@@ -26,21 +26,17 @@
 			<div id="barre_laterale">
  				<h2>Significations :</h2>
  				<ul data-role="listview"  id="liste_significations" data-filter="true" data-autodividers="true" data-inset="true" data-divider-theme="b">
- 				
 				</ul>
-			
 			</div>
 			
-			<div id="div2">
+			<div id="div2" style="display:none;">
  				<h2>Détail</h2>
  				<div id="div3" > </div>
  				<div id="div4"> </div>
  				<div id="div5">  </div>
  				<div id="div6">  </div>
 			</div>
-			
-			
-
+	
 		</div> <!-- /content --> 
 		
 		<footer data-role="footer" data-position="fixed" class="footer" data-tap-toggle="false"> iTournée
@@ -66,8 +62,6 @@
 	<strong><%= nom_tiers_a_signifier %></strong> (<%= civilite_tiers_a_signifier %>) <% if (valide == true || valide == 'true') { %> <span class="valide"> VALIDE </span> <% } %>   <br> 
 	<%= numero_tiers_a_signifier %> - <%= numero_document %> 
 </script>
-
-
 
 <script 
 id="documentTemplate2" type="text/template"> 
@@ -181,7 +175,7 @@ id="documentTemplate2" type="text/template">
 					</div>
 					
 					<div id="div_adresse2" data-role="fieldcontain">
-							<label for="adresse2"> Adresse :</label>
+							<label for="adresse2"></label>
 							<input name="adresse2" id="adresse2" value="<%= code_postal %> <%= nom_commune %>" type="text" readonly="true">
 					</div>
             			
@@ -249,7 +243,7 @@ id="documentTemplate2" type="text/template">
         						<legend>Ajouter un immeuble ?</legend>
 					<% } %>
 
-    						<div id="div_cle_ptt" data-role="fieldcontain">
+    				<div id="div_cle_ptt" data-role="fieldcontain">
 						
     <fieldset data-role="controlgroup" data-type="horizontal">
         <legend>Clé PTT :</legend>
