@@ -46,6 +46,7 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 
 				if(_this.model.get('valide') == "true"){ // si le document est validé, on passe le slider dans la position validé
 					$("#flip-1").val("on");
+					$("#flip-1").slider("refresh");	
 				}
 				else{
 					$("#flip-1").val("off"); // sinon dans la position non validé
