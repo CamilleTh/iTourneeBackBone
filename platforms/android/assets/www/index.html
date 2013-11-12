@@ -31,10 +31,10 @@
 			
 			<div id="div2" style="display:none;">
  				<h2>Détail</h2>
- 				<div id="div3" > </div>
- 				<div id="div4"> </div>
- 				<div id="div5">  </div>
- 				<div id="div6">  </div>
+ 				<div id="div3"></div>
+ 				<div id="div4"></div>
+ 				<div id="div5"></div>
+ 				<div id="div6"></div>
 			</div>
 	
 		</div> <!-- /content --> 
@@ -243,43 +243,160 @@ id="documentTemplate2" type="text/template">
         						<legend>Ajouter un immeuble ?</legend>
 					<% } %>
 
-    				<div id="div_cle_ptt" data-role="fieldcontain">
+
+					<table id="tableimmeuble">
+						<tr>
+							<td>Clé PTT :
+							</td>
+							<td>
+							<div id="div_cle_ptt" data-role="fieldcontain">					
+    						<fieldset data-role="controlgroup" data-type="horizontal">
+        					<legend> </legend>
+        					<input name="radio_cle_ptt" id="radio_cle_ptt_1" value="true"  type="radio" <% if (cle_ptt == true || cle_ptt == "true") { %> checked="checked" <% } %>  >
+        					<label for="radio_cle_ptt_1">Oui</label>
+        					<input name="radio_cle_ptt" id="radio_cle_ptt_2" value="false" type="radio" <% if (cle_ptt == false || cle_ptt == "false") { %> checked="checked" <% } %> >
+        					<label for="radio_cle_ptt_2">Non</label>
+							</fieldset>
+							</div>
+							</td>
+
+							<td>Clé PTT SAS :
+							</td>
+							<td>
+							<div id="div_cle_ptt_sas" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+       						 	<legend> </legend>
+       	 						<input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_1" value="true"  type="radio" <% if (cle_ptt_sas == true || cle_ptt_sas == "true") { %> checked="checked" <% } %>>
+        						<label for="radio_cle_ptt_sas_1">Oui</label>
+        						<input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_2" value="false" type="radio" <% if (cle_ptt_sas == false || cle_ptt_sas == "false") { %> checked="checked" <% } %>>
+        						<label for="radio_cle_ptt_sas_2">Non</label>
+							</fieldset>
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Clé Gaz :
+							</td>
+							<td>
+							<div id="div_cle_gaz" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+        					<legend> </legend>
+        					<input name="radio_cle_gaz" id="radio_cle_gaz_1" value="true"  type="radio" <% if (cle_gaz == true || cle_gaz == "true") { %> checked="checked" <% } %>>
+        					<label for="radio_cle_gaz_1">Oui</label>
+       						<input name="radio_cle_gaz" id="radio_cle_gaz_2" value="false" type="radio" <% if (cle_gaz == false || cle_gaz == "false") { %> checked="checked" <% } %> >
+        					<label for="radio_cle_gaz_2">Non</label>
+    						</fieldset>
+							</div>
+							</td>
+
+							<td>Interphone SAS :
+							</td>
+							<td>
+							<div id="div_interphone_sas" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+        						<legend> </legend>
+        						<input name="radio_interphone_sas" id="radio_interphone_sas_1" value="true"  type="radio" <% if (interphone_sas == true || interphone_sas == "true") { %> checked="checked" <% } %>>
+        						<label for="radio_interphone_sas_1">Oui</label>
+        						<input name="radio_interphone_sas" id="radio_interphone_sas_2" value="false" type="radio" <% if (interphone_sas == false || interphone_sas == "false") { %> checked="checked" <% } %>>
+        						<label for="radio_interphone_sas_2">Non</label>
+	   						</fieldset>
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Interphone :
+							</td>
+							<td>
+							<div id="div_interphone" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+        					<legend> </legend>
+        					<input name="radio_interphone" id="radio_interphone_1" value="true"  type="radio" <% if (interphone == true || interphone == "true") { %> checked="checked" <% } %>>
+        					<label for="radio_interphone_1">Oui</label>
+        					<input name="radio_interphone" id="radio_interphone_2" value="false" type="radio" <% if (interphone == false || interphone == "false") { %> checked="checked" <% } %>>
+        					<label for="radio_interphone_2">Non</label>
+    						</fieldset>
+							</div>
+							</td>
+							<td>Accès Gardien SAS :
+							</td>
+							<td>
+							<div id="div_acces_gardien_sas" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+        						<legend> </legend>
+       							<input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_1" value="true"  type="radio" <% if (acces_gardien_sas == true || acces_gardien_sas == "true") { %> checked="checked" <% } %>>
+        						<label for="radio_acces_gardien_sas_1">Oui</label>
+	        					<input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_2" value="false" type="radio" <% if (acces_gardien_sas == false || acces_gardien_sas == "false") { %> checked="checked" <% } %>>
+    	    					<label for="radio_acces_gardien_sas_2">Non</label>
+    						</fieldset>
+							</div>
+							</td>
+						</tr>
+					</table>
+					<!--
+					<div style="width:50%;float:left">
+						<div id="div_cle_ptt" data-role="fieldcontain">					
+    					<fieldset data-role="controlgroup" data-type="horizontal">
+        					<legend>Clé PTT :</legend>
+        					<input name="radio_cle_ptt" id="radio_cle_ptt_1" value="true"  type="radio" <% if (cle_ptt == true || cle_ptt == "true") { %> checked="checked" <% } %>  >
+        					<label for="radio_cle_ptt_1">Oui</label>
+        					<input name="radio_cle_ptt" id="radio_cle_ptt_2" value="false" type="radio" <% if (cle_ptt == false || cle_ptt == "false") { %> checked="checked" <% } %> >
+        					<label for="radio_cle_ptt_2">Non</label>
+						</fieldset>
+						</div>
+					
+						<div id="div_cle_gaz" data-role="fieldcontain">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+        					<legend>Clé Gaz :</legend>
+        					<input name="radio_cle_gaz" id="radio_cle_gaz_1" value="true"  type="radio" <% if (cle_gaz == true || cle_gaz == "true") { %> checked="checked" <% } %>>
+        					<label for="radio_cle_gaz_1">Oui</label>
+       						<input name="radio_cle_gaz" id="radio_cle_gaz_2" value="false" type="radio" <% if (cle_gaz == false || cle_gaz == "false") { %> checked="checked" <% } %> >
+        					<label for="radio_cle_gaz_2">Non</label>
+    					</fieldset>
+						</div>
+					
+						<div id="div_interphone" data-role="fieldcontain">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+        					<legend>Interphone :</legend>
+        					<input name="radio_interphone" id="radio_interphone_1" value="true"  type="radio" <% if (interphone == true || interphone == "true") { %> checked="checked" <% } %>>
+        					<label for="radio_interphone_1">Oui</label>
+        					<input name="radio_interphone" id="radio_interphone_2" value="false" type="radio" <% if (interphone == false || interphone == "false") { %> checked="checked" <% } %>>
+        					<label for="radio_interphone_2">Non</label>
+    					</fieldset>
+						</div>
+					</div>  				
+					
+					<div style="width:50%;float:right;">
+						<div id="div_cle_ptt_sas" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+       						 	<legend>Clé PTT SAS :</legend>
+       	 						<input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_1" value="true"  type="radio" <% if (cle_ptt_sas == true || cle_ptt_sas == "true") { %> checked="checked" <% } %>>
+        						<label for="radio_cle_ptt_sas_1">Oui</label>
+        						<input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_2" value="false" type="radio" <% if (cle_ptt_sas == false || cle_ptt_sas == "false") { %> checked="checked" <% } %>>
+        						<label for="radio_cle_ptt_sas_2">Non</label>
+							</fieldset>
+						</div>
+	
+						<div id="div_interphone_sas" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+        						<legend>Interphone SAS :</legend>
+        						<input name="radio_interphone_sas" id="radio_interphone_sas_1" value="true"  type="radio" <% if (interphone_sas == true || interphone_sas == "true") { %> checked="checked" <% } %>>
+        						<label for="radio_interphone_sas_1">Oui</label>
+        						<input name="radio_interphone_sas" id="radio_interphone_sas_2" value="false" type="radio" <% if (interphone_sas == false || interphone_sas == "false") { %> checked="checked" <% } %>>
+        						<label for="radio_interphone_sas_2">Non</label>
+	   						</fieldset>
+						</div>
 						
-    <fieldset data-role="controlgroup" data-type="horizontal">
-        <legend>Clé PTT :</legend>
-        <input name="radio_cle_ptt" id="radio_cle_ptt_1" value="true"  type="radio" <% if (cle_ptt == true || cle_ptt == "true") { %> checked="checked" <% } %>  >
-        <label for="radio_cle_ptt_1">Oui</label>
-        <input name="radio_cle_ptt" id="radio_cle_ptt_2" value="false" type="radio" <% if (cle_ptt == false || cle_ptt == "false") { %> checked="checked" <% } %> >
-        <label for="radio_cle_ptt_2">Non</label>
-       
-    </fieldset>
-
-					</div>
-					
-					<div id="div_cle_gaz" data-role="fieldcontain">
+						<div id="div_acces_gardien_sas" data-role="fieldcontain">
 							<fieldset data-role="controlgroup" data-type="horizontal">
-        <legend>Clé Gaz :</legend>
-        <input name="radio_cle_gaz" id="radio_cle_gaz_1" value="true"  type="radio" <% if (cle_gaz == true || cle_gaz == "true") { %> checked="checked" <% } %>>
-        <label for="radio_cle_gaz_1">Oui</label>
-        <input name="radio_cle_gaz" id="radio_cle_gaz_2" value="false" type="radio" <% if (cle_gaz == false || cle_gaz == "false") { %> checked="checked" <% } %> >
-        <label for="radio_cle_gaz_2">Non</label>
-       
-    </fieldset>
+        						<legend>Accès Gardien SAS :</legend>
+       							<input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_1" value="true"  type="radio" <% if (acces_gardien_sas == true || acces_gardien_sas == "true") { %> checked="checked" <% } %>>
+        						<label for="radio_acces_gardien_sas_1">Oui</label>
+	        					<input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_2" value="false" type="radio" <% if (acces_gardien_sas == false || acces_gardien_sas == "false") { %> checked="checked" <% } %>>
+    	    					<label for="radio_acces_gardien_sas_2">Non</label>
+    						</fieldset>
+						</div>
 					</div>
-					
-					<div id="div_interphone" data-role="fieldcontain">
-							<fieldset data-role="controlgroup" data-type="horizontal">
-        <legend>Interphone :</legend>
-        <input name="radio_interphone" id="radio_interphone_1" value="true"  type="radio" <% if (interphone == true || interphone == "true") { %> checked="checked" <% } %>>
-        <label for="radio_interphone_1">Oui</label>
-        <input name="radio_interphone" id="radio_interphone_2" value="false" type="radio" <% if (interphone == false || interphone == "false") { %> checked="checked" <% } %>>
-        <label for="radio_interphone_2">Non</label>
-       
-    </fieldset>
-					</div>
-
-  
-					
+					-->
 					<div id="div_code_vigik" data-role="fieldcontain">
 							<label for="code_vigik"> Code vigik :</label>
 							<input name="code_vigik" id="code_vigik" value="<%= code_vigik %>" type="text">
@@ -290,35 +407,7 @@ id="documentTemplate2" type="text/template">
 							<input name="digicode" id="digicode" value="<%= digicode %>" type="text">
 					</div>
 					
-					<div id="div_cle_ptt_sas" data-role="fieldcontain">
-						<fieldset data-role="controlgroup" data-type="horizontal">
-       					 	<legend>Clé PTT SAS :</legend>
-       	 					<input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_1" value="true"  type="radio" <% if (cle_ptt_sas == true || cle_ptt_sas == "true") { %> checked="checked" <% } %>>
-        					<label for="radio_cle_ptt_sas_1">Oui</label>
-        					<input name="radio_cle_ptt_sas" id="radio_cle_ptt_sas_2" value="false" type="radio" <% if (cle_ptt_sas == false || cle_ptt_sas == "false") { %> checked="checked" <% } %>>
-        					<label for="radio_cle_ptt_sas_2">Non</label>
-						</fieldset>
-					</div>
-
-					<div id="div_interphone_sas" data-role="fieldcontain">
-						<fieldset data-role="controlgroup" data-type="horizontal">
-        					<legend>Interphone SAS :</legend>
-        					<input name="radio_interphone_sas" id="radio_interphone_sas_1" value="true"  type="radio" <% if (interphone_sas == true || interphone_sas == "true") { %> checked="checked" <% } %>>
-        					<label for="radio_interphone_sas_1">Oui</label>
-        					<input name="radio_interphone_sas" id="radio_interphone_sas_2" value="false" type="radio" <% if (interphone_sas == false || interphone_sas == "false") { %> checked="checked" <% } %>>
-        					<label for="radio_interphone_sas_2">Non</label>
-   						</fieldset>
-					</div>
 					
-					<div id="div_acces_gardien_sas" data-role="fieldcontain">
-						<fieldset data-role="controlgroup" data-type="horizontal">
-        					<legend>Accès Gardien SAS :</legend>
-       						<input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_1" value="true"  type="radio" <% if (acces_gardien_sas == true || acces_gardien_sas == "true") { %> checked="checked" <% } %>>
-        					<label for="radio_acces_gardien_sas_1">Oui</label>
-        					<input name="radio_acces_gardien_sas" id="radio_acces_gardien_sas_2" value="false" type="radio" <% if (acces_gardien_sas == false || acces_gardien_sas == "false") { %> checked="checked" <% } %>>
-        					<label for="radio_acces_gardien_sas_2">Non</label>
-    					</fieldset>
-					</div>
 					
 					<div id="div_digicode_sas" data-role="fieldcontain">
 							<label for="digicode_sas">  Digicode Sas :</label>

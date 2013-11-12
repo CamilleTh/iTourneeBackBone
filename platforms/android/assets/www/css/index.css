@@ -47,9 +47,10 @@ text-align:center;
 	text-shadow: none;
 }
 
-
+#tableimmeuble{
+	width : 100%;
+}
 
 body{
 margin:0px;
-
 }
