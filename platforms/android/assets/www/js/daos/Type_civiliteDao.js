@@ -15,12 +15,13 @@ _.extend(window.Type_civiliteDao.prototype, {
 		if(type == 'P'){
 			this.db.transaction(
 					function (tx) {
+						//alert("SELECT * FROM type_civilite WHERE id_type_civilite = "+idTypeCivilite);
 						tx.executeSql("SELECT * FROM type_civilite WHERE id_type_civilite = "+idTypeCivilite+"", [], function geLibelle(tx, results) {
 							promiseLibelle.resolve(results.rows.item(0).libelle);
 						});
 					},
 					function (tx, error) {
-						alert('Transaction error ' + error);
+						alert('Transaction error2 ' + error);
 					},
 					function (tx, results) {
 						console.log("succes lecture");
@@ -30,12 +31,13 @@ _.extend(window.Type_civiliteDao.prototype, {
 		}else {
 			this.db.transaction(
 					function (tx) {
+						//alert("SELECT * FROM type_personne_morale WHERE id_type_personne_morale = "+idTypeCivilite);
 						tx.executeSql("SELECT * FROM type_personne_morale WHERE id_type_personne_morale = "+idTypeCivilite+"", [], function geLibelle(tx, results) {
 							promiseLibelle.resolve(results.rows.item(0).libelle);
 						});
 					},
 					function (tx, error) {
-						alert('Transaction error ' + error);
+						alert('Transaction error3 ' + error);
 					},
 					function (tx, results) {
 						console.log("succes lecture");

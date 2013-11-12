@@ -206,9 +206,16 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 					if( document.get('valide') == 'true' || document.get('valide') == true){ // pareil, pourquoi parfois c'est true et d'autre fois "true" ?
 						document.set('valide',true);	
 					} 
-					//alert("before");
-					document.set('civilite_tiers_a_signifier', 'Monsieur');
-					//alert("after");
+
+					
+					
+					/*alert("VIEW" +document.get('civilite_tiers_a_signifier'))
+					var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(document.get('civilite_tiers_a_signifier'),document.get('type_tiers_a_signifier'));
+					
+					promiseCivilite.then(function(libelle){
+						
+						document.set('civilite_tiers_a_signifier', libelle);
+					});*/
 
 				} 
 			});

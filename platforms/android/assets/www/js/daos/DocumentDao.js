@@ -41,7 +41,7 @@ _.extend(window.DocumentDao.prototype, {
 
 				},
 				function (error) {
-					alert('Transaction error ' + error.code);
+					alert('Transaction error1 ' + error.code);
 				},
 				function (tx) {
 

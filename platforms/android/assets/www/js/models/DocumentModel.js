@@ -43,8 +43,8 @@ var DocumentModel = Backbone.Model.extend({
 			var promise = type_famille_documentdao.getTypeFamilleLibelle(model.get('nature_signification'));
 		
 			var typetiers = model.get('type_tiers_a_signifier');
+			//alert("Model" +model.get('civilite_tiers_a_signifier'))
 			var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(model.get('civilite_tiers_a_signifier'),typetiers)
-			
 			promise.then(function(libelle){
 				promiseCivilite.then(function(libelleCivilite){
 				documentdao.enregistrer_document(model.get('numero_document'),
