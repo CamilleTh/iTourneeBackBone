@@ -14,6 +14,8 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 	},
 	render: function(){
         //alert("render");
+		
+		alert(this.model.get('civilite_tiers_a_signifier'))
 		this.$el.html( this.template(this.model.toJSON())); // on insère dans le li les données du modèle en suivant le template
 		//	current_view_detail_document.model.set('valide',this.model.get('valide'));
 		return this;
@@ -38,23 +40,44 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 				
 				// ne marche pas avec DocumentView . Pourquoi ?
 			
-				current_view_detail_document.model.set(_this.model.attributes);
-				var promise = type_famille_documentdao.getTypeFamilleLibelle(current_view_detail_document.model.get('nature_signification'));
+				//current_view_detail_document.model.set(_this.model.attributes);
+				current_view_detail_document.model.set('numero_document',_this.model.get('numero_document'))
+				current_view_detail_document.model.set('id_etude',_this.model.get('id_etude'))
+				//current_view_detail_document.model.set('nature_signification',_this.model.get('nature_signification'))
+				current_view_detail_document.model.set('nature_parquet',_this.model.get('nature_parquet'))
+				current_view_detail_document.model.set('nom_tiers_a_signifier',_this.model.get('nom_tiers_a_signifier'))
+				current_view_detail_document.model.set('type_tiers_a_signifier',_this.model.get('type_tiers_a_signifier'))
+				//current_view_detail_document.model.set('civilite_tiers_a_signifier',_this.model.get('civilite_tiers_a_signifier'))
+				current_view_detail_document.model.set('nom_debiteur',_this.model.get('nom_debiteur'))
+				current_view_detail_document.model.set('commentaires_tiers',_this.model.get('commentaires_tiers'))
+				current_view_detail_document.model.set('domicile_elu',_this.model.get('domicile_elu'))
+				current_view_detail_document.model.set('presomption_domiciliation',_this.model.get('presomption_domiciliation'))
+				current_view_detail_document.model.set('domicilie',_this.model.get('domicilie'))
+				current_view_detail_document.model.set('domiciliation',_this.model.get('domiciliation'))
+				current_view_detail_document.model.set('numero_tiers_a_signifier',_this.model.get('numero_tiers_a_signifier'))
+				current_view_detail_document.model.set('libelle_document',_this.model.get('libelle_document'))
+				current_view_detail_document.model.set('signataire',_this.model.get('signataire'))
+				current_view_detail_document.model.set('nombre_feuillets',_this.model.get('nombre_feuillets'))
+				current_view_detail_document.model.set('adresse',_this.model.get('adresse'))
+				current_view_detail_document.model.set('immeuble',_this.model.get('immeuble'))
+				current_view_detail_document.model.set('signification',_this.model.get('signification'))					
+				alert("1");
 				
-				var typetiers = current_view_detail_document.model.get('type_tiers_a_signifier');
-				var civ = current_view_detail_document.model.get('civilite_tiers_a_signifier');
+				var promise = type_famille_documentdao.getTypeFamilleLibelle(_this.model.get('nature_signification'));
 				
+				
+				var typetiers = _this.model.get('type_tiers_a_signifier');
+				var civ = _this.model.get('civilite_tiers_a_signifier')
+			
 				var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(civ,typetiers);
 				
 				promise.then(function(libelleNatureSignification){
+					alert("2");
 					promiseCivilite.then(function(libelleCivilite){
-						
+						alert("3");
 						current_view_detail_document.model.set('nature_signification',libelleNatureSignification)
-						current_view_detail_document.model.set('civilite_tiers_a_signifier',libelleCivilite);
-
-							
-						
-							
+						current_view_detail_document.model.set('civilite_tiers_a_signifier',libelleCivilite)
+						alert("4");
 					});
 				});
 				//current_view_detail_document.render();

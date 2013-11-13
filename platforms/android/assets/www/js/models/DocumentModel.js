@@ -41,7 +41,8 @@ var DocumentModel = Backbone.Model.extend({
 			console.log("entré dans fonction sync du modèle Document");
 			
 			
-			documentdao.enregistrer_document(model.get('numero_document'), // insertion dans la base
+			documentdao.enregistrer_document(
+						model.get('numero_document'), // insertion dans la base
 						model.get('id_etude'),
 						model.get('nature_signification'),
 						model.get('nature_parquet'),
