@@ -32,9 +32,9 @@ var AdresseModel = Backbone.Model.extend({
 		case 'create': //save()
 			console.log("entré dans fonction sync du modèle Adresse");
 			
-			var promiseTypeAdresse = type_adressedao.getTypeAdresseLibelle(model.get('type'))
+			/*var promiseTypeAdresse = type_adressedao.getTypeAdresseLibelle(model.get('type'))
 			
-			promiseTypeAdresse.then(function(libelleType){
+			promiseTypeAdresse.then(function(libelleType){*/
 				adressedao.enregistrer_adresse(model.get('id_adresse'), // insertion dans la table
 					model.get('texte_libre'),
 					model.get('complement1'),
@@ -48,9 +48,9 @@ var AdresseModel = Backbone.Model.extend({
 					model.get('nom_commune'), 
 					model.get('commentaire'), 
 					model.get('statut'),
-					libelleType
+					model.get('type')
 					); // lorsqu'on appelle .save(), on execute cette méthode
-			});
+			//});
 			
 			
 

@@ -7,7 +7,7 @@ _.extend(window.ImmeubleDao.prototype, {
 	initialize_immeuble:function () { // création de la table iImmeuble
 		this.db.transaction(
 				function (tx) {
-					tx.executeSql("DROP TABLE IF EXISTS 'iImmeuble'");
+					//tx.executeSql("DROP TABLE IF EXISTS 'iImmeuble'");
 					var sql = 'CREATE TABLE IF NOT EXISTS "iImmeuble" ("id_immeuble" VARCHAR PRIMARY KEY NOT NULL UNIQUE,';
 					sql +='"cle_ptt" BOOL,';
 					sql +=	'"cle_gaz" BOOL,';
@@ -163,11 +163,11 @@ _.extend(window.ImmeubleDao.prototype, {
 
 					tx.executeSql("SELECT * FROM iImmeuble WHERE iImmeuble.id_immeuble ='"+id_immeuble+"'", [], function lister_iImmeuble(tx, results) {
 						var len = results.rows.length;
-						console.log("Table iImmeuble : " + len + " enregistrements trouvés.");
+						//console.log("Table iImmeuble : " + len + " enregistrements trouvés.");
 						if(len !=0){ // si l'immeuble est présent dans la table
 							for (var i=0; i<len; i++){
 
-								console.log("Enregistrement = " + i + " ID_immeuble = " + results.rows.item(i).id_immeuble + " code vigik  =  " + results.rows.item(i).code_vigik + " cle_ptt = " + results.rows.item(i).cle_ptt + " id adresse =  " + results.rows.item(i).adresse);
+								//console.log("Enregistrement = " + i + " ID_immeuble = " + results.rows.item(i).id_immeuble + " code vigik  =  " + results.rows.item(i).code_vigik + " cle_ptt = " + results.rows.item(i).cle_ptt + " id adresse =  " + results.rows.item(i).adresse);
 								var new_immeuble = new ImmeubleModel({id_immeuble : results.rows.item(i).id_immeuble, 
 									cle_ptt : results.rows.item(i).cle_ptt,
 									cle_gaz : results.rows.item(i).cle_gaz,

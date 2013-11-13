@@ -37,20 +37,20 @@ _.extend(window.Type_famille_documentDao.prototype, {
 		this.db.transaction(
 				function (tx) {
 						
-					tx.executeSql("DROP TABLE IF EXISTS 'type_famille_document'");
+					//tx.executeSql("DROP TABLE IF EXISTS 'type_famille_document'");
 
-					var sql = 'CREATE TABLE "type_famille_document" (';
+					var sql = 'CREATE TABLE IF NOT EXISTS "type_famille_document" (';
 					sql += '"id_type_famille_document" int(10),';		 
 					sql += '"libelle" varchar(25))'
 						
 					tx.executeSql(sql);
 					
-					tx.executeSql("INSERT INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (1,'Actes');");
-					tx.executeSql("INSERT INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (2,'formalités');");
-					tx.executeSql("INSERT INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (3,'courriers');");
-					tx.executeSql("INSERT INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (4,'mails');");
-					tx.executeSql("INSERT INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (5,'sms');");
-					tx.executeSql("INSERT INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (6,'actes pénaux');");
+					tx.executeSql("INSERT OR IGNORE INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (1,'Actes');");
+					tx.executeSql("INSERT OR IGNORE INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (2,'formalités');");
+					tx.executeSql("INSERT OR IGNORE INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (3,'courriers');");
+					tx.executeSql("INSERT OR IGNORE INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (4,'mails');");
+					tx.executeSql("INSERT OR IGNORE INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (5,'sms');");
+					tx.executeSql("INSERT OR IGNORE INTO `type_famille_document` (`id_type_famille_document`, `libelle`) VALUES (6,'actes pénaux');");
 					
 				},
 				function (tx, error) {

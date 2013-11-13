@@ -7,7 +7,7 @@ _.extend(window.AdresseDao.prototype, {
 	initialize_adresse:function () { // creation de la table iAdresse
 		this.db.transaction(
 				function (tx) {
-					tx.executeSql("DROP TABLE IF EXISTS 'iAdresse'");
+					//tx.executeSql("DROP TABLE IF EXISTS 'iAdresse'");
 					var sql = 'CREATE TABLE IF NOT EXISTS "iAdresse" ("id_adresse" VARCHAR(25) PRIMARY KEY NOT NULL UNIQUE,';
 					sql += 	'"texte_libre" VARCHAR(50),';
 					sql += 	'"complement1" VARCHAR(255),';
@@ -144,10 +144,10 @@ _.extend(window.AdresseDao.prototype, {
 				function (tx) {
 					tx.executeSql("SELECT * FROM iAdresse WHERE iAdresse.id_adresse ='"+id_adresse+"'", [], function lister_iAdresse(tx, results) {
 						var len = results.rows.length;
-						console.log("Table iAdresse : " + len + " enregistrements trouvés.");
+						//console.log("Table iAdresse : " + len + " enregistrements trouvés.");
 						for (var i=0; i<len; i++){
 
-							console.log("Enregistrement = " + i + " ID_adresse = " + results.rows.item(i).id_adresse + " Numéro  =  " + results.rows.item(i).numero + " Nature signification =  " + results.rows.item(i).nature_signification + " id adresse =  " + results.rows.item(i).adresse);
+							//console.log("Enregistrement = " + i + " ID_adresse = " + results.rows.item(i).id_adresse + " Numéro  =  " + results.rows.item(i).numero + " Nature signification =  " + results.rows.item(i).nature_signification + " id adresse =  " + results.rows.item(i).adresse);
 							var new_adresse = new AdresseModel({id_adresse : results.rows.item(i).id_adresse, 
 								texte_libre : results.rows.item(i).texte_libre,
 								complement1 : results.rows.item(i).complement1,

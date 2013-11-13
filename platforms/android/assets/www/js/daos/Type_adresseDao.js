@@ -36,15 +36,15 @@ _.extend(window.Type_adresseDao.prototype, {
 		this.db.transaction(
 				function (tx) {	
 						
-					tx.executeSql("DROP TABLE IF EXISTS `type_adresse`;");
+					//tx.executeSql("DROP TABLE IF EXISTS `type_adresse`;");
 
-					var sql = '	CREATE TABLE `type_adresse` (';
+					var sql = '	CREATE TABLE IF NOT EXISTS `type_adresse` (';
 					sql += ' `id_type_adresse` int(10),';
 					sql += ' `libelle` varchar(45))';
 								
 					tx.executeSql(sql);
 					
-					sql = 'INSERT INTO `type_adresse` (`id_type_adresse`,`libelle`)';
+					sql = 'INSERT OR IGNORE INTO `type_adresse` (`id_type_adresse`,`libelle`)';
 					sql += "VALUES";
 					sql += "(1,'Principale'),";
 					sql += "(2,'Résidence'),";

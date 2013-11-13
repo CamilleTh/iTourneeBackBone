@@ -191,13 +191,15 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 	},
 	render: function(){ // fonction qui va afficher notre vue générale <ul>
 		console.log("entrée dans render");
-		console.log(this);
+		
 		this.collection.each(function(document){ // ce code s'exécute pour chaque document de la collection
 
 
 			var documentView = new DocumentView({ model: document }); // pour chaque document on va créer une nouvelle vue individuelle DocumentView 
 			document.save(); // et on sauvegarde le document si il n'existe pas déja --> fonction sync du model case create
 
+			// Gestion Civilité
+			
 			this.$el.append(documentView.render().el); // insertion des données dans une vue individuelle
 
 			document.fetch({ //  on va selectionner le document pour checker son attribut valide --> fonction sync du model DocumentModel case read 
@@ -226,7 +228,7 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 		},this);
 
 		documentdao.contenu_document(); // une fois la collection crée , on affiche son contenu dans la console   // pas le bon endroit pour mettre cette méthode ?  .fetch() ne redirige pas vers le case read de la méthode sync();
-		type_mode_significationdao.contenu_type_mode_signification();
+		//type_mode_significationdao.contenu_type_mode_signification();
 		$('#liste_significations').listview('refresh'); // indispensable ?
 		return this;
 	}

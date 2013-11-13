@@ -10,7 +10,7 @@ var ImmeubleView = Backbone.View.extend({  // la vue correspondant à l'affichage
 	},
 
 	events: {
-		'click #bouton_update' : 'update', // lors du clic sur un modèle on déclenche show alert
+		'click #bouton_update' : 'update', // lors du clic sur un modèle on déclenche show alert (Bouton save)
 		'click #bouton_creer' : 'creer_immeuble'	
 	},
 	render: function(){
@@ -23,7 +23,6 @@ var ImmeubleView = Backbone.View.extend({  // la vue correspondant à l'affichage
 	},
 
 	update : function() {
-
 		this.model.sync('update',this.model);
 	},
 

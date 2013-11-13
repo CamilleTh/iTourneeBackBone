@@ -24,6 +24,13 @@ var Router = Backbone.Router.extend({
 
 	defaut: function(){
 		console.log("route par defaut chargée");
+		
+		// DAOs secondaires : création des tables requises
+		type_mode_significationdao.initialize_Type_mode_significationDao(); 
+		type_famille_documentdao.initialize_Type_famille_documentDao();
+		type_civilitedao.initialize_Type_civiliteDao_documentDao();
+		type_adressedao.initialize_Type_adresseDao();
+		
 		documentdao.initialize_document(); //création de la table 'iDocument'  --> voir DocumentDao.js
 		var macollection = new DocumentCollection(); // création d'une nouvelle collection de Documents -- > voir DocumentModel.js à DocumentCollection
 		var documentsView = new DocumentsView({ collection: macollection }); // création d'une vue générale <ul> qui englobe plusieurs vues individuelles <li> qui représentent tous les modèles dans macollection --> voir DocumentView.js à DocumentsView 
@@ -36,19 +43,7 @@ var Router = Backbone.Router.extend({
 		
 		var ma_signification = new SignificationModel();
 		var significationView = new SignificationView({model : ma_signification});
-		
-		// DAOs secondaires : création des tables requises
-		type_mode_significationdao.initialize_Type_mode_significationDao(); 
-		type_famille_documentdao.initialize_Type_famille_documentDao();
-		type_civilitedao.initialize_Type_civiliteDao_documentDao();
-		type_adressedao.initialize_Type_adresseDao();
 
-		
-		/*var promiseTypeAdresse = type_adressedao.getTypeAdresseLibelle(1);
-
-		promiseTypeAdresse.then(function(libelle){
-			alert(libelle)
-		});	*/	
 	}
 });
 

@@ -27,11 +27,10 @@ var AdressesView = Backbone.View.extend({
 		this.collection.bind('reset', this.render, this);  // lorsque l'évenement reset est déclenché, on lance le render
 	},
 	render: function(){
-		console.log("entrée dans render");
+		console.log("entrée dans render adresse");
 		console.log(this);
 		this.collection.each(function(adresse){
-		
-
+	
 			adresse.save(); //  pour chaque adresse dans la collection on sauvegarde en base si elle n'existe pas déja  --> fonction sync du model AdresseModel case create
 		},this);
 

@@ -8,7 +8,7 @@ _.extend(window.Type_mode_significationDao.prototype, {
 		this.db.transaction(
 				function (tx) {
 					
-					tx.executeSql("DROP TABLE IF EXISTS 'type_mode_signification'");
+					//tx.executeSql("DROP TABLE IF EXISTS 'type_mode_signification'");
 					var sql = 'CREATE TABLE IF NOT EXISTS "type_mode_signification" ("id_type_mode_signification" int (10),';
 					sql+= '"libelle" varchar (300),';
 					sql +='"type_tiers" char (3),';
@@ -16,46 +16,46 @@ _.extend(window.Type_mode_significationDao.prototype, {
 
 					tx.executeSql(sql);
 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('1','A personne (Art 654 CPC)','P','1')");
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('2','A domicile / A résidence (Art 655 CPC)','P','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('4','A domicile, dépôt en étude (Art 656 CPC)','P','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('5','PV659','P','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('6','Recherche fructueuse','P','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('7','Parquet étranger hors UE (Art 684 CPC)','P','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('8','Parquet Communautés d''Outre-Mer (Art 660 CPC)','P','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('9','Sans remise','P','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('10','A personne (Art 654 CPC)','M','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('11','A domicile / A résidence (Art 655 CPC)','M','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('12','A domicile, dépôt en étude (Art 656 CPC)','M','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('13','PV659','M','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('14','Recherche fructueuse','M','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('15','Parquet étranger hors UE (Art 684 CPC)','M','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('16','Parquet Communautés d''Outre-Mer (Art 660 CPC)','M','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('17','Sans remise','M','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('18','A personne (Art 555 CPP)','P','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('19','A domicile / A résidence (Art 556 et 557 CPP)','P','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('20','A domicile, dépôt en étude (Art 558 CPP)','P','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('21','Remise à parquet (Art 559 CPP)','P','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('22','Recherche fructueuse','P','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('23','Remise à parquet étranger hors UE (Art 684 CPC)','P','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('24','Remise à parquet Communautés d''Outre-Mer (Art 660 CPC)','P','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('25','Sans remise','P','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('26','A personne (Art 555 CPP)','M','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('27','A domicile / A résidence (Art 556 et 557 CPP)','M','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('28','A domicile, dépôt en étude (Art 558 CPP)','M','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('29','Remise à parquet (Art 559 CPP)','M','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('30','Recherche fructueuse','M','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('31','Remise à parquet étranger hors UE (Art 684 CPC)','M','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('32','Remise à parquet Communautés d''Outre-Mer (Art 660 CPC)','M','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('33','Sans remise','M','6')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('38','Recherche infructueuse','P','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('39','Recherche infructueuse','M','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('40','Nouvelle adresse de signification','P','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('41','Nouvelle adresse de signification','M','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('42','Nouvelle tentative','P','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('43','Nouvelle tentative','M','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('44','Attestation de recherche infructueuse','P','1')"); 
-					tx.executeSql("insert into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('45','Attestation de recherche infructueuse','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('1','A personne (Art 654 CPC)','P','1')");
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('2','A domicile / A résidence (Art 655 CPC)','P','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('4','A domicile, dépôt en étude (Art 656 CPC)','P','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('5','PV659','P','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('6','Recherche fructueuse','P','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('7','Parquet étranger hors UE (Art 684 CPC)','P','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('8','Parquet Communautés d''Outre-Mer (Art 660 CPC)','P','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('9','Sans remise','P','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('10','A personne (Art 654 CPC)','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('11','A domicile / A résidence (Art 655 CPC)','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('12','A domicile, dépôt en étude (Art 656 CPC)','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('13','PV659','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('14','Recherche fructueuse','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('15','Parquet étranger hors UE (Art 684 CPC)','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('16','Parquet Communautés d''Outre-Mer (Art 660 CPC)','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('17','Sans remise','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('18','A personne (Art 555 CPP)','P','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('19','A domicile / A résidence (Art 556 et 557 CPP)','P','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('20','A domicile, dépôt en étude (Art 558 CPP)','P','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('21','Remise à parquet (Art 559 CPP)','P','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('22','Recherche fructueuse','P','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('23','Remise à parquet étranger hors UE (Art 684 CPC)','P','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('24','Remise à parquet Communautés d''Outre-Mer (Art 660 CPC)','P','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('25','Sans remise','P','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('26','A personne (Art 555 CPP)','M','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('27','A domicile / A résidence (Art 556 et 557 CPP)','M','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('28','A domicile, dépôt en étude (Art 558 CPP)','M','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('29','Remise à parquet (Art 559 CPP)','M','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('30','Recherche fructueuse','M','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('31','Remise à parquet étranger hors UE (Art 684 CPC)','M','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('32','Remise à parquet Communautés d''Outre-Mer (Art 660 CPC)','M','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('33','Sans remise','M','6')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('38','Recherche infructueuse','P','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('39','Recherche infructueuse','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('40','Nouvelle adresse de signification','P','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('41','Nouvelle adresse de signification','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('42','Nouvelle tentative','P','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('43','Nouvelle tentative','M','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('44','Attestation de recherche infructueuse','P','1')"); 
+					tx.executeSql("insert or ignore into 'type_mode_signification' ('id_type_mode_signification', 'libelle', 'type_tiers', 'id_type_famille_document') values('45','Attestation de recherche infructueuse','M','1')"); 
 
 				},
 				function (tx, error) {

@@ -8,7 +8,7 @@ _.extend(window.DocumentDao.prototype, {
 
 		this.db.transaction(
 				function (tx) {
-				//tx.executeSql("DROP TABLE IF EXISTS 'iDocument'");
+					//tx.executeSql("DROP TABLE IF EXISTS 'iDocument'");
 					var sql = 'CREATE TABLE IF NOT EXISTS "iDocument" ("numero_document" VARCHAR PRIMARY KEY NOT NULL UNIQUE,';			
 					sql += '"id_etude" VARCHAR(25) NOT NULL,';
 					sql +='"nature_signification" INTEGER NOT NULL,'; // soit 1,2 ou 6
@@ -148,7 +148,7 @@ _.extend(window.DocumentDao.prototype, {
 						console.log("Table iDocument : " + len + " enregistrements trouvés.");
 						for (var i=0; i<len; i++){
 
-							console.log("Enregistrement = " + i + " ID_etude = " + results.rows.item(i).id_etude + " Numéro document =  " + results.rows.item(i).numero_document + " valide =  " + results.rows.item(i).valide + " id immeuble =  " + results.rows.item(i).immeuble);
+							console.log("Enregistrement = " + i + " ID_etude = " + results.rows.item(i).id_etude + " Nom tiers = " + results.rows.item(i).nom_tiers_a_signifier + " Numéro document =  " + results.rows.item(i).numero_document + " valide =  " + results.rows.item(i).valide + " id immeuble =  " + results.rows.item(i).immeuble);
 						}
 					}
 					);
@@ -174,10 +174,10 @@ _.extend(window.DocumentDao.prototype, {
 						var len = results.rows.length;
 						var libelle = "inconnu";
 						
-						console.log("Table iDocument : " + len + " enregistrements trouvés.");
+						//console.log("Table iDocument : " + len + " enregistrements trouvés.");
 						for (var i=0; i<len; i++){
 
-							console.log("Enregistrement = " + i + " ID_etude = " + results.rows.item(i).id_etude + " Numéro document =  " + results.rows.item(i).numero_document + " Nature signification =  " + results.rows.item(i).nature_signification + " valide =  " + results.rows.item(i).valide);
+							//console.log("Enregistrement = " + i + " ID_etude = " + results.rows.item(i).id_etude + " Numéro document =  " + results.rows.item(i).numero_document + " Nature signification =  " + results.rows.item(i).nature_signification + " valide =  " + results.rows.item(i).valide);
 							var new_doc = new DocumentModel({numero_document : results.rows.item(i).numero_document,
 								nature_signification : results.rows.item(i).nature_signification,
 								nature_parquet : results.rows.item(i).nature_parquet,
