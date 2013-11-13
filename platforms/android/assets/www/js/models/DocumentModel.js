@@ -47,7 +47,7 @@ var DocumentModel = Backbone.Model.extend({
 			var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(model.get('civilite_tiers_a_signifier'),typetiers)
 			promise.then(function(libelle){
 				promiseCivilite.then(function(libelleCivilite){
-				documentdao.enregistrer_document(model.get('numero_document'),
+				documentdao.enregistrer_document(model.get('numero_document'), // insertion dans la base
 						model.get('id_etude'),
 						libelle,
 						model.get('nature_parquet'),
@@ -127,13 +127,15 @@ var DocumentModel = Backbone.Model.extend({
 });
 
 var DocumentCollection = Backbone.Collection.extend({ // les modèles sont regroupées dans une collection
-	model: DocumentModel,
-
-	url: "ITOURNEE_700_IMPORT_0508201308050942.xml", // le fichier XML " A signifier"
+	
+	model: DocumentModel, 	// on spécifie ici le modèle qui représente chaque item de la collection
+	url: "ITOURNEE_700_IMPORT_0508201308050942.xml", 	// l'origine des données : ici un fichier XML local 
 	initialize : function(){
+		
+		//rien dans initialize 
 	},
 	
-	parse: function(data) { // comme les données sont en XML il faut redéfinir la fonction parse
+	parse: function(data) { // comme les données proviennent d'un fichier XML il faut redéfinir la fonction parse
 		
 		var parsed=[];
 		$(data).find('document').each(function(){ // on récupère les informations de chaque noeud document
@@ -159,7 +161,7 @@ var DocumentCollection = Backbone.Collection.extend({ // les modèles sont regrou
 			var immeuble = $(this).find('id_immeuble').text();
 			var signification = $(this).find('signification').text();
 			
-			parsed.push({id_etude : id_etude,
+			parsed.push({id_etude : id_etude,     // XML est transformé en JSON
 				numero_document : numero_document,
 				nature_signification : nature_signification,
 				nature_parquet : "Français",
@@ -179,7 +181,7 @@ var DocumentCollection = Backbone.Collection.extend({ // les modèles sont regrou
 				adresse : adresse,
 				immeuble : immeuble,
 				signification : signification
-			}); // XML est transformé en JSON
+			}); 
 		});
 			
 		return parsed;	

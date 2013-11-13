@@ -1,6 +1,6 @@
 
 
-var ImmeubleView = Backbone.View.extend({  // la vue correspondant à l'affichage d'un seul Document
+var ImmeubleView = Backbone.View.extend({  // la vue correspondant à l'affichage d'un seul Immeuble
 
 	el: '#div5',
 	template: template('immeubleTemplate'),
@@ -29,9 +29,9 @@ var ImmeubleView = Backbone.View.extend({  // la vue correspondant à l'affichage
 
 	creer_immeuble : function() {
 		var now = new Date();
-		var date = now.getDate() + "-" + now.getMonth() + "-" + now.getFullYear() + " " + now.getHours() +":"+now.getMinutes() +":"+ now.getSeconds();
+		var date = now.getDate() + "-" + now.getMonth() + "-" + now.getFullYear() + " " + now.getHours() +":"+now.getMinutes() +":"+ now.getSeconds(); // choix de la date pour avoir un id unique
 
-		this.model.set({id_immeuble : date, 
+		this.model.set({id_immeuble : date,  // création d'un modèle avc les données rentrées par l'utilisateur
 			cle_ptt: $('input[name=radio_cle_ptt]:checked').val(), 
 			cle_gaz: $('input[name=radio_cle_gaz]:checked').val(),
 			interphone : $('input[name=radio_interphone]:checked').val(),
@@ -67,7 +67,7 @@ var ImmeubleView = Backbone.View.extend({  // la vue correspondant à l'affichage
 
 }); 
 
-var ImmeublesView = Backbone.View.extend({ // la vue correspondant à la liste latérale (tous les documents)
+var ImmeublesView = Backbone.View.extend({ 
 
 	initialize: function() {
 
@@ -80,7 +80,7 @@ var ImmeublesView = Backbone.View.extend({ // la vue correspondant à la liste la
 		this.collection.each(function(immeuble){
 			// pour chaque document dans la collection, on crée une nouvelle vue
 			//var adresseView = new AdresseView({ model: adresse });
-			immeuble.save(); // et on sauvegarde le document --> fonction sync du model
+			immeuble.save(); // et on sauvegarde l'immeuble --> fonction sync du model
 
 		},this);
 

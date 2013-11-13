@@ -35,7 +35,7 @@ var AdresseModel = Backbone.Model.extend({
 			var promiseTypeAdresse = type_adressedao.getTypeAdresseLibelle(model.get('type'))
 			
 			promiseTypeAdresse.then(function(libelleType){
-				adressedao.enregistrer_adresse(model.get('id_adresse'),
+				adressedao.enregistrer_adresse(model.get('id_adresse'), // insertion dans la table
 					model.get('texte_libre'),
 					model.get('complement1'),
 					model.get('complement2'),
@@ -68,7 +68,7 @@ var AdresseModel = Backbone.Model.extend({
 
 
 			var _this = this;
-			var promiseOfAdresse = adressedao.find_adresse_by_id(model.get('id_adresse'));
+			var promiseOfAdresse = adressedao.find_adresse_by_id(model.get('id_adresse')); 
 			promiseOfAdresse.then(function(adresse){
 				_this.set(adresse.attributes);
 				if(options.success)

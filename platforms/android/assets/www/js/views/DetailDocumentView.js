@@ -15,13 +15,11 @@ var DetailDocumentView = Backbone.View.extend({  // la vue correspondant à l'aff
 		$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
 		console.log(this.model.get('valide'));
 		if(this.model.get('valide')== true || this.model.get('valide') == "true"){
-			$('#div2').textinput().textinput('disable');
+			$('#div2').textinput().textinput('disable'); // si le document est validé on desactive la div pour empecher l'édition
 		}
 		else {
-			$('#div2').textinput().textinput('enable');
+			$('#div2').textinput().textinput('enable'); // sinon on réactive pour permettre l'édition
 		}
-
-
 
 		// on insère dans le li les données du modèle en suivant le template */
 		return this;

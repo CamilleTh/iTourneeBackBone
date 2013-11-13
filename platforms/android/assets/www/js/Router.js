@@ -1,4 +1,7 @@
+// Ouverture database
 var db = window.openDatabase("test", "1.0", "Test DB", 1000000);
+
+//Creation des différents DAOs
 var type_famille_documentdao = new Type_famille_documentDao(db);
 var documentdao = new window.DocumentDao(db);
 var adressedao = new window.AdresseDao(db);
@@ -8,33 +11,38 @@ var type_civilitedao = new window.Type_civiliteDao(db);
 var type_adressedao = new window.Type_adresseDao(db);
 //var significationdao = new window.SignificationDao(db);
 
-var current_view_detail_document;// ne fonctionne pas pour detail document
+// Variables représentant les vues courantes
+var current_view_detail_document;
 var current_view_adresse;
 var current_view_immeuble;
 var current_view_signification;
 
 var Router = Backbone.Router.extend({
 	routes: {
-		'': 'defaut'
+		'': 'defaut'  // 1 seule route, la route par défaut
 	},
 
 	defaut: function(){
 		console.log("route par defaut chargée");
-		documentdao.initialize_document();
-		var macollection = new DocumentCollection();
-		var documentsView = new DocumentsView({ collection: macollection });
-		adressedao.initialize_adresse();
-		var ma_liste_adresse = new AdresseCollection();
-		var adressesView = new AdressesView({ collection: ma_liste_adresse });
-		immeubledao.initialize_immeuble(); 
-		var ma_liste_immeuble = new ImmeubleCollection();
-		var immeublesView = new ImmeublesView({ collection: ma_liste_immeuble}); 
+		documentdao.initialize_document(); //création de la table 'iDocument'  --> voir DocumentDao.js
+		var macollection = new DocumentCollection(); // création d'une nouvelle collection de Documents -- > voir DocumentModel.js à DocumentCollection
+		var documentsView = new DocumentsView({ collection: macollection }); // création d'une vue générale <ul> qui englobe plusieurs vues individuelles <li> qui représentent tous les modèles dans macollection --> voir DocumentView.js à DocumentsView 
+		adressedao.initialize_adresse(); //création de la table 'iAdresse'  --> voir AdresseDao.js
+		var ma_liste_adresse = new AdresseCollection(); // création d'une nouvelle collection d'Adresses -- > voir AdresseModel.js à AdresseCollection
+		var adressesView = new AdressesView({ collection: ma_liste_adresse }); //  --> voir AdresseView.js à AdressesView
+		immeubledao.initialize_immeuble();  //création de la table 'iImmeuble'  --> voir ImmeubleDao.js
+		var ma_liste_immeuble = new ImmeubleCollection(); // création d'une nouvelle collection d'Immeubles -- > voir ImmeubleModel.js à ImmeubleCollection
+		var immeublesView = new ImmeublesView({ collection: ma_liste_immeuble}); //  --> voir ImmeubleView.js à ImmeublesView
+		
+		var ma_signification = new SignificationModel();
+		var significationView = new SignificationView({model : ma_signification});
+		
+		// DAOs secondaires : création des tables requises
 		type_mode_significationdao.initialize_Type_mode_significationDao(); 
 		type_famille_documentdao.initialize_Type_famille_documentDao();
 		type_civilitedao.initialize_Type_civiliteDao_documentDao();
 		type_adressedao.initialize_Type_adresseDao();
-		var ma_signification = new SignificationModel();
-		var significationView = new SignificationView({model : ma_signification});
+
 		
 		/*var promiseTypeAdresse = type_adressedao.getTypeAdresseLibelle(1);
 

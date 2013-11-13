@@ -38,7 +38,7 @@ var ImmeubleModel = Backbone.Model.extend({
 			console.log("entré dans fonction sync du modèle Immeuble");
 
 			if(model.get('modifie') == false || model.get('modifie') == 'false'){
-				immeubledao.enregistrer_immeuble(model.get('id_immeuble'),
+				immeubledao.enregistrer_immeuble(model.get('id_immeuble'), // insertion dans la base
 						model.get('cle_ptt'), 
 						model.get('cle_gaz'),
 						model.get('interphone'),
