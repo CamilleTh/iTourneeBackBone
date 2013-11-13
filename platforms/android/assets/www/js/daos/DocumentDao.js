@@ -147,8 +147,8 @@ _.extend(window.DocumentDao.prototype, {
 						var len = results.rows.length;
 						console.log("Table iDocument : " + len + " enregistrements trouvés.");
 						for (var i=0; i<len; i++){
-
-							console.log("Enregistrement = " + i + " ID_etude = " + results.rows.item(i).id_etude + " Nom tiers = " + results.rows.item(i).nom_tiers_a_signifier + " Numéro document =  " + results.rows.item(i).numero_document + " valide =  " + results.rows.item(i).valide + " id immeuble =  " + results.rows.item(i).immeuble);
+							
+							console.log("Enregistrement = " + i + " ID_etude = " + results.rows.item(i).id_etude + " Civ = " + results.rows.item(i).civilite_tiers_a_signifier + "Nom tiers = " + results.rows.item(i).nom_tiers_a_signifier + " Numéro document =  " + results.rows.item(i).numero_document + " valide =  " + results.rows.item(i).valide + " id immeuble =  " + results.rows.item(i).immeuble);
 						}
 					}
 					);

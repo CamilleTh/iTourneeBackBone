@@ -35,11 +35,33 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 		this.model.fetch({ // on fait un fetch, ce qui nous fait rentrer dans le case read de la function sync dans DocumentModel
 			success: function(){
 				//var d = new DetailDocumentView({ model: _this.model });
-				current_view_detail_document.model.set(_this.model.attributes);     // ne marche pas avec DocumentView . Pourquoi ?
+				
+				// ne marche pas avec DocumentView . Pourquoi ?
+			
+				current_view_detail_document.model.set(_this.model.attributes);
+				var promise = type_famille_documentdao.getTypeFamilleLibelle(current_view_detail_document.model.get('nature_signification'));
+				
+				var typetiers = current_view_detail_document.model.get('type_tiers_a_signifier');
+				var civ = current_view_detail_document.model.get('civilite_tiers_a_signifier');
+				
+				var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(civ,typetiers);
+				
+				promise.then(function(libelleNatureSignification){
+					promiseCivilite.then(function(libelleCivilite){
+						
+						current_view_detail_document.model.set('nature_signification',libelleNatureSignification)
+						current_view_detail_document.model.set('civilite_tiers_a_signifier',libelleCivilite);
+
+							
+						
+							
+					});
+				});
 				//current_view_detail_document.render();
 				//s	$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
-
+				
 				$('#div2').css('display','block');
+				$('#blockValide').css('display','block');
 				$('#maform').css('display','block'); // affichage du slider dans le footer
 				modele_courant = _this.model;
 
@@ -195,11 +217,11 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 		this.collection.each(function(document){ // ce code s'exécute pour chaque document de la collection
 
 
-			var documentView = new DocumentView({ model: document }); // pour chaque document on va créer une nouvelle vue individuelle DocumentView 
 			document.save(); // et on sauvegarde le document si il n'existe pas déja --> fonction sync du model case create
+			//document.set('civilite_tiers_a_signifier','Monsieur');
+			var documentView = new DocumentView({ model: document }); // pour chaque document on va créer une nouvelle vue individuelle DocumentView
 
-			// Gestion Civilité
-			
+		
 			this.$el.append(documentView.render().el); // insertion des données dans une vue individuelle
 
 			document.fetch({ //  on va selectionner le document pour checker son attribut valide --> fonction sync du model DocumentModel case read 
@@ -210,15 +232,14 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 						document.set('valide',true); // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
 					} 
 
+
+					//alert("VIEW" +document.get('civilite_tiers_a_signifier'))
 					
-					
-					/*alert("VIEW" +document.get('civilite_tiers_a_signifier'))
 					var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(document.get('civilite_tiers_a_signifier'),document.get('type_tiers_a_signifier'));
-					
 					promiseCivilite.then(function(libelle){
-						
+					
 						document.set('civilite_tiers_a_signifier', libelle);
-					});*/
+					});
 
 				} 
 			});
@@ -227,6 +248,7 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 
 		},this);
 
+		
 		documentdao.contenu_document(); // une fois la collection crée , on affiche son contenu dans la console   // pas le bon endroit pour mettre cette méthode ?  .fetch() ne redirige pas vers le case read de la méthode sync();
 		//type_mode_significationdao.contenu_type_mode_signification();
 		$('#liste_significations').listview('refresh'); // indispensable ?
@@ -251,7 +273,7 @@ $( "#flip-1" ).slider({
 		if($("#flip-1").val() == "on"){
 			console.log("dans on");
 			$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
-			current_view_detail_document.model.set('valide',false);  // WTF !!!!!!!!!!!!!    // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
+			//current_view_detail_document.model.set('valide',false);  // WTF !!!!!!!!!!!!!    // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
 			modele_courant.sync('update',modele_courant); // force à rentrer dans le cas update dans la fonction sync
 			current_view_detail_document.model.set('valide',true);  // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
 		} 

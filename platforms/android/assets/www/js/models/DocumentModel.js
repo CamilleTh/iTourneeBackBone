@@ -40,13 +40,7 @@ var DocumentModel = Backbone.Model.extend({
 		case 'create': // on rentre dans ce cas quand on fait un save()
 			console.log("entré dans fonction sync du modèle Document");
 			
-			/*var promise = type_famille_documentdao.getTypeFamilleLibelle(model.get('nature_signification'));
-		
-			var typetiers = model.get('type_tiers_a_signifier');
-			//alert("Model" +model.get('civilite_tiers_a_signifier'))
-			var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(model.get('civilite_tiers_a_signifier'),typetiers)
-			promise.then(function(libelle){
-				promiseCivilite.then(function(libelleCivilite){*/
+			
 			documentdao.enregistrer_document(model.get('numero_document'), // insertion dans la base
 						model.get('id_etude'),
 						model.get('nature_signification'),
