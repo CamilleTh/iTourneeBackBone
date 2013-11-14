@@ -12,7 +12,7 @@ var type_adressedao = new window.Type_adresseDao(db);
 //var significationdao = new window.SignificationDao(db);
 
 // Variables représentant les vues courantes
-var current_view_detail_document;
+//var current_view_detail_document;
 var current_view_adresse;
 var current_view_immeuble;
 var current_view_signification;

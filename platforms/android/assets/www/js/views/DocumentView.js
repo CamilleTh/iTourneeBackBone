@@ -8,14 +8,13 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 	template: template('document_item_Template'),  // --> voir index.html template  'document_item_Template'
 	initialize: function() {
 
-		this.model.bind('change:valide', this.render, this);// lorsqu'on change l'attribut valide du modele --> render
-		this.model.bind('change:civilite_tiers_a_signifier', this.render, this);
-		this.model.bind('change:immeuble', this.maj_immeuble, this);  // lorsqu'on change l'attribut immeuble du modele --> on déclenche la méthode maj_immeuble 
+	//	this.model.bind('change:valide', this.render, this);// lorsqu'on change l'attribut valide du modele --> render
+	//	this.model.bind('change:civilite_tiers_a_signifier', this.render, this);
+	//	this.model.bind('change:immeuble', this.maj_immeuble, this);  // lorsqu'on change l'attribut immeuble du modele --> on déclenche la méthode maj_immeuble 
 	},
 	render: function(){
         //alert("render");
 		
-		alert(this.model.get('civilite_tiers_a_signifier'))
 		this.$el.html( this.template(this.model.toJSON())); // on insère dans le li les données du modèle en suivant le template
 		//	current_view_detail_document.model.set('valide',this.model.get('valide'));
 		return this;
@@ -33,13 +32,14 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 
 	afficher_infos: function(){
 		var _this = this;
-		
+		//var current_view_detail_document  = new DetailDocumentView({ model: this.model});
 		this.model.fetch({ // on fait un fetch, ce qui nous fait rentrer dans le case read de la function sync dans DocumentModel
-			success: function(){
+			success: function(data){
 				//var d = new DetailDocumentView({ model: _this.model });
 				
 				// ne marche pas avec DocumentView . Pourquoi ?
-			
+							
+			/*	//alert("validé 2 " + this.model.get('valide'));
 				//current_view_detail_document.model.set(_this.model.attributes);
 				current_view_detail_document.model.set('numero_document',_this.model.get('numero_document'))
 				current_view_detail_document.model.set('id_etude',_this.model.get('id_etude'))
@@ -61,32 +61,61 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 				current_view_detail_document.model.set('adresse',_this.model.get('adresse'))
 				current_view_detail_document.model.set('immeuble',_this.model.get('immeuble'))
 				current_view_detail_document.model.set('signification',_this.model.get('signification'))					
-				alert("1");
+				alert("1"); */
 				
-				var promise = type_famille_documentdao.getTypeFamilleLibelle(_this.model.get('nature_signification'));
+				var promise = type_famille_documentdao.getTypeFamilleLibelle(data.get('nature_signification'));
 				
 				
-				var typetiers = _this.model.get('type_tiers_a_signifier');
-				var civ = _this.model.get('civilite_tiers_a_signifier')
-			
+				var typetiers = data.get('type_tiers_a_signifier');
+				var civ = data.get('civilite_tiers_a_signifier');
+			  alert(typetiers);
+			  alert(civ);
 				var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(civ,typetiers);
 				
 				promise.then(function(libelleNatureSignification){
-					alert("2");
 					promiseCivilite.then(function(libelleCivilite){
-						alert("3");
-						current_view_detail_document.model.set('nature_signification',libelleNatureSignification)
-						current_view_detail_document.model.set('civilite_tiers_a_signifier',libelleCivilite)
-						alert("4");
+						
+
+						var modele_detail_doc = new DocumentModel(
+								{   
+									'nom_tiers_a_signifier' : data.get('nom_tiers_a_signifier'),
+									'valide': data.get('valide'),
+								    'numero_document': data.get('numero_document'),
+									'id_etude': data.get('id_etude'),
+									'nature_signification': data.get('nature_signification'),
+									'nature_parquet': data.get('nature_parquet'),
+									'nom_tiers_a_signifier': data.get('nom_tiers_a_signifier'),
+									'type_tiers_a_signifier': data.get('type_tiers_a_signifier'),
+									'nom_debiteur': data.get('nom_debiteur'),
+									'commentaires_tiers': data.get('commentaires_tiers'),
+									'domicile_elu': data.get('domicile_elu'),
+									'presomption_domiciliation': data.get('presomption_domiciliation'),
+									'domicilie': data.get('domicilie'),
+									'domiciliation': data.get('domiciliation'),
+									'numero_tiers_a_signifier': data.get('numero_tiers_a_signifier'),
+									'libelle_document': data.get('libelle_document'),
+									'signataire': data.get('signataire'),
+									'nombre_feuillets': data.get('nombre_feuillets'),
+									'adresse': data.get('adresse'),
+									'immeuble': data.get('immeuble'),
+									'signification': data.get('signification'),	 
+									'nature_signification': libelleNatureSignification,
+									'civilite_tiers_a_signifier' : libelleCivilite
+									
+							}
+								);
+						var vue_detail_document  = new DetailDocumentView({ model: modele_detail_doc });
+						
+
 					});
-				});
+				}); 
 				//current_view_detail_document.render();
-				//s	$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
+				$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique 
 				
-				$('#div2').css('display','block');
+			$('#div2').css('display','block');
 				$('#blockValide').css('display','block');
 				$('#maform').css('display','block'); // affichage du slider dans le footer
-				modele_courant = _this.model;
+			/*	modele_courant = _this.model;
 
 
 				if(_this.model.get('valide') == "true"){ // si le document est validé, on passe le slider dans la position validé
@@ -96,7 +125,7 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 				else{
 					$("#flip-1").val("off"); // sinon dans la position non validé
 					$("#flip-1").slider("refresh");	
-				}
+				}  */
 			}
 		});	
 		
@@ -154,13 +183,14 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 });
 
 var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste latérale (tous les documents)
+
 	el: '#liste_significations', // insertion dans la liste #liste_significations
 	tagName: 'ul', 
 	initialize: function() {
 
 		this.collection.getDataXML({reset: true}); // parcours du fichier XML via les méthodes getDataXML et parse --> voir DocumentModel.js à DocumentCollection   un événement reset est déclenché	
 		this.collection.bind('reset', this.render, this); // lorsque l'évenement reset est déclenché, on rentre dans le render --> affichage de la vue
-		var mondoc = new DocumentModel({id_etude : "",    // création d'un doc avc des attributs vides pour l'afficher dans la partie droite de l'appli --> inutile maintenant ?
+	/*	var mondoc = new DocumentModel({id_etude : "",    // création d'un doc avc des attributs vides pour l'afficher dans la partie droite de l'appli --> inutile maintenant ?
 			numero_document : "",
 			nature_signification : "",
 			nature_parquet : "",
@@ -179,9 +209,9 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 			nombre_feuillets : "",
 			signification : "",
 			valide : ""
-		}); 
+		}); */
 		//var d = new DetailDocumentView({ model: mondoc });
-		current_view_detail_document  = new DetailDocumentView({ model: mondoc}); // création d'une nouvelle vue DetailDocument avc les attributs vides de mondoc : inutile ? --> voir DetailDocumentView.js à initialize
+		//current_view_detail_document  = new DetailDocumentView({ model: mondoc}); // création d'une nouvelle vue DetailDocument avc les attributs vides de mondoc : inutile ? --> voir DetailDocumentView.js à initialize
 
 
 		var monadresse = new AdresseModel({ // création d'une adresse avc des attributs vides pour l'afficher dans la partie droite de l'appli --> inutile maintenant ?
@@ -235,33 +265,55 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 
 	},
 	render: function(){ // fonction qui va afficher notre vue générale <ul>
-		console.log("entrée dans render");
-		
+		console.log("entrée dans render documents view");
+		var _this = this;
 		this.collection.each(function(document){ // ce code s'exécute pour chaque document de la collection
 
 
 			document.save(); // et on sauvegarde le document si il n'existe pas déja --> fonction sync du model case create
 			//document.set('civilite_tiers_a_signifier','Monsieur');
-			var documentView = new DocumentView({ model: document }); // pour chaque document on va créer une nouvelle vue individuelle DocumentView
+			//var documentView = new DocumentView({ model: document }); // pour chaque document on va créer une nouvelle vue individuelle DocumentView
 
 		
-			this.$el.append(documentView.render().el); // insertion des données dans une vue individuelle
+		//	this.$el.append(documentView.render().el); // insertion des données dans une vue individuelle
 
 			document.fetch({ //  on va selectionner le document pour checker son attribut valide --> fonction sync du model DocumentModel case read 
 				             // possibilité de faire plus simple ? pourquoi en deux fois ?
-				success: function(){
+				success: function(data){
 
-					if( document.get('valide') == 'true' || document.get('valide') == true){ // pareil, pourquoi parfois c'est true et d'autre fois "true" ?
-						document.set('valide',true); // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
-					} 
+				
 
 
 					//alert("VIEW" +document.get('civilite_tiers_a_signifier'))
-					
-					var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(document.get('civilite_tiers_a_signifier'),document.get('type_tiers_a_signifier'));
+					alert("civilité :" + data.get('civilite_tiers_a_signifier'));
+					alert("type:" + data.get('type_tiers_a_signifier'));
+					var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(data.get('civilite_tiers_a_signifier'),data.get('type_tiers_a_signifier'));
 					promiseCivilite.then(function(libelle){
+						alert("libelle" + libelle);
 					
-						document.set('civilite_tiers_a_signifier', libelle);
+                        
+						var modele_doc = new DocumentModel(
+								{
+									//'nature_signification': libelleNatureSignification,
+									
+									'nom_tiers_a_signifier': data.get('nom_tiers_a_signifier'),
+									'numero_tiers_a_signifier' :  data.get('numero_tiers_a_signifier'),
+									'numero_document' :  data.get('numero_document'),
+									'civilite_tiers_a_signifier' : libelle,
+									'valide' : ""
+							}
+								);
+						if( data.get('valide') == 'true' || data.get('valide') == true){ // pareil, pourquoi parfois c'est true et d'autre fois "true" ?
+							modele_doc.set('valide',true); // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
+						} 
+						else{
+							modele_doc.set('valide',false);
+						}
+						var vue_document  = new DocumentView({ model: modele_doc });
+						
+						_this.$el.append(vue_document.render().el); // insertion des données dans une vue individuelle
+						//vue_document.render();
+						$('#liste_significations').listview('refresh'); // indispensable ?
 					});
 
 				} 
@@ -274,7 +326,7 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 		
 		documentdao.contenu_document(); // une fois la collection crée , on affiche son contenu dans la console   // pas le bon endroit pour mettre cette méthode ?  .fetch() ne redirige pas vers le case read de la méthode sync();
 		//type_mode_significationdao.contenu_type_mode_signification();
-		$('#liste_significations').listview('refresh'); // indispensable ?
+		
 		return this;
 	}
 });
@@ -290,7 +342,7 @@ $( "#flip-1" ).slider({
 			console.log($("#flip-1").val());
 			$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
 			modele_courant.sync('update',modele_courant); // force à rentrer dans le cas update dans la fonction sync
-			current_view_detail_document.model.set('valide',false); // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
+		//	current_view_detail_document.model.set('valide',false); // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
 		} 
 
 		if($("#flip-1").val() == "on"){
@@ -298,7 +350,7 @@ $( "#flip-1" ).slider({
 			$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
 			//current_view_detail_document.model.set('valide',false);  // WTF !!!!!!!!!!!!!    // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
 			modele_courant.sync('update',modele_courant); // force à rentrer dans le cas update dans la fonction sync
-			current_view_detail_document.model.set('valide',true);  // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
+		//	current_view_detail_document.model.set('valide',true);  // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
 		} 
 	}
 });

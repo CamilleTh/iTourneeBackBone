@@ -7,7 +7,7 @@ _.extend(window.ImmeubleDao.prototype, {
 	initialize_immeuble:function () { // création de la table iImmeuble
 		this.db.transaction(
 				function (tx) {
-					//tx.executeSql("DROP TABLE IF EXISTS 'iImmeuble'");
+					tx.executeSql("DROP TABLE IF EXISTS 'iImmeuble'");
 					var sql = 'CREATE TABLE IF NOT EXISTS "iImmeuble" ("id_immeuble" VARCHAR PRIMARY KEY NOT NULL UNIQUE,';
 					sql +='"cle_ptt" BOOL,';
 					sql +=	'"cle_gaz" BOOL,';

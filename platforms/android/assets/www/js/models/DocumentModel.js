@@ -98,7 +98,29 @@ var DocumentModel = Backbone.Model.extend({
 			promiseOfDocument.then(function(doc){
 			
 				_this.set(doc.attributes); // on remplace les attributs du modèle courant par ceux du document contenu dans la promesse
-			
+				/*_this.set('nom_tiers_a_signifier',doc.get('nom_tiers_a_signifier'));
+				_this.set('valide',doc.get('valide'));
+				//current_view_detail_document.model.set(_this.model.attributes);
+				_this.set('numero_document',doc.get('numero_document'))
+				_this.set('id_etude',doc.get('id_etude'))
+				_this.set('nature_signification',doc.get('nature_signification'))
+				_this.set('nature_parquet',doc.get('nature_parquet'))
+				_this.set('nom_tiers_a_signifier',doc.get('nom_tiers_a_signifier'))
+				_this.set('type_tiers_a_signifier',doc.get('type_tiers_a_signifier'))
+				_this.set('civilite_tiers_a_signifier',doc.get('civilite_tiers_a_signifier'))
+				_this.set('nom_debiteur',doc.get('nom_debiteur'))
+				_this.set('commentaires_tiers',doc.get('commentaires_tiers'))
+				_this.set('domicile_elu',doc.get('domicile_elu'))
+				_this.set('presomption_domiciliation',doc.get('presomption_domiciliation'))
+				_this.set('domicilie',doc.get('domicilie'))
+				_this.set('domiciliation',doc.get('domiciliation'))
+				_this.set('numero_tiers_a_signifier',doc.get('numero_tiers_a_signifier'))
+				_this.set('libelle_document',doc.get('libelle_document'))
+				_this.set('signataire',doc.get('signataire'))
+				_this.set('nombre_feuillets',doc.get('nombre_feuillets'))
+				_this.set('adresse',doc.get('adresse'))
+				_this.set('immeuble',doc.get('immeuble'))
+				_this.set('signification',doc.get('signification'))	 */
 				if(options.success)
 					options.success();
 				

@@ -58,12 +58,12 @@ _.extend(window.Type_civiliteDao.prototype, {
 		this.db.transaction(
 				function (tx) {	
 						
-					//tx.executeSql("DROP TABLE IF EXISTS `type_civilite`;");
+					tx.executeSql('DROP TABLE IF EXISTS "type_civilite"');
 
-					var sql = '	CREATE TABLE IF NOT EXISTS `type_civilite` (';
-					sql += ' `id_type_civilite` int(10),';
-					sql += ' `libelle` varchar(45),';
-					sql += ' `libelle_court` varchar(10))';
+					var sql = '	CREATE TABLE IF NOT EXISTS "type_civilite" (';
+					sql += ' "id_type_civilite" int(10),';
+					sql += ' "libelle" varchar(45),';
+					sql += ' "libelle_court" varchar(10))';
 								
 					tx.executeSql(sql);
 					
