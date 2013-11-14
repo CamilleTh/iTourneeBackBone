@@ -68,8 +68,7 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 				
 				var typetiers = data.get('type_tiers_a_signifier');
 				var civ = data.get('civilite_tiers_a_signifier');
-			  alert(typetiers);
-			  alert(civ);
+
 				var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(civ,typetiers);
 				
 				promise.then(function(libelleNatureSignification){
@@ -106,16 +105,17 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 								);
 						var vue_detail_document  = new DetailDocumentView({ model: modele_detail_doc });
 						
+						$('#div2').css('display','block');
+						$('#maform').css('display','block'); // affichage du slider dans le footer
 
 					});
 				}); 
 				//current_view_detail_document.render();
 				$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique 
 				
-			$('#div2').css('display','block');
-				$('#blockValide').css('display','block');
-				$('#maform').css('display','block'); // affichage du slider dans le footer
-			/*	modele_courant = _this.model;
+				//	$('#div2').css('display','block');
+				//		$('#maform').css('display','block'); // affichage du slider dans le footer
+				/*	modele_courant = _this.model;
 
 
 				if(_this.model.get('valide') == "true"){ // si le document est validé, on passe le slider dans la position validé
@@ -285,11 +285,8 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 
 
 					//alert("VIEW" +document.get('civilite_tiers_a_signifier'))
-					alert("civilité :" + data.get('civilite_tiers_a_signifier'));
-					alert("type:" + data.get('type_tiers_a_signifier'));
 					var promiseCivilite = type_civilitedao.getTypeCiviliteLibelle(data.get('civilite_tiers_a_signifier'),data.get('type_tiers_a_signifier'));
 					promiseCivilite.then(function(libelle){
-						alert("libelle" + libelle);
 					
                         
 						var modele_doc = new DocumentModel(
