@@ -65,10 +65,6 @@ var ImmeubleModel = Backbone.Model.extend({
 				
 			
 				
-				alert($('#code_vigik').val());
-				alert($('#digicode').val());
-				alert($('#porte').val());
-				alert($('#etage').val());
 				
 				immeubledao.enregistrer_immeuble(model.get('id_immeuble'),
 						model.get('cle_ptt'), 

@@ -27,6 +27,7 @@ var ImmeubleView = Backbone.View.extend({  // la vue correspondant à l'affichage
 	},
 
 	creer_immeuble : function() {
+		console.log('Creer immeuble')
 		var now = new Date();
 		var date = now.getDate() + "-" + now.getMonth() + "-" + now.getFullYear() + " " + now.getHours() +":"+now.getMinutes() +":"+ now.getSeconds(); // choix de la date pour avoir un id unique
 
@@ -50,9 +51,10 @@ var ImmeubleView = Backbone.View.extend({  // la vue correspondant à l'affichage
 			etage : $('#etage').val(),
 			porte : $('#porte').val() });
 
-
+		this.render();
 		this.model.save();
-		modele_courant.set('immeuble',date); 
+	//	current_view_detail_document.model.set('immeuble',date);
+		
 
 
 	},
