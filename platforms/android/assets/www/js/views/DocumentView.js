@@ -75,10 +75,13 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 									
 							}
 								);
-						var vue_detail_document  = new DetailDocumentView({ model: modele_detail_doc });
+						//var vue_detail_document  = new DetailDocumentView({ model: modele_detail_doc });
 						current_view_document.model.set('civilite_tiers_a_signifier',libelleCivilite)
 						current_view_detail_document  = vue_detail_document
 						
+						
+						vue_detail_document.model.set(modele_detail_doc.attributes)
+						vue_detail_document.render();
 						
 						$('#div2').css('display','block');
 						$('#maform').css('display','block'); // affichage du slider dans le footer

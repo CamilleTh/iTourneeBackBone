@@ -14,16 +14,15 @@ var type_adressedao = new window.Type_adresseDao(db);
 // Variables représentant les vues courantes
 var current_view_detail_document;
 var current_view_document;
-var current_view_adresse;
-var current_view_immeuble;
 var current_view_signification;
 
 var model_immeuble_vide = new ImmeubleModel({})
 var model_adresse_vide = new AdresseModel({})
+var model_document_vide = new DocumentModel({})
 
 var vue_immeuble = new ImmeubleView({model : model_immeuble_vide});
 var vue_adresse = new AdresseView({model : model_adresse_vide});
-
+var vue_detail_document = new DetailDocumentView({model : model_document_vide});
 
 var Router = Backbone.Router.extend({
 	routes: {
