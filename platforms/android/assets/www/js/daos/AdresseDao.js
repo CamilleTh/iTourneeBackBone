@@ -7,7 +7,7 @@ _.extend(window.AdresseDao.prototype, {
 	initialize_adresse:function () { // creation de la table iAdresse
 		this.db.transaction(
 				function (tx) {
-					tx.executeSql("DROP TABLE IF EXISTS 'iAdresse'");
+					//tx.executeSql("DROP TABLE IF EXISTS 'iAdresse'");
 					var sql = 'CREATE TABLE IF NOT EXISTS "iAdresse" ("id_adresse" VARCHAR(25) PRIMARY KEY NOT NULL UNIQUE,';
 					sql += 	'"texte_libre" VARCHAR(50),';
 					sql += 	'"complement1" VARCHAR(255),';

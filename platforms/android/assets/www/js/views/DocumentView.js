@@ -32,8 +32,9 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 
 	afficher_infos: function(){
 		var _this = this;
-		//var current_view_detail_document  = new DetailDocumentView({ model: this.model});
-		this.model.fetch({ // on fait un fetch, ce qui nous fait rentrer dans le case read de la function sync dans DocumentModel
+		current_view_document  = _this
+				
+		_this.model.fetch({ // on fait un fetch, ce qui nous fait rentrer dans le case read de la function sync dans DocumentModel
 			success: function(data){
 				
 				var promise = type_famille_documentdao.getTypeFamilleLibelle(data.get('nature_signification'));
@@ -75,6 +76,9 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 							}
 								);
 						var vue_detail_document  = new DetailDocumentView({ model: modele_detail_doc });
+						current_view_document.model.set('civilite_tiers_a_signifier',libelleCivilite)
+						current_view_detail_document  = vue_detail_document
+						
 						
 						$('#div2').css('display','block');
 						$('#maform').css('display','block'); // affichage du slider dans le footer
@@ -112,7 +116,7 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 									}
 										);
 								var vue_adresse  = new AdresseView({ model: modele_adresse });
-
+								
 							});
 						
 						var immeuble = new ImmeubleModel(
@@ -158,21 +162,16 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 				
 				//	$('#div2').css('display','block');
 				//		$('#maform').css('display','block'); // affichage du slider dans le footer
-				/*	modele_courant = _this.model;
+					//modele_courant = _this.model;
+						/*
 
-
-				if(_this.model.get('valide') == "true"){ // si le document est validé, on passe le slider dans la position validé
-					$("#flip-1").val("on");
-					$("#flip-1").slider("refresh");	
-				}
-				else{
-					$("#flip-1").val("off"); // sinon dans la position non validé
-					$("#flip-1").slider("refresh");	
-				}  */
-						
+				
+				*/
 						
 			}// fin success
 		});	// fin fetch adresse
+				
+				
 			} // fin success		
 		}); // fin fetch model
 	} // fin afficher infos
@@ -263,6 +262,7 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 						}
 						var vue_document  = new DocumentView({ model: modele_doc });
 						
+
 						_this.$el.append(vue_document.render().el); // insertion des données dans une vue individuelle
 						//vue_document.render();
 						$('#liste_significations').listview('refresh'); // indispensable ?
@@ -293,15 +293,39 @@ $( "#flip-1" ).slider({
 		if($("#flip-1").val() == "off"){
 			console.log($("#flip-1").val());
 			$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
-			modele_courant.sync('update',modele_courant); // force à rentrer dans le cas update dans la fonction sync
+			
+			
+			current_view_detail_document.model.sync('update',current_view_detail_document.model);
+			
+			// BREAK ?
+			current_view_detail_document.model.set('valide',false);
+			current_view_detail_document.render();
+			
+			current_view_document.model.set('valide',false);
+			current_view_document.render();
+			
+			
+			//modele_courant.sync('update',modele_courant); // force à rentrer dans le cas update dans la fonction sync
+			
 		//	current_view_detail_document.model.set('valide',false); // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
 		} 
 
 		if($("#flip-1").val() == "on"){
 			console.log("dans on");
 			$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
+			
+			current_view_detail_document.model.sync('update',current_view_detail_document.model);
+			
+			// BREAK ?
+			current_view_detail_document.model.set('valide',true);
+			current_view_detail_document.render();
+			
+			current_view_document.model.set('valide',true);
+			current_view_document.render();
+			
+			
 			//current_view_detail_document.model.set('valide',false);  // WTF !!!!!!!!!!!!!    // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
-			modele_courant.sync('update',modele_courant); // force à rentrer dans le cas update dans la fonction sync
+			//modele_courant.sync('update',modele_courant); // force à rentrer dans le cas update dans la fonction sync
 		//	current_view_detail_document.model.set('valide',true);  // --> déclenche l'événement 'change:valide' de DocumentView et donc le render , c'est ce qui affiche le VALIDE sur la barre latérale 
 		} 
 	}

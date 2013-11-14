@@ -71,12 +71,12 @@ var DocumentModel = Backbone.Model.extend({
 			if(maj == false){
 				if(model.get('valide') == 'true' || model.get('valide') == true){ // pourquoi ce comportement ? à cause de  SQLite ?
 					console.log("entrée dans true modele");
-					model.set('valide',false);
+					//model.set('valide',false);
 					documentdao.update_document(model.get('numero_document'),false);	
 				}
 				else{
 					console.log("entrée dans false modele");
-					model.set('valide',true);
+					//model.set('valide',true);
 					documentdao.update_document(model.get('numero_document'),true);			
 				}
 			}
