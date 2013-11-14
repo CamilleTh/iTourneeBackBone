@@ -53,8 +53,7 @@ var ImmeubleView = Backbone.View.extend({  // la vue correspondant à l'affichage
 
 		this.render();
 		this.model.save();
-	//	current_view_detail_document.model.set('immeuble',date);
-		
+		current_view_document.model.set('immeuble',date);
 
 
 	},

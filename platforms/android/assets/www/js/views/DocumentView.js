@@ -10,7 +10,7 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 
 	//	this.model.bind('change:valide', this.render, this);// lorsqu'on change l'attribut valide du modele --> render
 	//	this.model.bind('change:civilite_tiers_a_signifier', this.render, this);
-	//	this.model.bind('change:immeuble', this.maj_immeuble, this);  // lorsqu'on change l'attribut immeuble du modele --> on déclenche la méthode maj_immeuble 
+		this.model.bind('change:immeuble', this.maj_immeuble, this);  // lorsqu'on change l'attribut immeuble du modele --> on déclenche la méthode maj_immeuble 
 	},
 	render: function(){
         //alert("render");
