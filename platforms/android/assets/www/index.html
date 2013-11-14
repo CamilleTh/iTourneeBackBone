@@ -236,8 +236,8 @@ id="documentTemplate2" type="text/template">
 					<h3> Fiche immeuble</h3>
 					
 					<form>
-
-					<% if (id_immeuble == " ") { %>
+					$<%= id_immeuble %>$
+					<%if (id_immeuble == " ") { %>
     					Aucun immeuble enregistré dans la base.
 						<fieldset data-role="collapsible" data-theme="d" data-content-theme="d">
         						<legend>Ajouter un immeuble ?</legend>

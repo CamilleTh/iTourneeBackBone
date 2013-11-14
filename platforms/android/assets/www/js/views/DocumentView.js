@@ -35,33 +35,6 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 		//var current_view_detail_document  = new DetailDocumentView({ model: this.model});
 		this.model.fetch({ // on fait un fetch, ce qui nous fait rentrer dans le case read de la function sync dans DocumentModel
 			success: function(data){
-				//var d = new DetailDocumentView({ model: _this.model });
-				
-				// ne marche pas avec DocumentView . Pourquoi ?
-							
-			/*	//alert("validé 2 " + this.model.get('valide'));
-				//current_view_detail_document.model.set(_this.model.attributes);
-				current_view_detail_document.model.set('numero_document',_this.model.get('numero_document'))
-				current_view_detail_document.model.set('id_etude',_this.model.get('id_etude'))
-				//current_view_detail_document.model.set('nature_signification',_this.model.get('nature_signification'))
-				current_view_detail_document.model.set('nature_parquet',_this.model.get('nature_parquet'))
-				current_view_detail_document.model.set('nom_tiers_a_signifier',_this.model.get('nom_tiers_a_signifier'))
-				current_view_detail_document.model.set('type_tiers_a_signifier',_this.model.get('type_tiers_a_signifier'))
-				//current_view_detail_document.model.set('civilite_tiers_a_signifier',_this.model.get('civilite_tiers_a_signifier'))
-				current_view_detail_document.model.set('nom_debiteur',_this.model.get('nom_debiteur'))
-				current_view_detail_document.model.set('commentaires_tiers',_this.model.get('commentaires_tiers'))
-				current_view_detail_document.model.set('domicile_elu',_this.model.get('domicile_elu'))
-				current_view_detail_document.model.set('presomption_domiciliation',_this.model.get('presomption_domiciliation'))
-				current_view_detail_document.model.set('domicilie',_this.model.get('domicilie'))
-				current_view_detail_document.model.set('domiciliation',_this.model.get('domiciliation'))
-				current_view_detail_document.model.set('numero_tiers_a_signifier',_this.model.get('numero_tiers_a_signifier'))
-				current_view_detail_document.model.set('libelle_document',_this.model.get('libelle_document'))
-				current_view_detail_document.model.set('signataire',_this.model.get('signataire'))
-				current_view_detail_document.model.set('nombre_feuillets',_this.model.get('nombre_feuillets'))
-				current_view_detail_document.model.set('adresse',_this.model.get('adresse'))
-				current_view_detail_document.model.set('immeuble',_this.model.get('immeuble'))
-				current_view_detail_document.model.set('signification',_this.model.get('signification'))					
-				alert("1"); */
 				
 				var promise = type_famille_documentdao.getTypeFamilleLibelle(data.get('nature_signification'));
 				var typetiers = data.get('type_tiers_a_signifier');
@@ -139,7 +112,6 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 									}
 										);
 								var vue_adresse  = new AdresseView({ model: modele_adresse });
-							//	$('#div4').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique 
 
 							});
 						
@@ -150,10 +122,12 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 								}
 								
 						);
+						
 						immeuble.fetch({
 							success: function(data_immeuble){
 										var modele_immeuble = new ImmeubleModel(
 												{   
+													'id_immeuble' : data_immeuble.get('id_immeuble'),
 													'cle_ptt' : data_immeuble.get('cle_ptt'),
 													'cle_gaz' : data_immeuble.get('cle_gaz'),
 													'interphone' : data_immeuble.get('interphone'),
@@ -176,14 +150,10 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 													
 											}
 												);
-										var vue_immeuble  = new ImmeubleView({ model: modele_immeuble });
-									//	$('#div4').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique 
+										var vue_immeuble  = new ImmeubleView({ model: modele_immeuble });		
+							}
+						})
 
-									
-					}
-				})
-				//current_view_detail_document.render();
-				//$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique 
 				
 				
 				//	$('#div2').css('display','block');
@@ -199,28 +169,16 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 					$("#flip-1").val("off"); // sinon dans la position non validé
 					$("#flip-1").slider("refresh");	
 				}  */
-			}
-		});	
-		
+						
+						
+			}// fin success
+		});	// fin fetch adresse
+			} // fin success		
+		}); // fin fetch model
+	} // fin afficher infos
 	
-	/*	var immeuble = new ImmeubleModel({id_immeuble : this.model.get('immeuble')});
-		immeuble.fetch({
-
-			success : function(){
-
-				//var i = new ImmeubleView({ model: immeuble });
-
-				current_view_immeuble.model.set(immeuble.attributes);
-				//current_view_immeuble.render();
-
-				//current_view_immeuble = i;
-				$('#div5').trigger('create');
-
-
-			}
-		});
 		
-		var type_mode_signification = new Type_mode_significationModel({});
+	/*	var type_mode_signification = new Type_mode_significationModel({});
 		type_mode_signification.fetch({
 			success : function(){
 
@@ -232,13 +190,12 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 			}
 			
 		}); */
-		//var d = new DetailDocumentView({ model: this.model });
-		//$('#div3').trigger('create');
 
 
 
-	}
 
+	//}
+		
 });
 
 var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste latérale (tous les documents)
