@@ -21,6 +21,7 @@
         <nombre_feuillets>0</nombre_feuillets>
         <adresse>
             <id_adresse>1-1334932936601365622</id_adresse>
+            <texte_libre>texte_libre</texte_libre>
             <numero>65</numero>
             <complement_numero></complement_numero>
             <nature_voie>avenue</nature_voie>
