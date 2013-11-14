@@ -9,24 +9,24 @@ var ImmeubleModel = Backbone.Model.extend({
 
 		//iDomicile
 
-		id_immeuble : "inconnu", 
-		cle_ptt : "inconnu", 
-		cle_gaz : "inconnu",
-		interphone : "inconnu",
-		code_vigik : "inconnu",
-		digicode : "inconnu", 
-		cle_ptt_sas : "inconnu", 
-		interphone_sas : "inconnu", 
-		acces_gardien_sas : "inconnu", 
-		digicode_sas : "inconnu", 
-		nom_gardien : "inconnu",
-		telephone_gardien : "inconnu", 
-		plage_horaires_gardien : "inconnu", 
-		nom_syndic : "inconnu", 
-		tel_syndic : "inconnu", 
-		commentaire : "inconnu", 
-		etage : "inconnu", 
-		porte : "inconnu"
+		id_immeuble : "", 
+		cle_ptt : "", 
+		cle_gaz : "",
+		interphone : "",
+		code_vigik : "",
+		digicode : "", 
+		cle_ptt_sas : "", 
+		interphone_sas : "", 
+		acces_gardien_sas : "", 
+		digicode_sas : "", 
+		nom_gardien : "",
+		telephone_gardien : "", 
+		plage_horaires_gardien : "", 
+		nom_syndic : "", 
+		tel_syndic : "", 
+		commentaire : "", 
+		etage : "", 
+		porte : ""
 
 	},
 

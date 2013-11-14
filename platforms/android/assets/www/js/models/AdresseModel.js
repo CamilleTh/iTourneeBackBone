@@ -8,20 +8,20 @@ var AdresseModel = Backbone.Model.extend({
 		// les attributs par défaut d'une Adresse
 
 		// iAdresse
-		id_adresse : "inconnu", 
-		texte_libre : "inconnu",
-		complement1 : "inconnu",
-		complement2 : "inconnu",
-		numero : "inconnu",
-		complement_numero : "inconnu",
-		nature_voie : "inconnu",
-		lien_nature_nom_voie : "inconnu", 
-		nom_voie : "inconnu", 
-		code_postal : "inconnu", 
-		nom_commune : "inconnu", 
-		commentaire : "inconnu", 
-		statut : "inconnu",
-		type : "inconnu"
+		id_adresse : "", 
+		texte_libre : "",
+		complement1 : "",
+		complement2 : "",
+		numero : "",
+		complement_numero : "",
+		nature_voie : "",
+		lien_nature_nom_voie : "", 
+		nom_voie : "", 
+		code_postal : "", 
+		nom_commune : "", 
+		commentaire : "", 
+		statut : "",
+		type : ""
 
 	},
 

@@ -18,6 +18,13 @@ var current_view_adresse;
 var current_view_immeuble;
 var current_view_signification;
 
+var model_immeuble_vide = new ImmeubleModel({})
+var model_adresse_vide = new AdresseModel({})
+
+var vue_immeuble = new ImmeubleView({model : model_immeuble_vide});
+var vue_adresse = new AdresseView({model : model_adresse_vide});
+
+
 var Router = Backbone.Router.extend({
 	routes: {
 		'': 'defaut'  // 1 seule route, la route par défaut

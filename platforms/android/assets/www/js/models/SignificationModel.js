@@ -9,19 +9,19 @@ var SignificationModel = Backbone.Model.extend({
 
 		//iDomicile
 
-		mode_signification : "inconnu", 
-		remis_a : "inconnu", 
-		civilite : "inconnu",
-		nom : "inconnu",
-		prenom : "inconnu",
-		qualite : "inconnu", 
-		lieu_remise : "inconnu", 
-		motif_nom_remise : "inconnu", 
-		motif_nom_remise_autre : "inconnu", 
-		mode_avis_passage : "inconnu", 
-		certitude_domicile : "inconnu",
-		date_signification : "inconnu", 
-		nouvelle_adresse : "inconnu" 
+		mode_signification : "", 
+		remis_a : "", 
+		civilite : "",
+		nom : "",
+		prenom : "",
+		qualite : "", 
+		lieu_remise : "", 
+		motif_nom_remise : "", 
+		motif_nom_remise_autre : "", 
+		mode_avis_passage : "", 
+		certitude_domicile : "",
+		date_signification : "", 
+		nouvelle_adresse : "" 
 	
 
 	},

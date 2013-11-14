@@ -115,8 +115,8 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 											
 									}
 										);
-								var vue_adresse  = new AdresseView({ model: modele_adresse });
-								
+								 vue_adresse.model.set(modele_adresse.attributes)
+								 vue_adresse.render();
 							});
 						
 						var immeuble = new ImmeubleModel(
@@ -154,7 +154,9 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 													
 											}
 												);
-										var vue_immeuble  = new ImmeubleView({ model: modele_immeuble });		
+										vue_immeuble.model.set(modele_immeuble.attributes) 
+										vue_immeuble.render();
+										//vue_immeuble  = new ImmeubleView({ model: modele_immeuble });		
 							}
 						})
 
