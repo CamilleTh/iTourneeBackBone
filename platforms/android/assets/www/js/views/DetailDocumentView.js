@@ -11,14 +11,12 @@ var DetailDocumentView = Backbone.View.extend({  // la vue correspondant à l'aff
 	},
 	render: function(){
 		
-		alert(this.model.get('valide'))
+
 		if((this.model.get('valide') == "true") || this.model.get('valide') == true){ // si le document est validé, on passe le slider dans la position validé
-			alert('ENTER ON')
 			$("#flip-1").val("on");
 			$("#flip-1").slider("refresh");	
 		}
-		else{
-			alert('ENTER OFF')
+		else{	
 			$("#flip-1").val("off"); // sinon dans la position non validé
 			$("#flip-1").slider("refresh");	
 		}  		
