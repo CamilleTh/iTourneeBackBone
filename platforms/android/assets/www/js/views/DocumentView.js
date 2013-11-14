@@ -64,8 +64,6 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 				alert("1"); */
 				
 				var promise = type_famille_documentdao.getTypeFamilleLibelle(data.get('nature_signification'));
-				
-				
 				var typetiers = data.get('type_tiers_a_signifier');
 				var civ = data.get('civilite_tiers_a_signifier');
 			  alert(typetiers);
@@ -108,9 +106,84 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 						
 
 					});
-				}); 
+				});
+				
+				var adresse = new AdresseModel(
+						{
+							'id_adresse' : data.get('adresse')
+							
+						}
+						
+				);
+				adresse.fetch({
+					success: function(data_adresse){
+						var promise_type_adresse = type_adressedao.getTypeAdresseLibelle(data_adresse.get('type'));
+						promise_type_adresse.then(function(libelleTypeAdresse){
+								var modele_adresse = new AdresseModel(
+										{   
+											'texte_libre' : data_adresse.get('texte_libre'),
+											'complement1' : data_adresse.get('complement1'),
+											'complement2' : data_adresse.get('complement2'),
+											'numero' : data_adresse.get('numero'),
+											'complement_numero' : data_adresse.get('complement_numero'),
+											'nature_voie' : data_adresse.get('nature_voie'),
+											'lien_nature_nom_voie' : data_adresse.get('lien_nature_nom_voie'), 
+											'nom_voie' : data_adresse.get('nom_voie'), 
+											'code_postal' : data_adresse.get('code_postal'), 
+											'nom_commune' : data_adresse.get('nom_commune'), 
+											'commentaire' : data_adresse.get('commentaire'), 
+											'statut' : data_adresse.get('statut'),
+											'type' : libelleTypeAdresse
+											
+									}
+										);
+								var vue_adresse  = new AdresseView({ model: modele_adresse });
+							//	$('#div4').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique 
+
+							});
+						
+						var immeuble = new ImmeubleModel(
+								{
+									'id_immeuble' : data.get('immeuble')
+									
+								}
+								
+						);
+						immeuble.fetch({
+							success: function(data_immeuble){
+										var modele_immeuble = new ImmeubleModel(
+												{   
+													'cle_ptt' : data_immeuble.get('cle_ptt'),
+													'cle_gaz' : data_immeuble.get('cle_gaz'),
+													'interphone' : data_immeuble.get('interphone'),
+													'code_vigik' : data_immeuble.get('code_vigik'),
+													'digicode' : data_immeuble.get('digicode'),
+													'cle_ptt_sas' : data_immeuble.get('cle_ptt_sas'),
+													'interphone_sas' : data_immeuble.get('interphone_sas'), 
+													'acces_gardien_sas' : data_immeuble.get('acces_gardien_sas'), 
+													'digicode_sas' : data_immeuble.get('digicode_sas'), 
+													'nom_gardien' : data_immeuble.get('nom_gardien'), 
+													'telephone_gardien' : data_immeuble.get('telephone_gardien'), 
+													'plage_horaires_gardien' : data_immeuble.get('plage_horaires_gardien'),
+													'nom_syndic' : data_immeuble.get('nom_syndic'),
+													'tel_syndic' : data_immeuble.get('tel_syndic'),
+													'commentaire' : data_immeuble.get('commentaire'),
+													'modifie' : data_immeuble.get('modifie'),
+													'etage' : data_immeuble.get('etage'),
+													'porte' : data_immeuble.get('porte')
+													
+													
+											}
+												);
+										var vue_immeuble  = new ImmeubleView({ model: modele_immeuble });
+									//	$('#div4').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique 
+
+									
+					}
+				})
 				//current_view_detail_document.render();
-				$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique 
+				//$('#div3').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique 
+				
 				
 			$('#div2').css('display','block');
 				$('#blockValide').css('display','block');
@@ -129,22 +202,8 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 			}
 		});	
 		
-		var adresse = new AdresseModel({id_adresse : this.model.get('adresse')});
-		adresse.fetch({
-
-			success: function(){
-
-				//	var a = new AdresseView({ model: adresse });
-				current_view_adresse.model.set(adresse.attributes); // ici cela fonctionne . quelle est la meilleure solution?
-				$('#div4').trigger('create');
-
-
-
-
-
-			}
-		});
-		var immeuble = new ImmeubleModel({id_immeuble : this.model.get('immeuble')});
+	
+	/*	var immeuble = new ImmeubleModel({id_immeuble : this.model.get('immeuble')});
 		immeuble.fetch({
 
 			success : function(){
@@ -172,7 +231,7 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 
 			}
 			
-		}); 
+		}); */
 		//var d = new DetailDocumentView({ model: this.model });
 		//$('#div3').trigger('create');
 
@@ -190,77 +249,16 @@ var DocumentsView = Backbone.View.extend({ // la vue correspondant à la liste la
 
 		this.collection.getDataXML({reset: true}); // parcours du fichier XML via les méthodes getDataXML et parse --> voir DocumentModel.js à DocumentCollection   un événement reset est déclenché	
 		this.collection.bind('reset', this.render, this); // lorsque l'évenement reset est déclenché, on rentre dans le render --> affichage de la vue
-	/*	var mondoc = new DocumentModel({id_etude : "",    // création d'un doc avc des attributs vides pour l'afficher dans la partie droite de l'appli --> inutile maintenant ?
-			numero_document : "",
-			nature_signification : "",
-			nature_parquet : "",
-			nom_tiers_a_signifier: "",
-			type_tiers_a_signifier : "",
-			civilite_tiers_a_signifier : "",
-			nom_debiteur : "",
-			commentaires_tiers : "",
-			domicile_elu : "",
-			domiciliation : "",
-			presomption_domiciliation : "",
-			domicilie : "",
-			numero_tiers_a_signifier : "",
-			libelle_document : "",
-			signataire : "",
-			nombre_feuillets : "",
-			signification : "",
-			valide : ""
-		}); */
-		//var d = new DetailDocumentView({ model: mondoc });
+	
 		//current_view_detail_document  = new DetailDocumentView({ model: mondoc}); // création d'une nouvelle vue DetailDocument avc les attributs vides de mondoc : inutile ? --> voir DetailDocumentView.js à initialize
 
 
-		var monadresse = new AdresseModel({ // création d'une adresse avc des attributs vides pour l'afficher dans la partie droite de l'appli --> inutile maintenant ?
-			idAdresse : "",
-			texte_libre : "",
-			complement1 : "",
-			complement2 : "",
-			numero :"",
-			complement_numero : "",
-			nature_voie : "",
-			lien_nature_nom_voie : "", 
-			nom_voie : "", 
-			code_postal : "", 
-			nom_commune : "", 
-			commentaire : "", 
-			statut : "",
-			type : ""
-		}); 
-
-		//var a= new AdresseView({ model: monadresse});
-		current_view_adresse  = new AdresseView({ model: monadresse}); // création d'une nouvelle vue Adresse avc les attributs vides de monadresse : inutile ? --> voir AdresseView.js à initialize
-
-		var monimmeuble = new ImmeubleModel({ // création d'un immeuble avc des attributs vides pour l'afficher dans la partie droite de l'appli --> inutile maintenant ?
-			id_immeuble : "", 
-			cle_ptt : " ", 
-			cle_gaz : " ",
-			interphone : "",
-			code_vigik : "",
-			digicode : "", 
-			cle_ptt_sas : "", 
-			interphone_sas : "", 
-			acces_gardien_sas : "", 
-			digicode_sas : "", 
-			nom_gardien : "",
-			telephone_gardien : "", 
-			plage_horaires_gardien : "", 
-			nom_syndic : "", 
-			tel_syndic : "", 
-			commentaire : "", 
-			modifie : "",
-			etage : "", 
-			porte : ""
 
 
+	//	current_view_adresse  = new AdresseView({ model: monadresse}); // création d'une nouvelle vue Adresse avc les attributs vides de monadresse : inutile ? --> voir AdresseView.js à initialize
 
-		}); 
 
-
-		current_view_immeuble  = new ImmeubleView({ model: monimmeuble}); // création d'une nouvelle vue Immeuble avc les attributs vides de monimmeuble : inutile ? --> voir ImmeubleView.js à initialize
+	//	current_view_immeuble  = new ImmeubleView({ model: monimmeuble}); // création d'une nouvelle vue Immeuble avc les attributs vides de monimmeuble : inutile ? --> voir ImmeubleView.js à initialize
 
 
 	},

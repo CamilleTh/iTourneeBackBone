@@ -5,7 +5,7 @@ var ImmeubleView = Backbone.View.extend({  // la vue correspondant à l'affichage
 	el: '#div5',
 	template: template('immeubleTemplate'),
 	initialize: function() {
-		this.model.bind('change', this.render, this);
+	//	this.model.bind('change', this.render, this);
 		this.render();
 	},
 
