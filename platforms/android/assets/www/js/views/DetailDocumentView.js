@@ -5,7 +5,7 @@ var DetailDocumentView = Backbone.View.extend({  // la vue correspondant à l'aff
 	template: template('documentTemplate2'),
 	initialize: function() {
 
-		this.model.bind('change:civilite_tiers_a_signifier', this.render, this);
+		//this.model.bind('change:civilite_tiers_a_signifier', this.render, this);
 		this.render();
 
 	},
