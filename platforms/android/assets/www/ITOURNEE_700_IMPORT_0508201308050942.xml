@@ -21,6 +21,7 @@
         <nombre_feuillets>0</nombre_feuillets>
         <adresse>
             <id_adresse>1-1334932936601365622</id_adresse>
+            <texte_libre>texte_libre</texte_libre>
             <numero>65</numero>
             <complement_numero></complement_numero>
             <nature_voie>avenue</nature_voie>
@@ -58,9 +59,9 @@
         <type_tiers_a_signifier>P</type_tiers_a_signifier>
         <civilite_tiers_a_signifier>2</civilite_tiers_a_signifier>
         <commentaires_tiers>aaaaaaa</commentaires_tiers>
-        <domicile_elu>false</domicile_elu>
-        <presomption_domiciliation>false</presomption_domiciliation>
-        <domicilie>false</domicilie>
+        <domicile_elu>true</domicile_elu>
+        <presomption_domiciliation>true</presomption_domiciliation>
+        <domicilie>true</domicilie>
         <numero_tiers_a_signifier>116</numero_tiers_a_signifier>
         <libelle_document>Appréhension (remise spontanée du bien)</libelle_document>
         <signataire>SAMAIN Francois</signataire>

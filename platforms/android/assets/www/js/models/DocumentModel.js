@@ -68,7 +68,21 @@ var DocumentModel = Backbone.Model.extend({
 
 		case 'update':
 
-			if(maj == false){
+			alert("majd"+maj_domicilie)
+			alert("maj"+maj)
+			
+			
+			
+			if(maj == true){
+				documentdao.update_document_immeuble(model.get('numero_document'),model.get('immeuble'));
+				
+			}
+			else if (maj_domicilie == true){
+				alert('maj dom')
+				documentdao.update_document_domicilie(model.get('numero_document'),$("input:radio[name=radio_domiciliation]:checked").val());
+			}
+			else{
+				
 				if(model.get('valide') == 'true' || model.get('valide') == true){ // pourquoi ce comportement ? à cause de  SQLite ?
 					console.log("entrée dans true modele");
 					//model.set('valide',false);
@@ -80,9 +94,8 @@ var DocumentModel = Backbone.Model.extend({
 					documentdao.update_document(model.get('numero_document'),true);			
 				}
 			}
-			else{
-				documentdao.update_document_immeuble(model.get('numero_document'),model.get('immeuble'));
-			}	
+			
+			
 			
 			console.log("sortie update");
 			break;
@@ -174,6 +187,7 @@ var DocumentCollection = Backbone.Collection.extend({ // les modèles sont regrou
 			var immeuble = $(this).find('id_immeuble').text();
 			var signification = $(this).find('signification').text();
 			
+			alert("presomption_domiciliation xml"+ presomption_domiciliation)
 			parsed.push({id_etude : id_etude,     // XML est transformé en JSON
 				numero_document : numero_document,
 				nature_signification : nature_signification,

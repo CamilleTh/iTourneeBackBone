@@ -6,17 +6,13 @@ var AdresseView = Backbone.View.extend({  // la vue correspondant à l'affichage 
 	//	this.model.bind('change', this.render, this);
 		this.render();
 	},
+	
 	render: function(){
 
 		this.$el.html( this.template(this.model.toJSON())); // on insère dans le li les données du modèle en suivant le template
 		$('#div4').trigger('create'); // nécessaire pour que le style jQuery mobile s'applique
 		return this;
 	}
-
-
-
-
-
 
 
 });
@@ -39,3 +35,4 @@ var AdressesView = Backbone.View.extend({
 		return this;
 	}
 });
+
