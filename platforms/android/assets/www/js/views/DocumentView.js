@@ -1,7 +1,6 @@
 var modele_courant; // utilisation d'une variable globale. mauvaise pratique ?
 var maj = false;
 
-
 var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage d'un seul Document
 
 	tagName: 'li', // infos contenues dans un li
@@ -23,6 +22,9 @@ var DocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage
 	events: {
 		'click' : 'afficher_infos' // lors du clic sur un modèle on déclenche la méthode afficher infos
 	},
+
+	
+
 
 	maj_immeuble: function(){
 		maj = true;
@@ -351,6 +353,8 @@ $("#cloreTournee").click(function(){
 		//}
 	})
 });
+
+
 
 
 

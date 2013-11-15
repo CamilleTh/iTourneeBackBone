@@ -1,3 +1,5 @@
+var maj_domicilie = false;
+
 
 var DetailDocumentView = Backbone.View.extend({  // la vue correspondant à l'affichage d'un seul Document
 
@@ -33,6 +35,13 @@ var DetailDocumentView = Backbone.View.extend({  // la vue correspondant à l'aff
 
 		// on insère dans le li les données du modèle en suivant le template */
 		return this;
+	},
+	
+	domicilie : function(){
+		
+		maj_domicilie = true;
+		this.model.sync('update',this.model);
+		maj_domicilie = false;
 	},
 	events: {
 		// lors du clic sur un modèle on déclenche show alert

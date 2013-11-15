@@ -148,7 +148,7 @@ _.extend(window.DocumentDao.prototype, {
 						console.log("Table iDocument : " + len + " enregistrements trouvés.");
 						for (var i=0; i<len; i++){
 							
-							console.log("Enregistrement = " + i + " ID_etude = " + results.rows.item(i).id_etude + " Civ = " + results.rows.item(i).civilite_tiers_a_signifier + "Nom tiers = " + results.rows.item(i).nom_tiers_a_signifier + " Numéro document =  " + results.rows.item(i).numero_document + " valide =  " + results.rows.item(i).valide + " id immeuble =  " + results.rows.item(i).immeuble);
+							console.log("Enregistrement = " + i + " ID_etude = " + results.rows.item(i).id_etude + " presomption de dom = " + results.rows.item(i).presomption_domiciliation + " Civ = " + results.rows.item(i).civilite_tiers_a_signifier + "Nom tiers = " + results.rows.item(i).nom_tiers_a_signifier + " Numéro document =  " + results.rows.item(i).numero_document + " valide =  " + results.rows.item(i).valide + " id immeuble =  " + results.rows.item(i).immeuble);
 						}
 					}
 					);
@@ -339,6 +339,29 @@ _.extend(window.DocumentDao.prototype, {
 		this.db.transaction(
 				function(tx){ 
 					var sql ="UPDATE iDocument SET immeuble='"+immeuble+"' WHERE numero_document='"+numero_document+"'";
+					tx.executeSql(sql);
+
+				},
+				function error(err) {	 // fonction appelée lorsqu'une requête SQL échoue
+
+					alert("Erreur de traitement SQL : "+err.code); // affichage du code de l'erreur http://www.sqlite.org/c3ref/c_abort.html
+					console.log("Erreur de traitement SQL : "+err.code); 
+				}, 
+
+				function success_ajout_iDocument() {
+
+					console.log("Update réussie dans la table iDocument");
+
+				}
+		); 
+
+	},
+	
+	update_document_domicilie :function(numero_document,domicilie){ // pour mettre à jour les champs d'un document particulier
+
+		this.db.transaction(
+				function(tx){ 
+					var sql ="UPDATE iDocument SET domicilie='"+domicilie+"' WHERE numero_document='"+numero_document+"'";
 					tx.executeSql(sql);
 
 				},

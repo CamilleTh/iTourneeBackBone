@@ -8,6 +8,8 @@
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
 <script type="text/javascript" src="cordova.js"></script>
+
+
 <script src="js/libs/underscore.js"></script>
 <script src="js/libs/backbone.js"></script>
 
@@ -66,7 +68,6 @@
 <script 
 id="documentTemplate2" type="text/template"> 
 
- 
 					<h3> Informations sur le tiers à signifier et sur le document</h3>
 						
 					<form>
@@ -114,22 +115,43 @@ id="documentTemplate2" type="text/template">
 							<input name="numero_document" id="numero_document" value="<%= numero_document %>" type="text" readonly="true" >
 						</div>
 
+						<div id="div_domicile_elu" data-role="fieldcontain" readonly="true">
+							<fieldset data-role="controlgroup" data-type="horizontal" >
+       							<legend>Domicile élu :</legend>
+        						<input name="radio_domicile_elu" disabled="disabled" id="radio_domicile_elu_1" value="true" readonly="true" type="radio" <% if (domicile_elu == true || domicile_elu == "true") { %> checked="checked" <% } %>>
+        						<label for="radio_domicile_elu_1">Oui</label>
+        						<input name="radio_domicile_elu" disabled="disabled" id="radio_domicile_elu_2" value="false" readonly="true" type="radio" <% if (domicile_elu == false || domicile_elu == "false") { %> checked="checked" <% } %>>
+        						<label for="radio_domicile_elu_2">Non</label>
+    						</fieldset>
+						</div>
+
+
+						<div id="div_presomption_domiciliation" data-role="fieldcontain">
+							<fieldset data-role="controlgroup" data-type="horizontal">
+       					 		<legend> Présomption de domiciliation :</legend>
+        						<input name="radio_presomption_domiciliation" disabled="disabled" id="radio_presomption_domiciliation_1" value="true"  type="radio" <% if (presomption_domiciliation == true || presomption_domiciliation == "true") { %> checked="checked" <% } %>  >
+        						<label for="radio_presomption_domiciliation_1">Oui</label>
+        						<input name="radio_presomption_domiciliation" disabled="disabled" id="radio_presomption_domiciliation_2" value="false" type="radio" <% if (presomption_domiciliation == false || presomption_domiciliation == "false") { %> checked="checked" <% } %> >
+        						<label for="radio_presomption_domiciliation_2">Non</label>
+    						</fieldset>
+						</div>
 
 						<div id="div_domiciliation" data-role="fieldcontain">
-							<fieldset data-role="controlgroup" data-type="horizontal">
-       					 		<legend> Société de domiciliation :</legend>
-        						<input name="radio_domiciliation" disabled="disabled" id="radio_domiciliation_1" value="true"  type="radio" <% if (domiciliation == true || domiciliation == "true") { %> checked="checked" <% } %>  >
+							<fieldset id="radio_domiciliation_0" data-role="controlgroup" data-type="horizontal">
+       					 		<legend> Domicilié :</legend>
+        						<input name="radio_domiciliation" onclick="vue_detail_document.domicilie()" id="radio_domiciliation_1" value="true"  type="radio" <% if (domicilie == true || domicilie == "true") { %> checked="checked" <% } %>  >
         						<label for="radio_domiciliation_1">Oui</label>
-        						<input name="radio_domiciliation" disabled="disabled" id="radio_domiciliation_2" value="false" type="radio" <% if (domiciliation == false || domiciliation == "false") { %> checked="checked" <% } %> >
+        						<input name="radio_domiciliation" onclick="vue_detail_document.domicilie()" id="radio_domiciliation_2" value="false" type="radio" <% if (domicilie == false || domicilie == "false") { %> checked="checked" <% } %> >
         						<label for="radio_domiciliation_2">Non</label>
     						</fieldset>
 						</div>
 						
+						<input id="testtest" value="test" type="button"  >
 						<!--
 						<div id="div_domiciliation" data-role="fieldcontain">
 							
 								<label for="domiciliation"> Société de domiciliation :</label>
-        						<input id="domiciliation" onclick="this.checked=!this.checked;" type="checkbox" name="domiciliation">
+        						<input id="domiciliation"  onclick="this.checked=!this.checked;" type="checkbox" name="domiciliation">
    						 	
 							<label for="domiciliation"> Société de domiciliation :</label>
 							<input type="checkbox" name="domiciliation" readonly="true">
@@ -138,17 +160,9 @@ id="documentTemplate2" type="text/template">
 						-->
 
 
-						<!--
-						<div id="div_domicile_elu" data-role="fieldcontain" readonly="true">
-							<fieldset data-role="controlgroup" data-type="horizontal" >
-       							<legend>Domicile élu :</legend>
-        						<input name="radio_domicile_elu" id="radio_domicile_elu_1" value="true" readonly="true" type="radio" <% if (domicile_elu == true || domicile_elu == "true") { %> checked="checked" <% } %>>
-        						<label for="radio_domicile_elu_1">Oui</label>
-        						<input name="radio_domicile_elu" id="radio_domicile_elu_2" value="false" readonly="true" type="radio" <% if (domicile_elu == false || domicile_elu == "false") { %> checked="checked" <% } %>>
-        						<label for="radio_domicile_elu_2">Non</label>
-    						</fieldset>
-						</div>
-						-->
+						
+						
+						
 						<div id="div_commentaires_tiers" data-role="fieldcontain">
 							<label for="commentaires_tiers"> Commentaires tiers :</label>
 							<input name="commentaires_tiers" id="commentaires_tiers" value="<%= commentaires_tiers %>" type="text" readonly="true">
